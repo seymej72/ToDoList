@@ -1,0 +1,16 @@
+ZFR - CHECKLIST
+---------------
+
+1. All classes in all layers stubbed out
+
+2. DB schema set up in the database
+
+3. UI mockup mostly coded
+
+4. Allow user to give an input at UI, see changes in DB
+
+5. Allow user to read data from database?
+
+6. Show github and check in history
+
+7. Show Coding assignments

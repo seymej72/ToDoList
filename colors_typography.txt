@@ -1,0 +1,12 @@
+button/background colors:
+#FF202F3E - dark blue
+#FF30B994 - mint green
+#FF484F57 - grey
+
+text:
+#FF69726F - text grey
+#FFFFFFFF - white
+
+
+general font:
+Global Sans Serif - 24px

@@ -62,7 +62,7 @@
                     <Border.Effect>
                         <DropShadowEffect Color="#FFCBCDCC"/>
                     </Border.Effect>
-                    <Button Name="addButton" Background="{x:Null}" BorderBrush="{x:Null}" Click="createList" >
+                    <Button Style="{StaticResource ButtonStyle1}" Name="addButton" Background="{x:Null}" BorderBrush="{x:Null}" Click="createList" >
                         <TextBlock FontFamily="Global Sans Serif" FontSize="48" VerticalAlignment="Center" HorizontalAlignment="Center" Height="48" Foreground="#FF484F57">+</TextBlock>
                     </Button>
                 </Border>

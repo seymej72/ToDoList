@@ -24,5 +24,7 @@ namespace ToDoList
         {
             InitializeComponent();
         }
+
+        //notes field->somehow wrap text onto new line to fill box area? (it's all just going onto one line)
     }
 }

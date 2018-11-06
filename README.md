@@ -11,7 +11,7 @@ http://softeng.cs.uwosh.edu/phpmyadmin/ <br/>
 Username: team3<br/>
 Password: x143<br/>
 
-WebDev Server:
+WebDev Server:<br/>
 Username: SWTeam3 <br/>
 Password: j143 <br/>
 

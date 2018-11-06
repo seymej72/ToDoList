@@ -2,6 +2,7 @@ button/background colors:
 #FF202F3E - dark blue
 #FF30B994 - mint green
 #FF484F57 - grey
+#FFF0F0F0 - off-white
 
 text:
 #FF69726F - text grey

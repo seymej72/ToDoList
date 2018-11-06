@@ -31,7 +31,8 @@ namespace ToDoList
         }
         private void createList(object sender, RoutedEventArgs e)
         {
-
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("CreateTask.xaml", UriKind.RelativeOrAbsolute));
         }
 
         //need: +add button always goes to bottom of display

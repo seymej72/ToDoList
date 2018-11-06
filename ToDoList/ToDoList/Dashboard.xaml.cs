@@ -35,6 +35,13 @@ namespace ToDoList
             nav.Navigate(new Uri("CreateTask.xaml", UriKind.RelativeOrAbsolute));
         }
 
+        private void taskClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("CompleteTask.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+       
         //need: +add button always goes to bottom of display
 
         //need: when lists are added, add a new RowDefinition (increase grid.rowspan on navyBackground & whiteBackground)

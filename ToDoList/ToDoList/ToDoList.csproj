@@ -69,11 +69,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\RepeatableTask.cs" />
     <Compile Include="Classes\TaskList.cs" />
     <Compile Include="Database\ToDoDB.cs" />
     <Compile Include="Classes\ToDo.cs" />
     <Compile Include="Classes\ToDoUser.cs" />
-    
     <Compile Include="CompleteTask.xaml.cs">
       <DependentUpon>CompleteTask.xaml</DependentUpon>
     </Compile>

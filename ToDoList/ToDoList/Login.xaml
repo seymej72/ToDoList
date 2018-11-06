@@ -41,9 +41,9 @@
 
         <TextBox Name="usernameTextBox" Grid.Row="4" Grid.Column="1" Height="40" Width="480" VerticalAlignment="center" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="#FF69726F" TextChanged="TextBox_TextChanged" Text="Create Username" FontFamily="Global Sans Serif" Foreground="#FF69726F" FontSize="24"></TextBox>
 
-        <TextBox Name="passwordTextBox" Grid.Row="6" Grid.Column="1" Height="40" Width="480" VerticalAlignment="center" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="#FF69726F" Text="Create Password" FontFamily="Global Sans Serif" Foreground="#FF69726F" FontSize="24"/>
+        <PasswordBox Name="passwordTextBox" Grid.Row="6" Grid.Column="1" Height="40" Width="480" VerticalAlignment="center" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="#FF69726F"  FontFamily="Global Sans Serif" Foreground="#FF69726F" FontSize="24"/>
 
-        <TextBox Name="passwordRetypeTextBox" Grid.Row="8" Grid.Column="1" Height="40" Width="480" VerticalAlignment="center" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="#FF69726F" Text="Retype Password" FontFamily="Global Sans Serif" Foreground="#FF69726F" FontSize="24"></TextBox>
+        <PasswordBox Name="passwordRetypeTextBox" Grid.Row="8" Grid.Column="1" Height="40" Width="480" VerticalAlignment="center" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="#FF69726F"  FontFamily="Global Sans Serif" Foreground="#FF69726F" FontSize="24"></PasswordBox>
 
         <Button Style="{StaticResource ButtonStyle1}"  Name="submitButton" Grid.Row="10" Grid.Column="1" VerticalAlignment="center" HorizontalAlignment="center" Width="400" Height="60"  Background="#FF30B994" BorderBrush="{x:Null}" Click="submitButtonClick">
             <Button.Effect>

@@ -46,7 +46,7 @@ namespace ToDoList
 
             //change user/pass fields
             usernameTextBox.Text = "Create Username";
-            passwordTextBox.Text = "Create Password";
+           // passwordTextBox.Text = "Create Password";
             passwordRetypeTextBox.Visibility = Visibility.Visible;
 
             //change submit button
@@ -65,7 +65,7 @@ namespace ToDoList
 
             //change user/pass fields
             usernameTextBox.Text = "Enter Username";
-            passwordTextBox.Text = "Enter Password";
+            //passwordTextBox.Text = "Enter Password";
             passwordRetypeTextBox.Visibility = Visibility.Hidden;
 
             //change submit button

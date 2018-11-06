@@ -28,7 +28,7 @@ namespace ToDoList
         private void editClick(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("EditTask.xaml", UriKind.RelativeOrAbsolute));
+            nav.Navigate(new Uri("/GUI/EditTask.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

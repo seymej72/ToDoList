@@ -81,7 +81,7 @@ namespace ToDoList
         private void submitButtonClick(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Dashboard.xaml", UriKind.RelativeOrAbsolute));
+            nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

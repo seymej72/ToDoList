@@ -73,11 +73,11 @@
     <Compile Include="Database\ToDoDB.cs" />
     <Compile Include="Classes\ToDo.cs" />
     <Compile Include="Classes\ToDoUser.cs" />
-    <Compile Include="GUI\CreateTask.xaml.cs">
+    
     <Compile Include="CompleteTask.xaml.cs">
       <DependentUpon>CompleteTask.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateTask.xaml.cs">
+    <Compile Include="GUI\CreateTask.xaml.cs">
       <DependentUpon>CreateTask.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Dashboard.xaml.cs">
@@ -94,10 +94,10 @@
     <Compile Include="Classes\SubTask.cs" />
     <Compile Include="Classes\Task.cs" />
     <Page Include="GUI\CreateTask.xaml">
-    <Page Include="CompleteTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CompleteTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

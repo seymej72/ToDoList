@@ -36,7 +36,7 @@
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,25,280,0">Title:</Label>
         <TextBox Grid.Row="2" Grid.Column="1" Width="200" Height="30" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"></TextBox>
 
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,75,480,0">Notes:</Label>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,75,540,0">Description:</Label>
         <TextBox Grid.Row="2" Grid.Column="1" Width="400" Height="40" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0"></TextBox>
         
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,130,350,0">Repeatable:</Label>
@@ -56,7 +56,7 @@
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,250,680,0">Title:</Label>
         <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="0,70,400,130" BorderBrush="Black"></TextBox>
 
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,250,0,0">Description:</Label>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="40,250,0,0">Notes:</Label>
         <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="400,70,0,130" BorderBrush="Black"></TextBox>
 
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,300,620,0">Due Date:</Label>

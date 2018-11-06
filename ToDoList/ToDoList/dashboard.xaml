@@ -8,9 +8,9 @@
       Title="dashboard">
     <Grid>
         <ScrollViewer Width="1024" Height="768" >
-        <Grid HorizontalAlignment="stretch" VerticalAlignment="stretch">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
+            <Grid HorizontalAlignment="stretch" VerticalAlignment="stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="179"></RowDefinition>
                     <RowDefinition Height="179"></RowDefinition>
                     <RowDefinition Height="179"></RowDefinition>
@@ -18,52 +18,56 @@
                     <RowDefinition Height="179"></RowDefinition>
                     <RowDefinition Height="179"></RowDefinition>
                 </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition Width="824"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="824"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            
-            <Rectangle Name="navyBackground" Grid.Row="0" Grid.Column="0" Grid.RowSpan="10" Fill="#FF202F3E"></Rectangle>
-            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="top" HorizontalAlignment="Center" Foreground="White" Margin="10,20,10,0" FontFamily="Global Sans Serif" FontSize="18">Search</Label>
-            <TextBox Name="searchField" Grid.Row="1" Grid.Column="0" Width="180" Height="30" VerticalAlignment="Top" Margin="10,50,10,0"></TextBox>
 
-            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="top" HorizontalAlignment="Center" Foreground="White" Margin="10,90,10,0" FontFamily="Global Sans Serif" FontSize="18">Filter By:</Label>
+                <Rectangle Name="navyBackground" Grid.Row="0" Grid.Column="0" Grid.RowSpan="10" Fill="#FF202F3E"></Rectangle>
+                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="top" HorizontalAlignment="Center" Foreground="White" Margin="10,20,10,0" FontFamily="Global Sans Serif" FontSize="18">Search</Label>
+                <TextBox Name="searchField" Grid.Row="1" Grid.Column="0" Width="180" Height="30" VerticalAlignment="Top" Margin="10,50,10,0"></TextBox>
 
-            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,76,0,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Date</Label>
-                <RadioButton Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,120,0,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
-            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,130,0,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Title</Label>
-            <RadioButton Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,147,0,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="top" HorizontalAlignment="Center" Foreground="White" Margin="10,90,10,0" FontFamily="Global Sans Serif" FontSize="18">Filter By:</Label>
+
+                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,76,40,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Date</Label>
+                <RadioButton Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,120,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,130,40,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Title</Label>
+                <RadioButton Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,147,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+                <Label Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="60,164,28,164" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" Width="112" >Last Modified</Label>
+                <RadioButton Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="0,170,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+                <Label Grid.Row="2" Grid.Column="0" Grid.RowSpan="2"  HorizontalAlignment="Center" Margin="50,10,0,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Recently Created</Label>
+                <RadioButton Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="0,15,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="center" HorizontalAlignment="Center" Foreground="White" FontSize="36" FontFamily="Arial Rounded MT Bold" Text="todo" Margin="10,3,0,5">
-                <TextBlock.Effect>
-                    <DropShadowEffect Color="#FF060E15" BlurRadius="7"/>
-                </TextBlock.Effect>
-            </TextBlock>
-               
-            <Rectangle Name="mintGreenHeader" Grid.Row="0" Grid.Column="1" Width="824" Height="50" Fill="#FF30B994"></Rectangle>
-            
-            <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="10,9,0,12" HorizontalAlignment="Left" Width="255" Text="Tasks" Foreground="White" />
-            <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,10,40,10" HorizontalAlignment="Right" Width="125" Text="Username" Foreground="White" TextAlignment="Right" />
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#FF060E15" BlurRadius="7"/>
+                    </TextBlock.Effect>
+                </TextBlock>
 
-            <Rectangle Name="whiteBackground" Grid.Row="1" Grid.Column="1" Grid.RowSpan="10" Fill="#FFF0F0F0" Margin="0,0,1,0"/>
-            <Border Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom">
-                <Border.Effect>
-                    <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
-                </Border.Effect>
-            </Border>
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="38,166,646,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
-            
-            <Border  Grid.Row="4" Grid.Column="1" Width="75" Height="75" CornerRadius="100" Background="#FF30B994" Margin="703,36,46,68">
+                <Rectangle Name="mintGreenHeader" Grid.Row="0" Grid.Column="1" Width="824" Height="50" Fill="#FF30B994"></Rectangle>
+
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="10,9,0,12" HorizontalAlignment="Left" Width="255" Text="Tasks" Foreground="White" />
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,10,40,10" HorizontalAlignment="Right" Width="125" Text="Username" Foreground="White" TextAlignment="Right" />
+
+                <Rectangle Name="whiteBackground" Grid.Row="1" Grid.Column="1" Grid.RowSpan="10" Fill="#FFF0F0F0" Margin="0,0,1,0"/>
+                <Border Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="38,166,646,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border  Grid.Row="4" Grid.Column="1" Width="75" Height="75" CornerRadius="100" Background="#FF30B994" Margin="703,36,46,68">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFCBCDCC"/>
                     </Border.Effect>
                     <Button Name="addButton" Background="{x:Null}" BorderBrush="{x:Null}" Click="createList" >
                         <TextBlock FontFamily="Global Sans Serif" FontSize="48" VerticalAlignment="Center" HorizontalAlignment="Center" Height="48" Foreground="#FF484F57">+</TextBlock>
                     </Button>
-             </Border>
+                </Border>
 
-        </Grid>
-    </ScrollViewer>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

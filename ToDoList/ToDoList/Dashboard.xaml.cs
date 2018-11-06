@@ -33,5 +33,9 @@ namespace ToDoList
         {
 
         }
+
+        //need: +add button always goes to bottom of display
+
+        //need: when lists are added, add a new RowDefinition (increase grid.rowspan on navyBackground & whiteBackground)
     }
 }

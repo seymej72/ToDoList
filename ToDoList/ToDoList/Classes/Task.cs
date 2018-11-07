@@ -10,9 +10,9 @@ namespace ToDoList
     {
         public string title { get; set; }
   
-        public string isComplete { get; set; }
+        public Boolean isComplete { get; set; }
 
-        public string allowNotifications { get; set; }
+        public Boolean allowNotifications { get; set; }
 
         public string notes { get; set; }
 

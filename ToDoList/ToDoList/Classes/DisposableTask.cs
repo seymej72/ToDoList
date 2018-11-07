@@ -4,18 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 
 namespace ToDoList
 {
     class DisposableTask : Task
     {
-        private string connectionStringToDB = "server=softeng.cs.uwosh.edu; user=team3; password=x143; database=team3; port=1022";
+        //private string connectionStringToDB = "server=softeng.cs.uwosh.edu; user=team3; password=x143; database=team3; port=1022";
         private List<SubTask> subTasks { get; set; }
 
-        public DisposableTask()
+        public DisposableTask(String title, Boolean isComplete, Boolean allowNotifications, String notes)
         {
             subTasks = new List<SubTask>();
+            this.title = title;
+            this.isComplete = isComplete;
+            this.allowNotifications = allowNotifications;
+            this.notes = notes;
         }
 
         public override void AddSubtask(SubTask newSubTask)
@@ -33,7 +37,7 @@ namespace ToDoList
 
 
         //TODO// INPROGRESS to connect to DB and insert a line
-        private void AddtoDB()
+        /*private void AddtoDB()
         {
             String txtOut= "TEST";
             MySqlConnection conn = new MySqlConnection(connectionStringToDB);
@@ -55,6 +59,7 @@ namespace ToDoList
             }
             conn.Close();
         }
+        */
 
         public override void DeleteSubtask(SubTask subTasktoDelete)
         {

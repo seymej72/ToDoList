@@ -10,7 +10,7 @@ namespace ToDoList
     {
         List<DisposableTask> copiesOfRepeatableTask;
 
-        RepeatableTask(DateTime repeatTaskDate, )
+        RepeatableTask(DateTime repeatTaskDate, String title, Boolean isComplet, Boolean allowNotif, String note,  )
         {
 
         }

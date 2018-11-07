@@ -32,13 +32,13 @@ namespace ToDoList
         private void createList(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("CreateTask.xaml", UriKind.RelativeOrAbsolute));
+            nav.Navigate(new Uri("/GUI/CreateTask.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void taskClick(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("CompleteTask.xaml", UriKind.RelativeOrAbsolute));
+            nav.Navigate(new Uri("/GUI/CompleteTask.xaml", UriKind.RelativeOrAbsolute));
         }
 
        

@@ -8,13 +8,18 @@ namespace ToDoList
 {
     abstract class Task
     {
-        public string title { get; set; }
-  
-        public Boolean isComplete { get; set; }
+        public String taskTitle;
+        public Boolean complete;
+        public Boolean notificationsOn;
+        public String descrip;
 
-        public Boolean allowNotifications { get; set; }
+        public abstract void title(String theTitle);
 
-        public string notes { get; set; }
+        public abstract void isComplete(Boolean complete);
+
+        public abstract void allowNotifications(Boolean notifications);
+
+        public abstract void description(String descrip);
 
         public abstract void AddSubtask(SubTask newSubTask);
 

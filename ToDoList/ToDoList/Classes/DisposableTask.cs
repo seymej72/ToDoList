@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-//using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
+
+
+using System.Data;
+
+//using GameInterfaces;
 
 namespace ToDoList
 {
     class DisposableTask : Task
     {
+        private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
         //private string connectionStringToDB = "server=softeng.cs.uwosh.edu; user=team3; password=x143; database=team3; port=1022";
         private List<SubTask> subTasks { get; set; }
 
@@ -36,32 +42,110 @@ namespace ToDoList
         }
 
 
-        //TODO// INPROGRESS to connect to DB and insert a line
-        /*private void AddtoDB()
+
+        public override void DeleteSubtask(SubTask subTasktoDelete) { }
+
+        public override void EditSubtask(SubTask oldSubTask, SubTask newSubTask) { }
+
+        private void ReadUserInfoRowFromDB()
         {
-            String txtOut= "TEST";
-            MySqlConnection conn = new MySqlConnection(connectionStringToDB);
-            conn.Open();
-            MySqlCommand cmd = new MySqlCommand("select * from UserInfo", conn);
-            //MySqlCommand cmd = new MySqlCommand("update Customer  set user_name=@uName where order_id=3", conn);
-            cmd.Parameters.Add(new MySqlParameter("uName", txtOut));
+            MySqlConnection conn = null;
 
-            MySqlDataReader reader = cmd.ExecuteReader();
-            int count = reader.FieldCount;
-            StringBuilder str = new StringBuilder("");
-            while (reader.Read())
+            try
             {
-                for (int i = 0; i < count; i++)
+                conn = new MySqlConnection(connectionStringToDB);
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from UserInfo", conn);
+                cmd.Parameters.Add(new MySqlParameter("uName", "TextToADD"));
+                MySqlDataReader reader = cmd.ExecuteReader();
+                int count = reader.FieldCount;
+                StringBuilder str = new StringBuilder("");
+                while (reader.Read())
                 {
-                    str.Append(reader.GetValue(i) + " ");
+                    for (int i = 0; i < count; i++)
+                    {
+                        str.Append(reader.GetValue(i) + " ");
+                    }
+                    str.Append(Environment.NewLine);
                 }
-                str.Append(Environment.NewLine);
+                Console.WriteLine("Result: Success!");
+                Console.WriteLine(str.ToString());
+                //MessageBox.Show(str.ToString());
+                //txtOut.Text = "Successful";
             }
-            conn.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine("Result: Failure!");
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
         }
-        */
 
-        public override void DeleteSubtask(SubTask subTasktoDelete)
+        public void InsertUserInfoRowtoDB()
+        {
+            MySqlConnection conn = null;
+            MySqlCommand command = null;
+
+            try
+            {
+                conn = new MySqlConnection(connectionStringToDB);
+                conn.Open();
+                command = new MySqlCommand("INSERT INTO `UserInfo` VALUES(@userId, @name, @password, @userFKey);", conn);
+                command.Parameters.AddWithValue("@userId", 120);
+                command.Parameters.AddWithValue("@name", "jake");
+                command.Parameters.AddWithValue("@password", "passWORD");
+                command.Parameters.AddWithValue("@userFkey", 1000);
+                command.ExecuteNonQuery();
+                Console.WriteLine("Result: Success!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Result: Failure!");
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public void UpdateUserInfoRowinDB()
+        {
+            MySqlConnection conn = null;
+            MySqlCommand command = null;
+
+            try
+            {
+                conn = new MySqlConnection(connectionStringToDB);
+                conn.Open();
+                command = new MySqlCommand("UPDATE `UserInfo` SET name = @nameParam WHERE `userId` = 1;", conn);
+                command.Parameters.AddWithValue("nameParam", "NEW NAME");
+                command.ExecuteNonQuery();
+                Console.WriteLine("Result: Success!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Result: Failure!");
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+    }
+
+    /*
+    public override void DeleteSubtask(SubTask subTasktoDelete)
         {
             if (subTasks.Contains(subTasktoDelete))
             {
@@ -87,5 +171,5 @@ namespace ToDoList
             }
 
         }
-    }
+    */
 }

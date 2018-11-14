@@ -1,31 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
 using MySql.Data.MySqlClient;
 
-
-using System.Data;
-
-//using GameInterfaces;
 
 namespace ToDoList
 {
     class DisposableTask : Task
     {
         private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
-        //private string connectionStringToDB = "server=softeng.cs.uwosh.edu; user=team3; password=x143; database=team3; port=1022";
         private List<SubTask> subTasks { get; set; }
 
-        public DisposableTask(String title, Boolean isComplete, Boolean allowNotifications, String notes)
+        public DisposableTask(String title, Boolean isComplete, Boolean allowNotifications, String descrip)
         {
             subTasks = new List<SubTask>();
             this.taskTitle = title;
             this.complete = isComplete;
             this.notificationsOn = allowNotifications;
-            this.notes = notes;
+            this.descrip = descrip;
         }
         
         public override void title(string theTitle)
@@ -43,6 +35,11 @@ namespace ToDoList
             notificationsOn = notifications;
         }
 
+        public override void description(String descrip)
+        {
+            this.descrip = descrip;
+        }
+
         public override void AddSubtask(SubTask newSubTask)
         {
             if (subTasks.Contains(newSubTask))
@@ -55,8 +52,6 @@ namespace ToDoList
                 //TODO update DB
             }
         }
-
-
 
         public override void DeleteSubtask(SubTask subTasktoDelete) { }
 

@@ -23,8 +23,8 @@ namespace ToDoList
             notes = note;
 
         }
-        override
-        public  title(String theTitle)
+       
+        public override void title(String theTitle)
         {
             repeatableTitle = theTitle;
         }
@@ -33,7 +33,10 @@ namespace ToDoList
 
         public Boolean allowNotifications { get; set; }
 
-        public string notes { get; set; }
+        public override void notes (String newNote)
+        {
+
+        }
 
         override
         public void AddSubtask(SubTask newSubTask)

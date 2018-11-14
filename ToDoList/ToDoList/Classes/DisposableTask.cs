@@ -17,14 +17,24 @@ namespace ToDoList
         {
             subTasks = new List<SubTask>();
             this.taskTitle = title;
-            this.isComplete = isComplete;
-            this.allowNotifications = allowNotifications;
+            this.complete = isComplete;
+            this.notificationsOn = allowNotifications;
             this.notes = notes;
         }
-
+        
         public override void title(string theTitle)
         {
-            
+            this.taskTitle = theTitle;
+        }
+
+        public override void isComplete(bool complete)
+        {
+            this.complete = complete;
+        }
+
+        public override void allowNotifications(Boolean notifications)
+        {
+            notificationsOn = notifications;
         }
 
         public override void AddSubtask(SubTask newSubTask)

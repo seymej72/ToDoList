@@ -16,10 +16,15 @@ namespace ToDoList
         public DisposableTask(String title, Boolean isComplete, Boolean allowNotifications, String notes)
         {
             subTasks = new List<SubTask>();
-            this.title = title;
+            this.taskTitle = title;
             this.isComplete = isComplete;
             this.allowNotifications = allowNotifications;
             this.notes = notes;
+        }
+
+        public override void title(string theTitle)
+        {
+            
         }
 
         public override void AddSubtask(SubTask newSubTask)

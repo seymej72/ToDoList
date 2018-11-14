@@ -4,24 +4,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ToDoList
 {
-    class RepeatableTask
+    
+    class RepeatableTask : Task
     {
         List<DisposableTask> copiesOfRepeatableTask;
+        List<SubTask> listOfSubtasks;
+        String repeatableTitle;
 
-        RepeatableTask(DateTime repeatTaskDate, String title, Boolean isComplet, Boolean allowNotif, String note  )
+
+        RepeatableTask(DateTime firstOccurance, DateTime repeatOccurance, String newTitle, Boolean allowNotif, String note)
+        {
+            repeatableTitle = newTitle;
+            isComplete = false;
+            allowNotifications = allowNotif;
+            notes = note;
+
+        }
+        override
+        public  title(String theTitle)
+        {
+            repeatableTitle = theTitle;
+        }
+
+        public Boolean isComplete { get; set; }
+
+        public Boolean allowNotifications { get; set; }
+
+        public string notes { get; set; }
+
+        override
+        public void AddSubtask(SubTask newSubTask)
         {
 
         }
-        public string title { get; set; }
 
-        public string isComplete { get; set; }
+        override
+        public void DeleteSubtask(SubTask subTasktoDelete)
+        {
 
-        public string allowNotifications { get; set; }
+        }
 
-        public string notes { get; set; }
-        // test add
+        override
+        public void EditSubtask(SubTask oldSubTask, SubTask newSubTask)
+        {
 
+        }
     }
 }

@@ -70,14 +70,14 @@ namespace ToDoList
 
         }
 
-        public override void getTitle(String theTitle)
+        public override String getTitle()
         {
-
+            return this.taskTitle;
         }
 
-        public override void getIsComplete(Boolean complete)
+        public override Boolean getIsComplete()
         {
-
+            return this.complete;
         }
 
         public override void getAllowNotifications(Boolean notifications)

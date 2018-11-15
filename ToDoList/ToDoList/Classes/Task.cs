@@ -29,12 +29,12 @@ namespace ToDoList
 
         public abstract void EditSubtask(SubTask oldSubTask, SubTask newSubTask);
 
-        public abstract void getTitle(String theTitle);
+        public abstract String getTitle();
 
-        public abstract void getIsComplete(Boolean complete);
+        public abstract Boolean getIsComplete();
 
-        public abstract void getAllowNotifications(Boolean notifications);
+        public abstract Boolean getAllowNotifications();
 
-        public abstract void getDescription(String descrip);
+        public abstract String getDescription();
     }
 }

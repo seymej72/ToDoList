@@ -17,6 +17,8 @@ namespace ToDoList
 
         RepeatableTask(DateTime firstOccurance, DateTime repeatOccurance, String newTitle, Boolean allowNotif, String note)
         {
+
+            
             repeatableTitle = newTitle;
 
 

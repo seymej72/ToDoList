@@ -18,40 +18,66 @@ namespace ToDoList
         RepeatableTask(DateTime firstOccurance, DateTime repeatOccurance, String newTitle, Boolean allowNotif, String note)
         {
             repeatableTitle = newTitle;
-            isComplete = false;
-            allowNotifications = allowNotif;
-            notes = note;
+
 
         }
        
-        public override void title(String theTitle)
-        {
-            repeatableTitle = theTitle;
-        }
 
-        public Boolean isComplete { get; set; }
-
-        public Boolean allowNotifications { get; set; }
-
-        public override void notes (String newNote)
+        
+        public override void AddSubtask(SubTask newSubTask)
         {
 
         }
 
-        override
-        public void AddSubtask(SubTask newSubTask)
+        
+
+        
+        public override void DeleteSubtask(SubTask subTasktoDelete)
         {
 
         }
 
-        override
-        public void DeleteSubtask(SubTask subTasktoDelete)
+      
+        public override void EditSubtask(SubTask oldSubTask, SubTask newSubTask)
+        {
+
+        }
+        public override void setTitle(String theTitle)
+        {
+            this.taskTitle = "dfojdfjd";
+        }
+
+        public override void setIsComplete(Boolean complete)
         {
 
         }
 
-        override
-        public void EditSubtask(SubTask oldSubTask, SubTask newSubTask)
+        public override void setAllowNotifications(Boolean notifications)
+        {
+
+        }
+
+        public override void setDescription(String descrip)
+        {
+
+        }
+
+        public override void getTitle(String theTitle)
+        {
+
+        }
+
+        public override void getIsComplete(Boolean complete)
+        {
+
+        }
+
+        public override void getAllowNotifications(Boolean notifications)
+        {
+
+        }
+
+        public override void getDescription(String descrip)
         {
 
         }

@@ -8,10 +8,10 @@ namespace ToDoList
 {
     abstract class Task
     {
-        public String taskTitle;
-        public Boolean complete;
-        public Boolean notificationsOn;
-        public String descrip;
+        private String taskTitle;
+        private Boolean complete;
+        private Boolean notificationsOn;
+        private String descrip;
 
         public abstract void title(String theTitle);
 

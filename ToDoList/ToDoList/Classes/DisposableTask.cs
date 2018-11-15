@@ -14,7 +14,7 @@ namespace ToDoList
         public DisposableTask(String title, Boolean isComplete, Boolean allowNotifications, String descrip)
         {
             subTasks = new List<SubTask>();
-            this.taskTitle = title;
+            title(title);
             this.complete = isComplete;
             this.notificationsOn = allowNotifications;
             this.descrip = descrip;
@@ -53,10 +53,36 @@ namespace ToDoList
             }
         }
 
-        public override void DeleteSubtask(SubTask subTasktoDelete) { }
+        public override void DeleteSubtask(SubTask subTasktoDelete)
+        {
+            if (subTasks.Contains(subTasktoDelete))
+            {
+                throw new SubTaskDoesntExistException();
+            }
+            else
+            {
+                subTasks.Remove(subTasktoDelete);
+                //TODO update DB
+            }
+        }
 
-        public override void EditSubtask(SubTask oldSubTask, SubTask newSubTask) { }
+        public override void EditSubtask(SubTask oldSubTask, SubTask newSubTask)
+        {
+            if (subTasks.Contains(oldSubTask))
+            {
+                throw new SubTaskDoesntExistException();
+            }
+            else
+            {
+                subTasks.Insert(subTasks.BinarySearch(oldSubTask), newSubTask);
+                //TODO update DB
+            }
 
+        }
+
+
+
+        //Draft DB Connection Examples:
         private void ReadUserInfoRowFromDB()
         {
             MySqlConnection conn = null;
@@ -105,8 +131,7 @@ namespace ToDoList
             {
                 conn = new MySqlConnection(connectionStringToDB);
                 conn.Open();
-                command = new MySqlCommand("INSERT INTO `UserInfo` VALUES(@userId, @name, @password, @userFKey);", conn);
-                command.Parameters.AddWithValue("@userId", 120);
+                command = new MySqlCommand("INSERT INTO `UserInfo` (`name`,`password`,`userFKey`) VALUES(@name, @password, @userFKey);", conn);
                 command.Parameters.AddWithValue("@name", "jake");
                 command.Parameters.AddWithValue("@password", "passWORD");
                 command.Parameters.AddWithValue("@userFkey", 1000);
@@ -153,33 +178,4 @@ namespace ToDoList
             }
         }
     }
-
-    /*
-    public override void DeleteSubtask(SubTask subTasktoDelete)
-        {
-            if (subTasks.Contains(subTasktoDelete))
-            {
-                throw new SubTaskDoesntExistException();
-            }
-            else
-            {
-                subTasks.Remove(subTasktoDelete);
-                //TODO update DB
-            }
-        }
-
-        public override void EditSubtask(SubTask oldSubTask, SubTask newSubTask)
-        {
-            if (subTasks.Contains(oldSubTask))
-            {
-                throw new SubTaskDoesntExistException();
-            }
-            else
-            {
-                subTasks.Insert(subTasks.BinarySearch(oldSubTask),newSubTask);
-                //TODO update DB
-            }
-
-        }
-    */
 }

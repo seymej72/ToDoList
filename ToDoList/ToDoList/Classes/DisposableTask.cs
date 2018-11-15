@@ -11,33 +11,54 @@ namespace ToDoList
         private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
         private List<SubTask> subTasks { get; set; }
 
-        public DisposableTask(String title, Boolean isComplete, Boolean allowNotifications, String descrip)
+        public DisposableTask(DateTime firstOccurrance, String title, Boolean isComplete, Boolean allowNotifications, String descrip)
         {
             subTasks = new List<SubTask>();
-            title(title);
+            this.taskDueDate = firstOccurrance;
+            this.taskTitle = title;
             this.complete = isComplete;
             this.notificationsOn = allowNotifications;
             this.descrip = descrip;
         }
-        
-        public override void title(string theTitle)
+
+        public override void setTitle(String theTitle)
         {
             this.taskTitle = theTitle;
         }
 
-        public override void isComplete(bool complete)
+        public override void setIsComplete(Boolean complete)
         {
             this.complete = complete;
         }
 
-        public override void allowNotifications(Boolean notifications)
+        public override void setAllowNotifications(Boolean notifications)
         {
-            notificationsOn = notifications;
+            this.notificationsOn = notifications;
         }
 
-        public override void description(String descrip)
+        public override void setDescription(String descrip)
         {
             this.descrip = descrip;
+        }
+
+        public override String getTitle()
+        {
+            return this.taskTitle;
+        }
+
+        public override Boolean getIsComplete()
+        {
+            return this.complete;
+        }
+
+        public override Boolean getAllowNotifications()
+        {
+            return this.notificationsOn;
+        }
+
+        public override String getDescription()
+        {
+            return this.descrip;
         }
 
         public override void AddSubtask(SubTask newSubTask)

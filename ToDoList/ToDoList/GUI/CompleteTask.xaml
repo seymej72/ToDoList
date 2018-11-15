@@ -51,10 +51,7 @@
         <Border Grid.Row="2" Grid.Column="1" Margin="90,0,0,0" HorizontalAlignment="Left" Height="20" Width="100">
             <Button>Attachment 1</Button>
         </Border>
-        <Border Grid.Row="2" Grid.Column="1" Margin="200,0,0,0" HorizontalAlignment="Left" Height="20" Width="100">
-            <Button>Attachment 2</Button>
-        </Border>
-        
+
         <CheckBox Grid.Row="2" Grid.Column="1" Margin="70,320,0,0" HorizontalAlignment="Left">Subtask 2</CheckBox>
         <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,320,60,0" HorizontalAlignment="Right">Due: 00/00/00</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="1" Margin="90,340,0,0" HorizontalAlignment="Left">subtask two notes</TextBlock>

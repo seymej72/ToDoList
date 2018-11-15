@@ -13,13 +13,14 @@ namespace ToDoList
         private Boolean notificationsOn;
         private String descrip;
 
-        public abstract void title(String theTitle);
 
-        public abstract void isComplete(Boolean complete);
+        public abstract void setTitle(String theTitle);
 
-        public abstract void allowNotifications(Boolean notifications);
+        public abstract void setIsComplete(Boolean complete);
 
-        public abstract void description(String descrip);
+        public abstract void setAllowNotifications(Boolean notifications);
+
+        public abstract void setDescription(String descrip);
 
         public abstract void AddSubtask(SubTask newSubTask);
 
@@ -27,5 +28,12 @@ namespace ToDoList
 
         public abstract void EditSubtask(SubTask oldSubTask, SubTask newSubTask);
 
+        public abstract void getTitle(String theTitle);
+
+        public abstract void getIsComplete(Boolean complete);
+
+        public abstract void getAllowNotifications(Boolean notifications);
+
+        public abstract void getDescription(String descrip);
     }
 }

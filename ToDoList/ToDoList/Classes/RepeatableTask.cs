@@ -12,16 +12,22 @@ namespace ToDoList
     {
         List<DisposableTask> copiesOfRepeatableTask;
         List<SubTask> listOfSubtasks;
-        String repeatableTitle;
+        DateTime firstEvent;
+        DateTime repeatOccurance;
 
 
-        RepeatableTask(DateTime firstOccurance, DateTime repeatOccurance, String newTitle, Boolean allowNotif, String note)
+        RepeatableTask(DateTime firstOccurance, DateTime repeatOccur, String newTitle, Boolean allowNotif, String description)
         {
 
-            
-            repeatableTitle = newTitle;
+            taskTitle = newTitle;
+            complete = false;
+            notificationsOn = allowNotif;
+            descrip = description;
+            firstEvent = firstOccurance;
+            repeatOccurance = repeatOccur;
 
-
+            // need to then store new repeatable task in DB
+            // also need to create repeatable list of disposable tasks.
         }
        
 
@@ -46,7 +52,7 @@ namespace ToDoList
         }
         public override void setTitle(String theTitle)
         {
-            this.taskTitle = "dfojdfjd";
+            
         }
 
         public override void setIsComplete(Boolean complete)

@@ -11,13 +11,14 @@ namespace ToDoList
         private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
         private List<SubTask> subTasks { get; set; }
 
-        public DisposableTask(String title, Boolean isComplete, Boolean allowNotifications, String descrip)
+        public DisposableTask(DateTime eventOccurance, String title, Boolean isComplete, Boolean allowNotifications, String descrip)
         {
             subTasks = new List<SubTask>();
             title(title);
             this.complete = isComplete;
             this.notificationsOn = allowNotifications;
             this.descrip = descrip;
+            this.taskDueDate = eventOccurance;
         }
         
         public override void title(string theTitle)

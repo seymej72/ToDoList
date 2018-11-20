@@ -80,14 +80,14 @@ namespace ToDoList
             return this.complete;
         }
 
-        public override void getAllowNotifications(Boolean notifications)
+        public override Boolean getAllowNotifications()
         {
-
+            return true;
         }
 
-        public override void getDescription(String descrip)
+        public override String getDescription()
         {
-
+            return "dkjfd";
         }
     }
 }

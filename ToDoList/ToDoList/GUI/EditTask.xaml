@@ -32,5 +32,9 @@
                 <DropShadowEffect Color="#FF474747" BlurRadius="7"/>
             </Border.Effect>
         </Border>
+
+        <Border Grid.Row="2" Grid.Column="1" Height="40" Width="160" Background="#FF30B994" BorderBrush="#FF0C8036" HorizontalAlignment="right" Margin="0,520,620,0" >
+            <Button Style="{StaticResource ButtonStyle1}" Grid.Row="2" Grid.Column="1"  Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Global Sans Serif" FontSize="24"  Click="backToComplete">Back</Button>
+        </Border>
     </Grid>
 </Page>

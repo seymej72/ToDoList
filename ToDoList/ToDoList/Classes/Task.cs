@@ -8,12 +8,14 @@ namespace ToDoList
 {
     abstract class Task
     {
+        protected int taskId;
         protected String taskTitle;
         protected Boolean complete;
         protected Boolean notificationsOn;
         protected String descrip;
         protected DateTime taskDueDate;
 
+        public abstract void setTaskId(int taskId);
 
         public abstract void setTitle(String theTitle);
 
@@ -23,11 +25,13 @@ namespace ToDoList
 
         public abstract void setDescription(String descrip);
 
-        public abstract void AddSubtask(SubTask newSubTask);
+        public abstract void AddSubtask(int subTaskId);
 
-        public abstract void DeleteSubtask(SubTask subTasktoDelete);
+        public abstract void DeleteSubtask(int subTaskId);
 
-        public abstract void EditSubtask(SubTask oldSubTask, SubTask newSubTask);
+        public abstract void EditSubtask(int oldSubTaskId, int newSubTaskId);
+
+        public abstract int getTaskId();
 
         public abstract String getTitle();
 

@@ -14,6 +14,7 @@ namespace ToDoList
         File[] files;
         String title;
         String notes;
+        int subtaskId; //Key for subtask ID for subtask table of DB - Added by Jake
 
         public SubTask(DateTime inDueDate, File[] inFiles, String inTitle, String inNotes)
         {

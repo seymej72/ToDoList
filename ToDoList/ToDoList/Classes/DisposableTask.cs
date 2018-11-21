@@ -9,16 +9,42 @@ namespace ToDoList
     class DisposableTask : Task
     {
         private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
-        private List<SubTask> subTasks { get; set; }
+        private Dictionary<int,SubTask> subTasks { get; set; } //subTaskId maps to subTask
 
+        //Creates new Disposable Task
         public DisposableTask(DateTime firstOccurrance, String title, Boolean isComplete, Boolean allowNotifications, String descrip)
         {
-            subTasks = new List<SubTask>();
+            subTasks = new Dictionary<int, SubTask>();
             this.taskDueDate = firstOccurrance;
             this.taskTitle = title;
             this.complete = isComplete;
             this.notificationsOn = allowNotifications;
             this.descrip = descrip;
+        }
+
+        //Fetch existing DT from Database based on taskId
+        public void fetchDisposableTask(int taskId)
+        {
+            subTasks = fetchSubTasks();
+
+            //TODO DB CALL
+            List<Object> DBReturn = new List<Object>(); //This is the return object from querying the DB for this task
+            this.taskDueDate = (DateTime)DBReturn[0];
+            this.taskTitle = (String)DBReturn[0];
+            this.complete = (Boolean)DBReturn[0];
+            this.notificationsOn = (Boolean)DBReturn[0];
+            this.descrip = (String)DBReturn[0];
+        }
+
+        public Dictionary<int, SubTask> fetchSubTasks()
+        {
+            //Get subtasks from DB and import into class List for subtasks
+            return new Dictionary<int, SubTask>();
+        }
+
+        public override void setTaskId(int taskId)
+        {
+            this.taskId = taskId;
         }
 
         public override void setTitle(String theTitle)
@@ -41,6 +67,11 @@ namespace ToDoList
             this.descrip = descrip;
         }
 
+        public override int getTaskId()
+        {
+            return this.taskId;
+        }
+
         public override String getTitle()
         {
             return this.taskTitle;
@@ -61,41 +92,43 @@ namespace ToDoList
             return this.descrip;
         }
 
-        public override void AddSubtask(SubTask newSubTask)
+        //Adds a subtask to a task: the subtask must already exist in the DB
+        public override void AddSubtask(int subTaskId)
         {
-            if (subTasks.Contains(newSubTask))
+            if (subTasks.ContainsKey(subTaskId))
             {
                 throw new SubTaskAlreadyExistsException();
             }
             else
             {
-                subTasks.Add(newSubTask);
-                //TODO update DB
+                //SubTask newSubTask = fetchSubTask(subTaskId); //Need get method from DB in Subtask implemented
+                SubTask newSubTask = new SubTask();
+                subTasks.Add(subTaskId, newSubTask);
+                //AddTasktoSubtask(subTaskId, taskId); Add subtask id and task id to task to subtask table
             }
         }
 
-        public override void DeleteSubtask(SubTask subTasktoDelete)
+        public override void DeleteSubtask(int subTaskId)
         {
-            if (subTasks.Contains(subTasktoDelete))
+            if (subTasks.ContainsKey(subTaskId))
             {
                 throw new SubTaskDoesntExistException();
             }
             else
             {
-                subTasks.Remove(subTasktoDelete);
-                //TODO update DB
+                subTasks[subTaskId].markComplete();
             }
         }
 
-        public override void EditSubtask(SubTask oldSubTask, SubTask newSubTask)
+        public override void EditSubtask(int oldSubTaskId, int newSubTaskId)
         {
-            if (subTasks.Contains(oldSubTask))
+            if (subTasks.ContainsKey(oldSubTaskId))
             {
                 throw new SubTaskDoesntExistException();
             }
             else
             {
-                subTasks.Insert(subTasks.BinarySearch(oldSubTask), newSubTask);
+                //subTasks.Insert(subTasks.BinarySearch(oldSubTaskId), newSubTaskId);
                 //TODO update DB
             }
 
@@ -132,7 +165,7 @@ namespace ToDoList
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Result: Failure!");
+                Console.WriteLine("Result: Failure!" + ex);
             }
             finally
             {
@@ -161,7 +194,7 @@ namespace ToDoList
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Result: Failure!");
+                Console.WriteLine("Result: Failure!" + ex);
             }
             finally
             {
@@ -188,7 +221,7 @@ namespace ToDoList
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Result: Failure!");
+                Console.WriteLine("Result: Failure!" + ex);
             }
             finally
             {

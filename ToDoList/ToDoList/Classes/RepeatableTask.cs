@@ -32,7 +32,7 @@ namespace ToDoList
        
 
         
-        public override void AddSubtask(SubTask newSubTask)
+        public override void AddSubtask(int  subTaskId)
         {
 
         }
@@ -40,16 +40,22 @@ namespace ToDoList
         
 
         
-        public override void DeleteSubtask(SubTask subTasktoDelete)
+        public override void DeleteSubtask(int subTaskId)
         {
 
         }
 
       
-        public override void EditSubtask(SubTask oldSubTask, SubTask newSubTask)
+        public override void EditSubtask(int oldSubTaskId, int newSubTaskId)
         {
 
         }
+
+        public override void setTaskId(int taskId)
+        {
+            this.taskId = taskId;
+        }
+
         public override void setTitle(String theTitle)
         {
             
@@ -68,6 +74,11 @@ namespace ToDoList
         public override void setDescription(String descrip)
         {
 
+        }
+
+        public override int getTaskId()
+        {
+            return this.taskId;
         }
 
         public override String getTitle()

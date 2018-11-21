@@ -9,31 +9,45 @@ namespace ToDoList
 {
     class SubTask
     {
+
+        private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
+
         DateTime dueDate;
         bool complete;
-        File[] files;
+        LinkedList<String> files;
         String title;
         String notes;
         int subtaskId; //Key for subtask ID for subtask table of DB - Added by Jake
 
-        public SubTask(DateTime inDueDate, File[] inFiles, String inTitle, String inNotes)
+        public SubTask(DateTime inDueDate, LinkedList<String> inFiles, String inTitle, String inNotes, String inId)
         {
             dueDate = inDueDate;
             complete = false;
             files = inFiles;
             title = inTitle;
             notes = inNotes;
+            id = inId;
         }
 
         public SubTask()
         {
-            dueDate = null;
+            dueDate = DateTime.MinValue;
             complete = false;
             files = null;
             title = null;
             notes = null;
+            id = null;
         }
 
+        public void setId(String inId)
+        {
+            id = inId;
+        }
+        
+        public  String getId()
+        {
+            return id;
+        }
         public void setDueDate(int month, int day, int year)
         {
             dueDate = new DateTime(year, month, day);
@@ -46,25 +60,25 @@ namespace ToDoList
 
         public void markComplete()
         {
-            isComplete = true;
+            complete = true;
         }
 
         public bool isComplete()
         {
-            return isComplete;
+            return complete;
         }
 
-        public void setFiles(Files[] inFiles)
+        public void setFiles(LinkedList<String> inFiles)
         {
             files = inFiles;
         }
 
-        public void addFile(File inFile)
+        public void addFile(String inFile)
         {
-            files.add(inFile);
+            files.AddLast(inFile);
         }
 
-        public File[] getFiles()
+        public LinkedList<String> getFiles()
         {
             return files;
         }
@@ -97,7 +111,7 @@ namespace ToDoList
         public String toString()
         {
             String tmp = title + " " + notes + " due " + dueDate.toString() + " done:";
-            if (isComplete)
+            if (complete)
             {
                 return tmp + "yes";
             }
@@ -105,5 +119,3 @@ namespace ToDoList
         }
     }
 }
-subtasks.txt
-Displaying subtasks.txt.

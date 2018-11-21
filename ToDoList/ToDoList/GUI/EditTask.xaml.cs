@@ -24,5 +24,11 @@ namespace ToDoList
         {
             InitializeComponent();
         }
+
+        private void backToComplete(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/GUI/CompleteTask.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

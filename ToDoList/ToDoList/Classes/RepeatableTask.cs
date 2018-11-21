@@ -11,12 +11,13 @@ namespace ToDoList
     class RepeatableTask : Task
     {
         List<DisposableTask> copiesOfRepeatableTask;
-        List<SubTask> listOfSubtasks;
+        // map of subtasks
+        //List<SubTask> listOfSubtasks;
         DateTime firstEvent;
         DateTime repeatOccurance;
 
 
-        RepeatableTask(DateTime firstOccurance, DateTime repeatOccur, String newTitle, Boolean allowNotif, String description)
+        RepeatableTask(DateTime firstOccurance, DateTime repeatOccur, String newTitle, Boolean allowNotif, String description, List<DisposableTask> copiesOfRepeatable)
         {
 
             taskTitle = newTitle;
@@ -25,12 +26,20 @@ namespace ToDoList
             descrip = description;
             firstEvent = firstOccurance;
             repeatOccurance = repeatOccur;
-
+            copiesOfRepeatableTask = copiesOfRepeatable; // copiesOfRepeatable will be null if this is a new task
+            if(copiesOfRepeatable == null)
+            {
+                // have to call, create new list of disposable tasks
+            }
+            // need to input list of disposable tasks as well
             // need to then store new repeatable task in DB
             // also need to create repeatable list of disposable tasks.
         }
        
-
+        private void createListOfFutureTasks()
+        {
+            // will have to go through and create copies, 30 or so future tasks and put them in list.
+        }
         
         public override void AddSubtask(SubTask newSubTask)
         {

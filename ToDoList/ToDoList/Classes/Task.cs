@@ -27,8 +27,10 @@ namespace ToDoList
 
         public abstract void AddSubtask(int subTaskId);
 
+        //Marks Subtask Complete
         public abstract void DeleteSubtask(int subTaskId);
 
+        //Edit Subtask: Should this be done through task or through subtask setters?
         public abstract void EditSubtask(int oldSubTaskId, int newSubTaskId);
 
         public abstract int getTaskId();

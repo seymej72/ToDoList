@@ -23,22 +23,26 @@ namespace ToDoList
         }
 
         //Fetch existing DT from Database based on taskId
-        public void fetchDisposableTask(int taskId)
+        public DisposableTask fetchDisposableTask(int taskId)
         {
             subTasks = fetchSubTasks();
 
             //TODO DB CALL
             List<Object> DBReturn = new List<Object>(); //This is the return object from querying the DB for this task
+            //TODO DB CALL
+
             this.taskDueDate = (DateTime)DBReturn[0];
             this.taskTitle = (String)DBReturn[0];
             this.complete = (Boolean)DBReturn[0];
             this.notificationsOn = (Boolean)DBReturn[0];
             this.descrip = (String)DBReturn[0];
+            return this;
         }
 
         public Dictionary<int, SubTask> fetchSubTasks()
         {
-            //Get subtasks from DB and import into class List for subtasks
+            //Check TasktoSubtask table and grab all subtask ids for this task
+            //Then add them to dictionary
             return new Dictionary<int, SubTask>();
         }
 
@@ -122,21 +126,32 @@ namespace ToDoList
 
         public override void EditSubtask(int oldSubTaskId, int newSubTaskId)
         {
+            /* Do you want to edit subtask through Task or directly?
+             * 
+             * 
+             * 
+             * 
+             * 
+             * 
             if (subTasks.ContainsKey(oldSubTaskId))
             {
                 throw new SubTaskDoesntExistException();
             }
             else
             {
-                //subTasks.Insert(subTasks.BinarySearch(oldSubTaskId), newSubTaskId);
+                subTasks.Remove(oldSubTaskId);
+                //SubTask newSubTask = fetchSubTask(subTaskId); //Need get method from DB in Subtask implemented
+                SubTask newSubTask = new SubTask();
+                subTasks.Add(newSubTaskId, newSubTask);
                 //TODO update DB
-            }
+            }*/
 
         }
 
 
 
         //Draft DB Connection Examples:
+        //----------------------------------------------------------------------------------------------------------------------------------------
         private void ReadUserInfoRowFromDB()
         {
             MySqlConnection conn = null;

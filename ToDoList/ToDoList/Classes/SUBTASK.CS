@@ -104,5 +104,3 @@ namespace ToDoList
         }
     }
 }
-subtasks.txt
-Displaying subtasks.txt.

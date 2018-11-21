@@ -26,5 +26,11 @@ namespace ToDoList
         }
 
         //notes field->somehow wrap text onto new line to fill box area? (it's all just going onto one line)
+
+        private void backToDash(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

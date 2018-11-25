@@ -13,6 +13,7 @@ namespace ToDoList
         protected Boolean complete;
         protected Boolean notificationsOn;
         protected String descrip;
+        protected int taskFKey; //Add getters and setters
         protected DateTime taskDueDate;
 
         public abstract void setTaskId(int taskId);
@@ -24,6 +25,8 @@ namespace ToDoList
         public abstract void setAllowNotifications(Boolean notifications);
 
         public abstract void setDescription(String descrip);
+
+        public abstract void setTaskDueDate(DateTime taskDueDate);
 
         public abstract void AddSubtask(int subTaskId);
 
@@ -42,5 +45,7 @@ namespace ToDoList
         public abstract Boolean getAllowNotifications();
 
         public abstract String getDescription();
+
+        public abstract DateTime getTaskDueDate();
     }
 }

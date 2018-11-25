@@ -85,6 +85,11 @@ namespace ToDoList
 
         }
 
+        public override void setTaskDueDate(DateTime taskDueDate)
+        {
+            
+        }
+
         public override int getTaskId()
         {
             return this.taskId;
@@ -107,7 +112,12 @@ namespace ToDoList
 
         public override String getDescription()
         {
-            return "dkjfd";
+            return this.descrip;
+        }
+
+        public override DateTime getTaskDueDate()
+        {
+            return this.taskDueDate;
         }
     }
 }

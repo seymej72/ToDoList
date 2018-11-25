@@ -19,14 +19,14 @@ namespace ToDoList
         String notes;
         int subtaskId; //Key for subtask ID for subtask table of DB - Added by Jake
 
-        public SubTask(DateTime inDueDate, LinkedList<String> inFiles, String inTitle, String inNotes, String inId)
+        public SubTask(DateTime inDueDate, LinkedList<String> inFiles, String inTitle, String inNotes, int inId)
         {
             dueDate = inDueDate;
             complete = false;
             files = inFiles;
             title = inTitle;
             notes = inNotes;
-            id = inId;
+            subtaskId = inId;
         }
 
         public SubTask()
@@ -36,17 +36,16 @@ namespace ToDoList
             files = null;
             title = null;
             notes = null;
-            id = null;
         }
 
-        public void setId(String inId)
+        public void setId(int inId)
         {
-            id = inId;
+            subtaskId = inId;
         }
         
-        public  String getId()
+        public  int getId()
         {
-            return id;
+            return subtaskId;
         }
         public void setDueDate(int month, int day, int year)
         {
@@ -110,7 +109,8 @@ namespace ToDoList
 
         public String toString()
         {
-            String tmp = title + " " + notes + " due " + dueDate.toString() + " done:";
+            //String tmp = title + " " + notes + " due " + dueDate.toString() + " done:";
+            String tmp = ""; //Done to compile
             if (complete)
             {
                 return tmp + "yes";

@@ -85,6 +85,11 @@ namespace ToDoList
 
         }
 
+        public override void setTaskFKey(int taskFKey)
+        {
+            
+        }
+
         public override void setTaskDueDate(DateTime taskDueDate)
         {
             
@@ -118,6 +123,11 @@ namespace ToDoList
         public override DateTime getTaskDueDate()
         {
             return this.taskDueDate;
+        }
+
+        public override int getTaskFKey()
+        {
+            return this.taskFKey;
         }
     }
 }

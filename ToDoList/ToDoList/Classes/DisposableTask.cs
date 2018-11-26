@@ -11,22 +11,29 @@ namespace ToDoList
         private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
         protected Dictionary<int,SubTask> subTasks { get; set; } //subTaskId maps to subTask
 
-        //Creates new Disposable Task
-        public DisposableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete, DateTime firstOccurrance)
+        //Creates new Disposable Task and Inserts it in the database
+        public DisposableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete, DateTime taskDueDate)
         {
             subTasks = new Dictionary<int, SubTask>();
-            this.taskDueDate = firstOccurrance;
+            this.taskDueDate = taskDueDate;
             this.taskTitle = title;
             this.complete = isComplete;
             this.notificationsOn = allowNotifications;
             this.descrip = descrip;
+            this.taskId = InsertDisposableTask(); //Adds new DTask to the Task Table in DB
+        }
+
+        //Default Constructor (Used to create empty object for manual constructor with setters)
+        public DisposableTask()
+        {
+            subTasks = new Dictionary<int, SubTask>();
         }
 
         //Fetch existing DT from Database based on taskId and update this instance with its info
-        public void fetchDisposableTask(int taskId)
+        public DisposableTask fetchDisposableTask(int taskId)
         {
             MySqlConnection conn = null;
-
+            DisposableTask myDisposableTask = null;
             try
             {
                 conn = new MySqlConnection(connectionStringToDB);
@@ -65,44 +72,37 @@ namespace ToDoList
                 }
             }
             subTasks = fetchSubTasksMaster();
+            return myDisposableTask;
         }
 
-        //Inserts the new Row into the TASK table and assigns the new Task ID it gets auto assigned //TODO CAnnot upload DATETIME
-        public void InsertNewTask()
+        //Inserts the new row into the TASK table and returns the new Task ID it gets auto assigned 
+        //TODO Cannot upload DATETIME
+        public int InsertDisposableTask()
         {
-
             MySqlConnection conn = null;
             MySqlCommand command = null;
-
+            int taskId = 0;
             try
             {
                 conn = new MySqlConnection(connectionStringToDB);
                 conn.Open();
-                command = new MySqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`,`taskFKey`) " +
-                    "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable, @taskFKey);" +
+
+                //command executes an insert and a select in order to return the taskId from that insertion
+                command = new MySqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`) " +
+                    "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable);" +
                     "SELECT `taskId` AS `taskId` FROM `Task` WHERE `taskId` = @@Identity;", conn);
-                // command = new MySqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`,`taskFKey`) " +
-                //  "VALUES('TASK2', 'descrip2', 0, 0, 0,0);" +
-                //  "SELECT `taskId` AS `taskId` FROM `Task` WHERE `taskId` = @@Identity;", conn);
 
                 command.Parameters.AddWithValue("@title", "Task2");
                 command.Parameters.AddWithValue("@notes", "descrip2");
                 command.Parameters.AddWithValue("@allowNotifications", 1);
                 command.Parameters.AddWithValue("@isComplete", 1);
                 command.Parameters.AddWithValue("@isRepeatable", 1);
-                command.Parameters.AddWithValue("@taskFKey", 51);//Make sure this is initalized
-                //command.Parameters.AddWithValue("@taskDueDate", new DateTime());
-                //command.ExecuteNonQuery();
+                //command.Parameters.AddWithValue("@taskFKey", );// Won't have this before you insert for the first time
+                //command.Parameters.AddWithValue("@taskDueDate", new DateTime()); //Doesn't work
 
                 MySqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                String str = reader.GetValue(0) + " ";
-                Console.WriteLine("Result: Success!");
-                Console.WriteLine(str.ToString());
-                this.taskId = Int32.Parse(str);
-                //Need to do both commands together and returns the new row number
-                //INSERT INTO UserInfo(name) VALUES('Joe');
-                //SELECT userId AS userId FROM UserInfo WHERE userId = @@Identity;
+                //Console.WriteLine("Result: Success!");
+                taskId =  (int)reader.GetValue(0);
             }
             catch (Exception ex)
             {
@@ -115,6 +115,7 @@ namespace ToDoList
                     conn.Close();
                 }
             }
+            return taskId;
         }
 
         //Inserts the new Row into the TasktoSubTask table and assigns the new FKey ID it gets auto assigned 
@@ -211,10 +212,9 @@ namespace ToDoList
                 {
                     for (int i = 0; i < count; i++)
                     {
-                        returnedSubTasks.Add(((int)reader.GetValue(i)),null); //Adds all the subtasks pared with null to the dictionary
-
-                        //SubTask temp = fetchSingleSubtask(((int)reader.GetValue(i)))
-                        //returnedSubTasks.Add(((int)reader.GetValue(i)), temp);
+                        //returnedSubTasks.Add(((int)reader.GetValue(i)),null); //Adds all the subtasks pared with null to the dictionary
+                        SubTask temp = fetchSubTask(((int)reader.GetValue(i)));
+                        returnedSubTasks.Add(((int)reader.GetValue(i)), temp);
                     }
                 }
                 Console.WriteLine("Result: Success!");
@@ -236,7 +236,7 @@ namespace ToDoList
         }
 
         //Returns a Subtask object for the passed in id
-        public SubTask fetchSingleSubtask(int SubtaskId)
+        public SubTask fetchSubTask(int SubtaskId)
         {
             MySqlConnection conn = null;
             SubTask mySubTask = null;
@@ -297,10 +297,9 @@ namespace ToDoList
             }
             else
             {
-                //SubTask newSubTask = fetchSubTask(subTaskId); //Need get method from DB in Subtask implemented
-                SubTask newSubTask = new SubTask();
+                SubTask newSubTask = fetchSubTask(subTaskId);
                 subTasks.Add(subTaskId, newSubTask);
-                //AddTasktoSubtask(subTaskId, taskId); Add subtask id and task id to task to subtask table
+                InsertNewTasktoSubTask(subTaskId, taskId); //Add subtask id and task id to task to subtask table
             }
         }
 
@@ -318,13 +317,6 @@ namespace ToDoList
 
         public override void EditSubtask(int oldSubTaskId, int newSubTaskId)
         {
-            /* Do you want to edit subtask through Task or directly?
-             * 
-             * 
-             * 
-             * 
-             * 
-             * 
             if (subTasks.ContainsKey(oldSubTaskId))
             {
                 throw new SubTaskDoesntExistException();
@@ -332,11 +324,10 @@ namespace ToDoList
             else
             {
                 subTasks.Remove(oldSubTaskId);
-                //SubTask newSubTask = fetchSubTask(subTaskId); //Need get method from DB in Subtask implemented
-                SubTask newSubTask = new SubTask();
+                SubTask newSubTask = fetchSubTask(newSubTaskId);
                 subTasks.Add(newSubTaskId, newSubTask);
-                //TODO update DB
-            }*/
+                InsertNewTasktoSubTask(newSubTaskId, taskId); //Add subtask id and task id to task to subtask table
+            }
 
         }
 
@@ -366,6 +357,11 @@ namespace ToDoList
         public override void setDescription(String descrip)
         {
             this.descrip = descrip;
+        }
+
+        public override void setTaskFKey(int taskFKey)
+        {
+            this.taskFKey = taskFKey;
         }
 
         public override void setTaskDueDate(DateTime taskDueDate)
@@ -399,6 +395,11 @@ namespace ToDoList
         public override String getDescription()
         {
             return this.descrip;
+        }
+
+        public override int getTaskFKey()
+        {
+            return this.taskFKey;
         }
 
         public override DateTime getTaskDueDate()

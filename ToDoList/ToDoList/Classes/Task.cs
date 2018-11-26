@@ -28,6 +28,8 @@ namespace ToDoList
 
         public abstract void setTaskDueDate(DateTime taskDueDate);
 
+        public abstract void setTaskFKey(int taskFKey);
+
         public abstract void AddSubtask(int subTaskId);
 
         //Marks Subtask Complete
@@ -47,5 +49,7 @@ namespace ToDoList
         public abstract String getDescription();
 
         public abstract DateTime getTaskDueDate();
+
+        public abstract int getTaskFKey();
     }
 }

@@ -9,6 +9,7 @@ namespace ToDoList
     public class ToDo
     {
         ToDoUser CurrentUser;
+        ToDoDB db = new ToDoDB();
         
         /// <summary>
         /// Good ole main
@@ -31,19 +32,28 @@ namespace ToDoList
         /// Validates the users input, cross checking with the Database
         /// </summary>
         /// <returns>True if the input passes and False if it does not</returns>
-        private bool CheckInput()
+        private bool CheckInput(string enteredUsername, string enteredPassword)
         {
-            //TODO: Add some Parameters and query the DB to check the input
-            return true;
+            int enteredPasswordVal = HashPassword(enteredPassword);
+
+            if (this.db.VerifyLogin(enteredUsername, enteredPasswordVal))
+                return true;
+            else
+                return false;
         }
 
         /// <summary>
         /// Method called to construct a new User
         /// </summary>
+        /// <param name="desiredUsernam">The desired username of the user</param>
+        /// <param name="desiredPassword">The desired password of the user</param>
         /// <returns>True if the user was registered/created succesfully or False if not</returns>
-        private bool RegisterUser()
+        private bool RegisterUser(string desiredUsername, string desiredPassword)
         {
-            //TODO: Construct a new user (see ToDoUser)
+            int passwordVal = HashPassword(desiredPassword);
+
+            CurrentUser = new ToDoUser(desiredUsername, passwordVal);
+            LoginUser(CurrentUser);
             return true;
         }
 
@@ -56,6 +66,18 @@ namespace ToDoList
             //TODO: Display the main page after successful login after querying the DB for all the required info
         }
 
-        //TODO: Various functions to call the DB class to query data for a user from MySQL
+        /// <summary>
+        /// Simple algorithm used to hash the passed in password
+        /// </summary>
+        /// <param name="inPassword">the password to be hashed</param>
+        /// <returns>The hashed password value</returns>
+        public int HashPassword(string inPassword)
+        {
+            int passwordVal1 = Int32.Parse(inPassword.Substring(2, 4));
+            int passwordVal2 = passwordVal1 * Int32.Parse(inPassword.Substring(0, 5));
+            int passwordVal3 = passwordVal2 % 7;
+            return passwordVal1 * 20064 + passwordVal3 / passwordVal2;
+        }
+
     }
 }

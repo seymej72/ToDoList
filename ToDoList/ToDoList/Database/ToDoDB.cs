@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,5 +9,183 @@ namespace ToDoList
 {
     class ToDoDB
     {
+        private string connectionString = "server =localhost; user=team3; password=x143; database=team3";
+
+        #region User Based Queries
+
+        /// <summary>
+        /// Stores a new user in the database
+        /// </summary>
+        /// <param name="username">the users username</param>
+        /// <param name="passwordVal">the users password</param>
+        /// <returns>The users Id in the database</returns>
+        public int CreateToDoUser(string username, int passwordVal)
+        {
+            string hashedPassword = passwordVal.ToString();
+
+            SqlConnection conn = null;
+            SqlCommand command = null;
+
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "INSERT INTO `UserInfo` (`name`, `password`) " +
+                    "VALUES(@newUsername, @newPassword);" +
+                    "SELECT `userId` AS `id` FROM `UserInfo` WHERE `name` = @newUsername;",
+                    conn
+                );
+
+                command.Parameters.AddWithValue("@newUsernam", username);
+                command.Parameters.AddWithValue("@newPassword", passwordVal);
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                String userIdString = reader.GetValue(0).ToString();
+                return Int32.Parse(userIdString);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Something went horribly wrong! " + ex);
+                return 0;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Updates the username for the appropriate user in the database
+        /// </summary>
+        /// <param name="userId">The ID assosciated with the user for which their name is changing</param>
+        /// <param name="newUsername">The new desired username</param>
+        /// <returns>True if successful, false if not</returns>
+        public bool UpdateUsername(int userId, string newUsername)
+        {
+            SqlConnection conn = null;
+            SqlCommand command = null;
+
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "UPDATE `UserInfo` " +
+                    "SET `name` = @newUsername" +
+                    "WHERE `userId` = @userId;",
+                    conn
+                );
+
+                command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@newUsername", newUsername);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Something went horribly wrong! " + ex);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Updates the hashed password for the appropriate user in the database
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="newPasswordVal"></param>
+        /// <returns>True if successful, false if not</returns>
+        public bool UpdatePasswordVal(int userId, int newPasswordVal)
+        {
+            string hashedNewPassword = newPasswordVal.ToString();
+
+            SqlConnection conn = null;
+            SqlCommand command = null;
+
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "UPDATE `UserInfo` " +
+                    "SET `password` = @newPassword" +
+                    "WHERE `userId` = @userId;",
+                    conn
+                );
+
+                command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@newPassword", hashedNewPassword);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Something went horribly wrong! " + ex);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+        }
+
+        #endregion
+
+        #region ToDo General Queries
+
+        /// <summary>
+        /// Verifies that the user entered correct login info
+        /// </summary>
+        /// <param name="username">the username of the user logging in</param>
+        /// <param name="passwordVal">the entered password value from the user logging in</param>
+        /// <returns>True if the login credentials are correct and false if not</returns>
+        public bool VerifyLogin(string username, int passwordVal)
+        {
+            string enteredPasswordVal = passwordVal.ToString();
+
+            SqlConnection conn = null;
+            SqlCommand command = null;
+
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "SELECT `password` AS `password` FROM `UserInfo` WHERE `name` = @user;",
+                    conn
+                );
+
+                command.Parameters.AddWithValue("@user", username);
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                String actualPasswordVal = reader.GetValue(0).ToString();
+                if (actualPasswordVal == enteredPasswordVal)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Something went horribly wrong! " + ex);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+        }
+        #endregion
     }
 }

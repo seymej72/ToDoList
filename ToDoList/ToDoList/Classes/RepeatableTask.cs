@@ -67,7 +67,14 @@ namespace ToDoList
 
         public override void setTitle(String theTitle)
         {
-            
+            this.taskTitle = theTitle;
+            foreach (DisposableTask current in copiesOfRepeatableTask)
+            {
+                if (current.getIsComplete() == false)
+                {
+                    current.setTitle(theTitle);
+                }
+            }
         }
 
         public override void setIsComplete(Boolean complete)
@@ -77,12 +84,27 @@ namespace ToDoList
 
         public override void setAllowNotifications(Boolean notifications)
         {
-
+            this.notificationsOn = notifications;
+            foreach(DisposableTask current in copiesOfRepeatableTask)
+            {
+                if (current.getIsComplete() == false)
+                {
+                    current.setAllowNotifications(notifications);
+                }
+            }
         }
 
-        public override void setDescription(String descrip)
-        {
 
+        public override void setDescription(String descri)
+        {
+            this.descrip = descri;
+            foreach (DisposableTask current in copiesOfRepeatableTask)
+            {
+                if (current.getIsComplete() == false)
+                {
+                    current.setDescription(descrip);
+                }
+            }
         }
 
         public override void setTaskFKey(int taskFKey)
@@ -92,7 +114,14 @@ namespace ToDoList
 
         public override void setTaskDueDate(DateTime taskDueDate)
         {
-            
+            this.taskDueDate = taskDueDate;
+            foreach (DisposableTask current in copiesOfRepeatableTask)
+            {
+                if (current.getIsComplete() == false)
+                {
+                   // current.setTaskDueDate(taskDueDate); // do not want to set all disposable tasks to same date, want them offset
+                }
+            }
         }
 
         public override int getTaskId()

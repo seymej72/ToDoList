@@ -29,6 +29,12 @@ namespace ToDoList
         public static Color colorTextGrey = (Color)ColorConverter.ConvertFromString("#FF69726F");
         public SolidColorBrush textGrey = new SolidColorBrush(colorTextGrey);
 
+        public string username;
+        public string password;
+        public string passCheck;
+
+        public ToDo todo = new ToDo();
+
 
 
         public Login()
@@ -78,8 +84,42 @@ namespace ToDoList
         {
 
         }
+
         private void submitButtonClick(object sender, RoutedEventArgs e)
         {
+
+            string submitButtonText = this.submitButtonText.Text;
+
+            if (submitButtonText == "Create User")
+            //if creating user
+            {
+                username = this.usernameTextBox.Text;
+                password = this.passwordTextBox.Password.ToString();
+                passCheck = this.passwordRetypeTextBox.Password.ToString();
+
+                if (password == passCheck)
+                {
+                    bool success = todo.RegisterUser(username, password);
+
+                    if (success == true)
+                    {
+
+                    }
+                }
+
+            }
+            else if(submitButtonText == "Log In")
+            //if logging in
+            {
+                username = this.usernameTextBox.Text;
+                password = this.passwordTextBox.Password.ToString();
+
+
+
+            }
+            
+            
+            //sends user to dashboard if login is valid
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
         }

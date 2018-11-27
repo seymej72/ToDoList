@@ -18,6 +18,12 @@ namespace ToDoList
         public void Main(String[] args)
         {
             //TODO: Literally everything
+
+
+
+
+
+
         }
 
         /// <summary>
@@ -48,7 +54,7 @@ namespace ToDoList
         /// <param name="desiredUsernam">The desired username of the user</param>
         /// <param name="desiredPassword">The desired password of the user</param>
         /// <returns>True if the user was registered/created succesfully or False if not</returns>
-        private bool RegisterUser(string desiredUsername, string desiredPassword)
+        public bool RegisterUser(string desiredUsername, string desiredPassword)
         {
             int passwordVal = HashPassword(desiredPassword);
 

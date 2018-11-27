@@ -33,16 +33,16 @@ namespace ToDoList
         //Fetch existing DT from Database based on taskId and update this instance with its info
         public DisposableTask fetchDisposableTask(int taskId)
         {
-            MySqlConnection conn = null;
+            SqlConnection conn = null;
             DisposableTask myDisposableTask = null;
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
                 //SELECT* from `Task` WHERE `TaskId` = 1
-                MySqlCommand cmd = new MySqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
-                cmd.Parameters.Add(new MySqlParameter("taskId", 1));
-                MySqlDataReader reader = cmd.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
+                cmd.Parameters.Add(new SqlParameter("taskId", 1));
+                SqlDataReader reader = cmd.ExecuteReader();
                 int count = reader.FieldCount;
 
                 this.taskId = (int)reader.GetValue(0); //TaskId
@@ -80,16 +80,16 @@ namespace ToDoList
         //TODO Cannot upload DATETIME
         public int InsertDisposableTask()
         {
-            MySqlConnection conn = null;
-            MySqlCommand command = null;
+            SqlConnection conn = null;
+            SqlCommand command = null;
             int taskId = 0;
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
 
                 //command executes an insert and a select in order to return the taskId from that insertion
-                command = new MySqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`) " +
+                command = new SqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`) " +
                     "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable);" +
                     "SELECT `taskId` AS `taskId` FROM `Task` WHERE `taskId` = @@Identity;", conn);
 
@@ -101,7 +101,7 @@ namespace ToDoList
                 //command.Parameters.AddWithValue("@taskFKey", );// Won't have this before you insert for the first time
                 //command.Parameters.AddWithValue("@taskDueDate", new DateTime()); //Doesn't work
 
-                MySqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = command.ExecuteReader();
                 //Console.WriteLine("Result: Success!");
                 taskId =  (int)reader.GetValue(0);
             }
@@ -123,17 +123,17 @@ namespace ToDoList
         //Maps this task Id to each of its subtasks
         public void InsertNewTasktoSubTask(int TaskId, int SubtaskId)
         {
-            MySqlConnection conn = null;
-            MySqlCommand command = null;
+            SqlConnection conn = null;
+            SqlCommand command = null;
 
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
                 Dictionary<int, SubTask>.KeyCollection SubTaskIdCollection = subTasks.Keys;
                 foreach (int i in SubTaskIdCollection)
                 {
-                    command = new MySqlCommand("INSERT INTO `TaskToSubtask` (`TaskFKey`,`SubtaskId`) " +
+                    command = new SqlCommand("INSERT INTO `TaskToSubtask` (`TaskFKey`,`SubtaskId`) " +
                     "VALUES(@TaskFKey, @SubTaskId);", conn);
                     command.Parameters.AddWithValue("@TaskFKey", TaskId);
                     command.Parameters.AddWithValue("@SubtaskId", SubtaskId);
@@ -158,21 +158,21 @@ namespace ToDoList
         //Update or Save Task //TODO does not work for DateTime
         public void UpdateTask()
         {
-            MySqlConnection conn = null;
+            SqlConnection conn = null;
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("UPDATE `Task` SET `title` = @title, `notes` = @notes," +
+                SqlCommand cmd = new SqlCommand("UPDATE `Task` SET `title` = @title, `notes` = @notes," +
                                    "`allowNotifications` = @allowNotifications, `isComplete` = @isComplete, `isRepeatable` = @isRepeatable," +
                                    "`taskFKey` = @taskFKey WHERE `taskId` =  @taskId", conn);
-                cmd.Parameters.Add(new MySqlParameter("taskId", 1));
-                cmd.Parameters.Add(new MySqlParameter("title", "TEST"));
-                cmd.Parameters.Add(new MySqlParameter("notes", "TEST"));
-                cmd.Parameters.Add(new MySqlParameter("allowNotifications", 1));
-                cmd.Parameters.Add(new MySqlParameter("isComplete", 1));
-                cmd.Parameters.Add(new MySqlParameter("isRepeatable", false));
-                cmd.Parameters.Add(new MySqlParameter("taskFKey", 200));
+                cmd.Parameters.Add(new SqlParameter("taskId", 1));
+                cmd.Parameters.Add(new SqlParameter("title", "TEST"));
+                cmd.Parameters.Add(new SqlParameter("notes", "TEST"));
+                cmd.Parameters.Add(new SqlParameter("allowNotifications", 1));
+                cmd.Parameters.Add(new SqlParameter("isComplete", 1));
+                cmd.Parameters.Add(new SqlParameter("isRepeatable", false));
+                cmd.Parameters.Add(new SqlParameter("taskFKey", 200));
                 //cmd.Parameters.Add(new MySqlParameter("taskDueDate", this.taskId));
 
                 cmd.ExecuteNonQuery();
@@ -198,15 +198,15 @@ namespace ToDoList
             //Then add them to dictionary
             Dictionary<int, SubTask> returnedSubTasks = new Dictionary<int, SubTask>();
 
-            MySqlConnection conn = null;
+            SqlConnection conn = null;
 
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT`SubtaskId` FROM `TaskToSubtask` WHERE `TaskFKey` =  @TaskFKey", conn);
-                cmd.Parameters.Add(new MySqlParameter("TaskFKey", this.taskFKey)); //TODO what if taskFKEY is still null
-                MySqlDataReader reader = cmd.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("SELECT`SubtaskId` FROM `TaskToSubtask` WHERE `TaskFKey` =  @TaskFKey", conn);
+                cmd.Parameters.Add(new SqlParameter("TaskFKey", this.taskFKey)); //TODO what if taskFKEY is still null
+                SqlDataReader reader = cmd.ExecuteReader();
                 int count = reader.FieldCount;
 
                 while (reader.Read())
@@ -239,15 +239,15 @@ namespace ToDoList
         //Returns a Subtask object for the passed in id
         public SubTask fetchSubTask(int SubtaskId)
         {
-            MySqlConnection conn = null;
+            SqlConnection conn = null;
             SubTask mySubTask = null;
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT* from `Subtask` WHERE `subtaskId` =  @SubtaskId", conn);
-                cmd.Parameters.Add(new MySqlParameter("SubtaskId", SubtaskId));
-                MySqlDataReader reader = cmd.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("SELECT* from `Subtask` WHERE `subtaskId` =  @SubtaskId", conn);
+                cmd.Parameters.Add(new SqlParameter("SubtaskId", SubtaskId));
+                SqlDataReader reader = cmd.ExecuteReader();
                 int count = reader.FieldCount;
 
 
@@ -413,15 +413,15 @@ namespace ToDoList
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void ReadUserInfoRowFromDB()
         {
-            MySqlConnection conn = null;
+            SqlConnection conn = null;
 
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from UserInfo", conn);
-                cmd.Parameters.Add(new MySqlParameter("uName", "TextToADD"));
-                MySqlDataReader reader = cmd.ExecuteReader();
+                SqlCommand cmd = new SqlCommand("select * from UserInfo", conn);
+                cmd.Parameters.Add(new SqlParameter("uName", "TextToADD"));
+                SqlDataReader reader = cmd.ExecuteReader();
                 int count = reader.FieldCount;
                 StringBuilder str = new StringBuilder("");
                 while (reader.Read())
@@ -452,14 +452,14 @@ namespace ToDoList
 
         public void InsertUserInfoRowtoDB()
         {
-            MySqlConnection conn = null;
-            MySqlCommand command = null;
+            SqlConnection conn = null;
+            SqlCommand command = null;
 
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
-                command = new MySqlCommand("INSERT INTO `UserInfo` (`name`,`password`,`userFKey`) VALUES(@name, @password, @userFKey);", conn);
+                command = new SqlCommand("INSERT INTO `UserInfo` (`name`,`password`,`userFKey`) VALUES(@name, @password, @userFKey);", conn);
                 command.Parameters.AddWithValue("@name", "jake");
                 command.Parameters.AddWithValue("@password", "passWORD");
                 command.Parameters.AddWithValue("@userFkey", 1000);
@@ -481,14 +481,14 @@ namespace ToDoList
 
         public void UpdateUserInfoRowinDB()
         {
-            MySqlConnection conn = null;
-            MySqlCommand command = null;
+            SqlConnection conn = null;
+            SqlCommand command = null;
 
             try
             {
-                conn = new MySqlConnection(connectionStringToDB);
+                conn = new SqlConnection(connectionStringToDB);
                 conn.Open();
-                command = new MySqlCommand("UPDATE `UserInfo` SET name = @nameParam WHERE `userId` = 1;", conn);
+                command = new SqlCommand("UPDATE `UserInfo` SET name = @nameParam WHERE `userId` = 1;", conn);
                 command.Parameters.AddWithValue("nameParam", "NEW NAME");
                 command.ExecuteNonQuery();
                 Console.WriteLine("Result: Success!");

@@ -34,6 +34,7 @@ namespace ToDoList
         private Dictionary<int, SubTask> dict;
 
         private ToDoUser user;
+        private List<TaskList> list;
 
         public CreateList()
         {
@@ -43,7 +44,8 @@ namespace ToDoList
         {
             InitializeComponent();
 
-            this.tl = tl;
+            this.user = user;
+            this.list = user.getUserToDoList();
 
         }
         //notes field->somehow wrap text onto new line to fill box area? (it's all just going onto one line)
@@ -91,7 +93,11 @@ namespace ToDoList
                 //create repeatableTask
 
                 RepeatableTask rt = new RepeatableTask(taskTitle, taskDesc, dict);
-                tl[0].addTask(rt);
+
+                
+                list[0].addTask(rt);
+
+               // tl[0].addTask(rt);
 
                 //todo: for sara: just pass THE USER OBJECT to EVERY PAGE
 
@@ -102,9 +108,9 @@ namespace ToDoList
                 //create disposableTask
 
                 DisposableTask dt = new DisposableTask(taskTitle, taskDesc, dict);
-                tl[0].addTask(dt);
+                list[0].addTask(dt);
 
-                
+
 
             }
 

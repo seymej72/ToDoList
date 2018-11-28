@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToDoList.Classes;
 
 namespace ToDoList
 {
@@ -28,6 +29,12 @@ namespace ToDoList
 
         public static Color colorTextGrey = (Color)ColorConverter.ConvertFromString("#FF69726F");
         public SolidColorBrush textGrey = new SolidColorBrush(colorTextGrey);
+
+        public string username;
+        public string password;
+        public string passCheck;
+
+        public ToDo todo = new ToDo();
 
 
 
@@ -74,12 +81,58 @@ namespace ToDoList
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        //private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
 
-        }
+        //}
+
         private void submitButtonClick(object sender, RoutedEventArgs e)
         {
+
+            string submitButtonText = this.submitButtonText.Text;
+
+            if (submitButtonText == "Create User")
+            //if creating user
+            {
+                username = this.usernameTextBox.Text;
+                password = this.passwordTextBox.Password.ToString();
+                passCheck = this.passwordRetypeTextBox.Password.ToString();
+
+                if (password == passCheck)
+                {
+                    ToDoUser user =  todo.RegisterUser(username, password);
+                    int userID = user.UserId;
+                    List<TaskList> tl = user.LoadList(userID);
+
+                    dashboard dash = new dashboard(tl, username);
+                    NavigationService.Navigate(dash);
+                }
+
+            }
+            else if(submitButtonText == "Log In")
+            //if logging in
+            /*
+             * for now: user can only make a user & use a blank list, they cannot log in with an existing user
+             */
+            {
+                username = this.usernameTextBox.Text;
+                password = this.passwordTextBox.Password.ToString();
+
+                bool check = todo.CheckInput(username, password);
+                if (check == true)
+                {
+                    //ToDoUser user = todo
+                    //blake->needs data from database to construct user before we can log in a user
+                }
+
+                //ToDoUser user = 
+                //todo.LoginUser();
+
+            }
+            
+
+            
+            //sends user to dashboard if login is valid
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
         }

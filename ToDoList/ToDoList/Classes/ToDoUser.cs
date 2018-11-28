@@ -9,10 +9,10 @@ namespace ToDoList
 {
     public class ToDoUser
     {
-        string Name;
-        int UserId;
-        List<TaskList> UserToDoList;
-        int PasswordValue;
+        public string Name;
+        public int UserId;
+        public List<TaskList> UserToDoList;
+        public int PasswordValue;
         ToDoDB db = new ToDoDB();
 
         /// <summary>
@@ -65,10 +65,11 @@ namespace ToDoList
         /// Function to get a users To Do List from the MySQL database
         /// </summary>
         /// <param name="UserId">The ID of the user</param>
-        //public void LoadList(int UserId)
-        //{
-           
-        //}
+        public List<TaskList> LoadList(int UserId)
+        {
+            //this.UserToDoList = this.db.LoadList(UserId);
+            return this.UserToDoList;
+        }
 
         /// <summary>
         /// Changes the Users password

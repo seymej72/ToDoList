@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToDoList.Classes;
 
 namespace ToDoList
 {
@@ -20,9 +21,26 @@ namespace ToDoList
     /// </summary>
     public partial class dashboard : Page
     {
+
+        List<TaskList> tl;
+        string username; 
+
+
         public dashboard()
         {
             InitializeComponent();
+        }
+
+        public dashboard(List<TaskList> tl, string username)
+        {
+            this.tl = tl;
+            this.username = username;
+            setUsername();
+        }
+
+        public void setUsername()
+        {
+            this.usernameText.Text = username;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

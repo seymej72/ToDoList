@@ -11,7 +11,7 @@ namespace ToDoList
     {
         public string Name;
         public int UserId;
-        public List<TaskList> UserToDoList;
+        public List<TaskList> UserToDoList = new List<TaskList>();
         public int PasswordValue;
         ToDoDB db = new ToDoDB();
 

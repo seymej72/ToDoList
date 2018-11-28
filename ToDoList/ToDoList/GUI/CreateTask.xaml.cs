@@ -91,7 +91,9 @@ namespace ToDoList
                 //create repeatableTask
 
                 RepeatableTask rt = new RepeatableTask(taskTitle, taskDesc, dict);
+                tl[0].addTask(rt);
 
+                //todo: for sara: just pass THE USER OBJECT to EVERY PAGE
 
 
             }
@@ -101,6 +103,9 @@ namespace ToDoList
                 //create disposableTask
 
                 DisposableTask dt = new DisposableTask(taskTitle, taskDesc, dict);
+                tl[0].addTask(dt);
+
+                
 
             }
 

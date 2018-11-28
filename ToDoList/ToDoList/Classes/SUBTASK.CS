@@ -98,14 +98,9 @@ namespace ToDoList
         {
             return subtaskId;
         }
-        public void setDueDate(int month, int day, int year)
+        public void setDueDate(DateTime dueDate)
         {
-            dueDate = new DateTime(year, month, day);
-        }
-
-        public void setDueDate(DateTime date)
-        {
-            dueDate = date;
+            this.dueDate = dueDate;
         }
 
         public DateTime getDueDate()

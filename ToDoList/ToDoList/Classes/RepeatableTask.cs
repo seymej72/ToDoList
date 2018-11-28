@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ToDoList
 {
-    
+    // have to add calls to database throughout.
     class RepeatableTask : Task
     {
         DateTime firstEvent;
@@ -22,9 +22,8 @@ namespace ToDoList
             this.complete = false;
             this.notificationsOn = allowNotifications;
             this.descrip = descrip;
-            // need to input list of disposable tasks as well
             // need to then store new repeatable task in DB
-            // also need to create repeatable list of disposable tasks.
+
         }
              
         public override void AddSubtask(int  subTaskId)
@@ -32,12 +31,15 @@ namespace ToDoList
 
         }
 
-        
+        // Overloaded version of AddSubtask
+        public void AddSubtask(int subTaskId, SubTask newSubTask)
+        {
+            subTasks.Add(subTaskId, newSubTask);
+        }
 
-        
         public override void DeleteSubtask(int subTaskId)
         {
-
+            subTasks.Remove(subTaskId);
         }
 
       
@@ -56,11 +58,12 @@ namespace ToDoList
             this.taskTitle = theTitle;
         }
 
+        // Is called when all subtasks have been marked complete.
         public override void setIsComplete(Boolean complete)
         {
             foreach( KeyValuePair<int, SubTask> entry in subTasks)
             {
-               // entry.Value.dueDate = entry.Value.dueDate.AddDays(7);
+               entry.Value.setDueDate(entry.Value.getDueDate().AddDays(7));
             }
             
         }
@@ -98,7 +101,7 @@ namespace ToDoList
 
         public override Boolean getAllowNotifications()
         {
-            return true;
+            return this.notificationsOn;
         }
 
         public override String getDescription()

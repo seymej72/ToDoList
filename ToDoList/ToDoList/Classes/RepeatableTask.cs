@@ -14,12 +14,12 @@ namespace ToDoList
         protected Dictionary<int, SubTask> subTasks { get; set; } //subTaskId maps to subTask
 
 
-        public RepeatableTask(String title, String descrip, Boolean allowNotifications, Dictionary<int,SubTask> subTaskss)
+        public RepeatableTask(String title, String descrip, Dictionary<int,SubTask> subTaskss)
         {
 
             this.taskTitle = title;
             this.complete = false;
-            this.notificationsOn = allowNotifications;
+            this.notificationsOn = false;
             this.descrip = descrip;
             this.subTasks = subTaskss;
             // need to then store new repeatable task in DB
@@ -30,7 +30,16 @@ namespace ToDoList
 
         public override void AddSubtask(int  subTaskId)
         {
-           
+
+            if (subTasks.ContainsKey(subTaskId))
+            {
+                throw new SubTaskAlreadyExistsException();
+            }
+            else
+            {
+                subTasks.Add(subTaskId, db.FetchSubTask(subTaskId));
+                // I need to save this to db yet
+            }
         }
 
         // Overloaded version of AddSubtask, would require different input
@@ -41,7 +50,16 @@ namespace ToDoList
 
         public override void DeleteSubtask(int subTaskId)
         {
-            subTasks.Remove(subTaskId);
+            if (subTasks.ContainsKey(subTaskId))
+            {
+                throw new SubTaskDoesntExistException();
+            }
+            else
+            {
+                subTasks[subTaskId].markComplete();
+                // need to right method in db to save this change
+            }
+            
         }
 
       

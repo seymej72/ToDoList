@@ -676,7 +676,7 @@ namespace ToDoList
 
         #region RepeatableTask Based Queries
 
-        //Fetch existing DT from Database based on taskId and update this instance with its info
+        //Pulls Repeatable task from db
         public RepeatableTask retrieveRepeatTask(int taskId)
         {
             SqlConnection conn = null;

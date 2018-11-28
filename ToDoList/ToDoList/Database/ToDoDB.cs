@@ -11,7 +11,9 @@ namespace ToDoList
 {
     class ToDoDB
     {
-        private string connectionString = "server =localhost; user=team3; password=x143; database=team3";
+        private string connectionString = "Server=localhost; Database=team3; Uid=team3; Pwd=x143";
+
+        
 
         #region User Based Queries
 
@@ -40,7 +42,7 @@ namespace ToDoList
                     conn
                 );
 
-                command.Parameters.AddWithValue("@newUsernam", username);
+                command.Parameters.AddWithValue("@newUsername", username);
                 command.Parameters.AddWithValue("@newPassword", passwordVal);
 
                 MySqlDataReader reader = command.ExecuteReader();
@@ -542,7 +544,7 @@ namespace ToDoList
             }
             return returnBool;
         }
-        #endregion
+        
 
         public SubTask getSubTask(int inId){
             SubTask task = new SubTask();
@@ -675,6 +677,8 @@ namespace ToDoList
                     conn.Close();
             }
         }
+
+        #endregion
 
         #region RepeatableTask Based Queries
 

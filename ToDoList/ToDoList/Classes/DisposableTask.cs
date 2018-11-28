@@ -191,8 +191,14 @@ namespace ToDoList
             return this.taskFKey;
         }
 
-        public override bool getRepeatability(){
+        public override Boolean getRepeatability()
+        {
             return this.isRepeatable;
         }
+
+        public override Dictionary<int, SubTask> getSubTask()
+        {
+            return subTasks;
+        }
     }
-}
+    }

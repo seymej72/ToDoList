@@ -51,6 +51,9 @@ namespace ToDoList
 
         public abstract int getTaskFKey();
 
-        public abstract bool getRepeatability();
+        public abstract Boolean getRepeatability();
+
+        public abstract Dictionary<int, SubTask> getSubTask();
+
     }
 }

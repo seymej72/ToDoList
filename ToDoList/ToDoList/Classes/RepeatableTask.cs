@@ -25,26 +25,8 @@ namespace ToDoList
             // need to then store new repeatable task in DB
 
         }
-        public void StoreRepeat()
-        {
-            if (db.checkTaskExistsInDB(taskId))
-            {
-                //Update Table Row
-                db.UpdateTask(this);
-            }
-            else
-            {
-                //Insert new Table Row
-                taskId = db.InsertDisposableTask(this);
-                db.UpdateTask(this); //Need to update for taskId
-            }
-            //Save SubTasks
-            Dictionary<int, SubTask>.KeyCollection SubTaskIdCollection = subTasks.Keys;
-            foreach (int i in SubTaskIdCollection)
-            {
-                subTasks[i].SaveSubTask();
-            }
-        }
+       
+        
 
         public override void AddSubtask(int  subTaskId)
         {

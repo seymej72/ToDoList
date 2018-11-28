@@ -22,16 +22,14 @@ namespace ToDoList
         Boolean taskComplete;
         int subtaskFKey;
 
-        public SubTask(DateTime inDueDate, LinkedList<String> inFiles, String inTitle, String inNotes, int inId, DateTime repeatFrom, Boolean taskComplete)
+        public SubTask(DateTime inDueDate, String inTitle, String inNotes, int inId)
         {
             dueDate = inDueDate;
             complete = false;
-            files = inFiles;
+            //files = inFiles;
             title = inTitle;
             notes = inNotes;
             subtaskId = inId;
-            this.repeatFrom = repeatFrom;
-            this.taskComplete = taskComplete;
         }
 
         public SubTask()
@@ -101,11 +99,6 @@ namespace ToDoList
         public void setDueDate(DateTime dueDate)
         {
             this.dueDate = dueDate;
-        }
-
-        public void setDueDate(DateTime date)
-        {
-            dueDate = date;
         }
 
         public DateTime getDueDate()

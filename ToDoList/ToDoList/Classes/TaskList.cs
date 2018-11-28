@@ -19,5 +19,10 @@ namespace ToDoList.Classes
         {
             ToDoList.Add(newTask);
         }
+
+        public List<Task> getTaskListList()
+        {
+            return ToDoList;
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace ToDoList
         /// <summary>
         /// Stores this Disposable Task object to the database
         /// </summary>
-        public void SaveDisposableTask()
+        public override void SaveTask()
         {
             if (db.checkTaskExistsInDB(taskId))
             {
@@ -75,7 +75,7 @@ namespace ToDoList
             else
             {
                 subTasks.Add(subTaskId, db.FetchSubTask(subTaskId));
-                SaveDisposableTask();
+                SaveTask();
             }
         }
 
@@ -93,7 +93,7 @@ namespace ToDoList
             else
             {
                 subTasks[subTaskId].markComplete();
-                SaveDisposableTask();
+                SaveTask();
             }
         }
 
@@ -114,7 +114,7 @@ namespace ToDoList
             {
                 subTasks.Remove(oldSubTaskId);
                 subTasks.Add(newSubTaskId, db.FetchSubTask(newSubTaskId));
-                SaveDisposableTask();
+                SaveTask();
             }
 
         }

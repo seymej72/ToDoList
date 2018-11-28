@@ -35,6 +35,9 @@ namespace ToDoList
         //Edit Subtask: Should this be done through task or through subtask setters?
         public abstract void EditSubtask(int oldSubTaskId, int newSubTaskId);
 
+
+        public abstract void SaveTask();
+
         public abstract int getTaskId();
 
         public abstract String getTitle();

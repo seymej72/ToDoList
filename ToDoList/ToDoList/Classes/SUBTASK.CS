@@ -29,7 +29,6 @@ namespace ToDoList
             //files = inFiles;
             title = inTitle;
             notes = inNotes;
-            subtaskId = inId;
         }
 
         public SubTask()

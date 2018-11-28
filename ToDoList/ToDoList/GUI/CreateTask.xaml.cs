@@ -40,12 +40,24 @@ namespace ToDoList
         //notes field->somehow wrap text onto new line to fill box area? (it's all just going onto one line)
         private void addSubTask(object sender, RoutedEventArgs e)
         {
-            subTitle = this.subTitleText.Text;
-            subNotes = this.subNotesText.Text;
-            dueDate = this.dueDatePicker.SelectedDate.Value.Date;
+
+            if (subTitle == "" && subNotes == "")
+            {
+                subTitle = this.subTitleText.Text;
+                subNotes = this.subNotesText.Text;
+                dueDate = this.dueDatePicker.SelectedDate.Value.Date;
 
 
-            SubTask subt = new SubTask(dueDate, subTitle, subNotes);
+                SubTask subt = new SubTask(dueDate, subTitle, subNotes);
+                int nextId = subt.getNextId();
+
+                dict.Add(nextId, subt);
+
+                this.subTitleText.Text = "";
+                this.subNotesText.Text = "";
+                this.dueDatePicker.SelectedDate = null;
+                this.dueDatePicker.DisplayDate = DateTime.Today;
+            }
             
            
             
@@ -64,7 +76,7 @@ namespace ToDoList
                 repeatable = true;
                 //create repeatableTask
 
-                RepeatableTask rt = new RepeatableTask();
+                RepeatableTask rt = new RepeatableTask(tastTitle, taskDesc, );
 
             }
             else if (this.noRadio.IsChecked == true)

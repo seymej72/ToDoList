@@ -20,15 +20,54 @@ namespace ToDoList
     /// </summary>
     public partial class CreateList : Page
     {
+
+
+        private string taskTitle;
+        private string taskDesc;
+        private Boolean repeatable;
+
+        private string subTitle;
+        private string subNotes;
+        private DateTime dueDate;
+
+        private Dictionary<int, SubTask> dict;
+
         public CreateList()
         {
             InitializeComponent();
         }
 
         //notes field->somehow wrap text onto new line to fill box area? (it's all just going onto one line)
+        private void addSubTask(object sender, RoutedEventArgs e)
+        {
+            subTitle = this.subTitleText.Text;
+            subNotes = this.subNotesText.Text;
+            dueDate = this.dueDatePicker.SelectedDate.Value.Date;
 
+
+            SubTask subt = new SubTask(dueDate, subTitle, subNotes);
+            
+        }
+
+        //if createTask is clicked
         private void backToDash(object sender, RoutedEventArgs e)
         {
+
+
+            taskTitle = this.taskTitleText.Text;
+            taskDesc = this.descText.Text;
+
+            if (this.yesRadio.IsChecked == true)
+            {
+                repeatable = true;
+            }
+            else if (this.noRadio.IsChecked == true)
+            {
+                repeatable = false;
+            }
+
+
+
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
         }

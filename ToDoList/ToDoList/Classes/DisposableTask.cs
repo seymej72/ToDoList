@@ -8,40 +8,46 @@ namespace ToDoList
 {
     class DisposableTask : Task
     {
-        //private string connectionString = "server =localhost; user=team3; password=x143; database=team3";
         ToDoDB db = new ToDoDB();
         protected Dictionary<int, SubTask> subTasks; //subTaskId maps to subTask
 
-        //Creates new Disposable Task and Inserts it in the database
-        public DisposableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete)
+        /// <summary>
+        /// Constructor for a new DisposableTask
+        /// </summary>
+        /// <param name="title">The title of the Task</param>
+        /// <param name="descrip">The description aka notes for the Task</param>
+        /// <param name="subTasks">A dictionary that maps SubTask database keys to SubTask Objects</param>
+        public DisposableTask(String title, String descrip, Dictionary<int, SubTask> subTasks)
         {
-            subTasks = new Dictionary<int, SubTask>();
             this.taskTitle = title;
-            this.complete = isComplete;
-            this.notificationsOn = allowNotifications;
+            this.subTasks = subTasks;
             this.descrip = descrip;
-            this.taskId = 0; //Adds new DTask to the Task Table in DB
+            this.complete = false;
+            this.notificationsOn = false;
         }
 
-        //Default Constructor (Used to create empty object for manual constructor with setters)
+
+        /// <summary>
+        /// Default Constructor (Used to create empty object for manual constructor with setters)
+        /// </summary>
         public DisposableTask()
         {
             subTasks = new Dictionary<int, SubTask>();
         }
 
-        //Inserts the new row into the TASK table and returns the new Task ID it gets auto assigned 
+        /// <summary>
+        /// Stores this Disposable Task object to the database
+        /// </summary>
         public void SaveDisposableTask()
         {
             if (db.checkTaskExistsInDB(taskId))
             {
-                //Update Table Row
                 db.UpdateTask(this);
             }
             else
             {
-                //Insert new Table Row
                 taskId = db.InsertDisposableTask(this);
-                db.UpdateTask(this); //Need to update for taskId
+                db.UpdateTask(this); //Needed to update for taskId
             }
             //Save SubTasks
             Dictionary<int, SubTask>.KeyCollection SubTaskIdCollection = subTasks.Keys;
@@ -54,7 +60,12 @@ namespace ToDoList
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// SubTask Modifiers
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //Adds a subtask to a task: the subtask must already exist in the DB
+
+        /// <summary>
+        /// Takes a SubTask Key and adds it to this Task and then saves this change to the database
+        /// The subtask passed in must already be in the database
+        /// </summary>
+        /// <param name="subTaskId">The database key for the Subtask</param>
         public override void AddSubtask(int subTaskId)
         {
             if (subTasks.ContainsKey(subTaskId))
@@ -68,6 +79,11 @@ namespace ToDoList
             }
         }
 
+        /// <summary>
+        /// Takes a SubTask Key and marks it as completed and then saves this change to the database
+        /// The subtask passed in must already be associated with this task
+        /// </summary>
+        /// <param name="subTaskId">The database key for the Subtask</param>
         public override void DeleteSubtask(int subTaskId)
         {
             if (subTasks.ContainsKey(subTaskId))
@@ -81,6 +97,13 @@ namespace ToDoList
             }
         }
 
+
+        /// <summary>
+        /// Takes 2 SubTask Keys. It removes the old one from the task and adds in the new one. 
+        /// Note that they will have seperate keys and must both already exist in the database.
+        /// </summary>
+        /// <param name="oldSubTaskId">The database key for the Subtask to replace</param>
+        /// <param name="newSubTaskId">The database key for the new Subtask</param>
         public override void EditSubtask(int oldSubTaskId, int newSubTaskId)
         {
             if (subTasks.ContainsKey(oldSubTaskId))
@@ -166,107 +189,5 @@ namespace ToDoList
         {
             return this.taskFKey;
         }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-        //Draft DB Connection Examples:
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /*
-        private void ReadUserInfoRowFromDB()
-        {
-            SqlConnection conn = null;
-
-            try
-            {
-                conn = new SqlConnection(connectionString);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("select * from UserInfo", conn);
-                cmd.Parameters.Add(new SqlParameter("uName", "TextToADD"));
-                SqlDataReader reader = cmd.ExecuteReader();
-                int count = reader.FieldCount;
-                StringBuilder str = new StringBuilder("");
-                while (reader.Read())
-                {
-                    for (int i = 0; i < count; i++)
-                    {
-                        str.Append(reader.GetValue(i) + " ");
-                    }
-                    str.Append(Environment.NewLine);
-                }
-                Console.WriteLine("Result: Success!");
-                Console.WriteLine(str.ToString());
-                //MessageBox.Show(str.ToString());
-                //txtOut.Text = "Successful";
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Result: Failure!" + ex);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-        }
-
-        public void InsertUserInfoRowtoDB()
-        {
-            SqlConnection conn = null;
-            SqlCommand command = null;
-
-            try
-            {
-                conn = new SqlConnection(connectionString);
-                conn.Open();
-                command = new SqlCommand("INSERT INTO `UserInfo` (`name`,`password`,`userFKey`) VALUES(@name, @password, @userFKey);", conn);
-                command.Parameters.AddWithValue("@name", "jake");
-                command.Parameters.AddWithValue("@password", "passWORD");
-                command.Parameters.AddWithValue("@userFkey", 1000);
-                command.ExecuteNonQuery();
-                Console.WriteLine("Result: Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Result: Failure!" + ex);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-        }
-
-        public void UpdateUserInfoRowinDB()
-        {
-            SqlConnection conn = null;
-            SqlCommand command = null;
-
-            try
-            {
-                conn = new SqlConnection(connectionString);
-                conn.Open();
-                command = new SqlCommand("UPDATE `UserInfo` SET name = @nameParam WHERE `userId` = 1;", conn);
-                command.Parameters.AddWithValue("nameParam", "NEW NAME");
-                command.ExecuteNonQuery();
-                Console.WriteLine("Result: Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Result: Failure!" + ex);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-        }
-    
-    */
-
     }
 }

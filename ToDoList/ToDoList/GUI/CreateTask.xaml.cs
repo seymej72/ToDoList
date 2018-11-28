@@ -36,6 +36,7 @@ namespace ToDoList
         private ToDoUser user = new ToDoUser();
         private List<TaskList> list = new List<TaskList>();
 
+        private int idCount = 0;
         public CreateList()
         {
             InitializeComponent();
@@ -64,10 +65,13 @@ namespace ToDoList
 
 
                 SubTask subt = new SubTask(dueDate, subTitle, subNotes);
-                int nextId = subt.getNextId();
-                subt.setId(nextId);
 
-                dict.Add(nextId, subt);
+                this.idCount++;
+
+                //int nextId = subt.getNextId();
+                //subt.setId(nextId);
+
+                dict.Add(idCount, subt);
 
                 this.subTitleText.Text = "";
                 this.subNotesText.Text = "";

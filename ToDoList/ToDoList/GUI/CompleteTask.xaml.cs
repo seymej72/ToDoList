@@ -33,8 +33,12 @@ namespace ToDoList
 
         public CompleteTask(ToDoUser user, int taskIndex)
         {
+            InitializeComponent();
+
             userObject = user;
             this.taskIndex = taskIndex;
+
+            fillTaskInfo();
         }
 
         private void fillTaskInfo()
@@ -45,16 +49,95 @@ namespace ToDoList
             this.TaskTitleText.Text = tasks[taskIndex].getTitle();
             this.TaskDescriptionText.Text = tasks[taskIndex].getDescription();
 
-            //bool repeating = tasks[taskIndex].getRepeatability();
-           // if ()
-            //{
-
-            //}
+            bool repeating = tasks[taskIndex].getRepeatability();
+            if (repeating == true)
+            {
+                this.RepeatingText.Text = "Yes";
+            }
+            else if (repeating == false)
+            {
+                this.RepeatingText.Text = "No";
+            }
         }
 
         private void fillSubtasks()
         {
-            //tasks.getsubTasks
+            subtasks = tasks[taskIndex].getSubTask();
+            int dictSize = subtasks.Count();
+            if (dictSize > 0)
+            {
+                //foreach (KeyValuePair<>)
+                //{
+
+                //}
+
+                if (dictSize == 1)
+                {
+                    this.sub1.Visibility = Visibility.Visible;
+                    this.sub1Date.Visibility = Visibility.Visible;
+                    this.sub1Desc.Visibility = Visibility.Visible;
+
+                    bool one = this.sub1.IsChecked.Value;
+                    //this.sub1Date.Text = subtasks
+
+                    this.sub2.Visibility = Visibility.Hidden;
+                    this.sub2Date.Visibility = Visibility.Hidden;
+                    this.sub2Desc.Visibility = Visibility.Hidden;
+
+                    this.sub3.Visibility = Visibility.Hidden;
+                    this.sub3Date.Visibility = Visibility.Hidden;
+                    this.sub3Desc.Visibility = Visibility.Hidden;
+
+                }
+                else if (dictSize == 2)
+                {
+                    this.sub1.Visibility = Visibility.Visible;
+                    this.sub1Date.Visibility = Visibility.Visible;
+                    this.sub1Desc.Visibility = Visibility.Visible;
+
+                    this.sub2.Visibility = Visibility.Visible;
+                    this.sub2Date.Visibility = Visibility.Visible;
+                    this.sub2Desc.Visibility = Visibility.Visible;
+
+                    this.sub3.Visibility = Visibility.Hidden;
+                    this.sub3Date.Visibility = Visibility.Hidden;
+                    this.sub3Desc.Visibility = Visibility.Hidden;
+
+                }
+                else if (dictSize == 3)
+                {
+                    this.sub1.Visibility = Visibility.Visible;
+                    this.sub1Date.Visibility = Visibility.Visible;
+                    this.sub1Desc.Visibility = Visibility.Visible;
+
+                    this.sub2.Visibility = Visibility.Visible;
+                    this.sub2Date.Visibility = Visibility.Visible;
+                    this.sub2Desc.Visibility = Visibility.Visible;
+
+                    this.sub3.Visibility = Visibility.Visible;
+                    this.sub3Date.Visibility = Visibility.Visible;
+                    this.sub3Desc.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                if (dictSize == 0)
+                {
+                    this.sub1.Visibility = Visibility.Hidden;
+                    this.sub1Date.Visibility = Visibility.Hidden;
+                    this.sub1Desc.Visibility = Visibility.Hidden;
+
+                    this.sub2.Visibility = Visibility.Hidden;
+                    this.sub2Date.Visibility = Visibility.Hidden;
+                    this.sub2Desc.Visibility = Visibility.Hidden;
+
+                    this.sub3.Visibility = Visibility.Hidden;
+                    this.sub3Date.Visibility = Visibility.Hidden;
+                    this.sub3Desc.Visibility = Visibility.Hidden;
+                }
+            }
+            
+            
         }
 
         private void editClick(object sender, RoutedEventArgs e)

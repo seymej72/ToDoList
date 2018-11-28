@@ -172,30 +172,36 @@ namespace ToDoList
         private void taskClick1(object sender, RoutedEventArgs e)
         {
             int taskIndex = 0;
-            sendToCompleteTask(taskIndex);
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
         }
 
         private void taskClick2(object sender, RoutedEventArgs e)
         {
             int taskIndex = 1;
-            sendToCompleteTask(taskIndex);
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
         }
         private void taskClick3(object sender, RoutedEventArgs e)
         {
             int taskIndex = 2;
-            sendToCompleteTask(taskIndex);
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
         }
         private void taskClick4(object sender, RoutedEventArgs e)
         {
             int taskIndex = 3;
-            sendToCompleteTask(taskIndex);
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
         }
 
+        /*
         private void sendToCompleteTask(int taskIndex)
         {
             CompleteTask comp = new CompleteTask(userObject, taskIndex);
             NavigationService.Navigate(comp);
-        }
+        }*/
 
 
        

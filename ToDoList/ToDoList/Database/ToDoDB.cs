@@ -233,6 +233,313 @@ namespace ToDoList
         }
         #endregion
 
+        #region DisposableTask Based Queries
+
+        //Fetch existing DT from Database based on taskId and update this instance with its info
+        public DisposableTask fetchDisposableTask(int taskId)
+        {
+            SqlConnection conn = null;
+            DisposableTask myDisposableTask = null;
+            if (checkTaskExistsInDB(taskId))
+            {
+                try
+                {
+                    conn = new SqlConnection(connectionString);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
+                    cmd.Parameters.Add(new SqlParameter("taskId", taskId));
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    myDisposableTask.setTaskId((int)reader.GetValue(0)); //TaskId
+                    myDisposableTask.setTitle((String)reader.GetValue(1)); //Title
+                    myDisposableTask.setDescription((String)reader.GetValue(2)); //Notes
+                    myDisposableTask.setAllowNotifications((Boolean)reader.GetValue(3)); //allowNotifications
+                    myDisposableTask.setIsComplete((Boolean)reader.GetValue(4)); //isComplete
+
+                    //if ((Boolean)reader.GetValue(5)) //isRepeatable NEEDS TO BE FALSE
+                    myDisposableTask.setTaskFKey((int)reader.GetValue(6)); //taskFKey
+                    myDisposableTask.setTaskDueDate((DateTime)reader.GetValue(7)); //DueDate
+                                                                                   //Console.WriteLine("Result: Success!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("fetchDisposableTask Failure!" + ex);
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+                myDisposableTask.setSubTasks(FetchAllSubTasks(taskId));
+            }
+            return myDisposableTask;
+        }
+
+        public Boolean checkTaskExistsInDB(int taskId)
+        {
+            SqlConnection conn = null;
+            Boolean returnBool = false;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
+                cmd.Parameters.Add(new SqlParameter("taskId", taskId));
+                SqlDataReader reader = cmd.ExecuteReader();
+                int count = reader.FieldCount;
+                if(reader.FieldCount > 0)
+                {
+                    returnBool = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("checkTaskExistsInDB Failure!" + ex);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return returnBool;
+        }
+
+        //Inserts the new row into the TASK table and returns the new Task ID it gets auto assigned 
+        //TODO Cannot upload DATETIME
+        public int InsertDisposableTask(DisposableTask disposableTask)
+        {
+            SqlConnection conn = null;
+            SqlCommand command = null;
+            int taskId = 0;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                //command executes an insert and a select in order to return the taskId from that insertion
+                command = new SqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`) " +
+                    "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable);" +
+                    "SELECT `taskId` AS `taskId` FROM `Task` WHERE `taskId` = @@Identity;", conn);
+
+                command.Parameters.AddWithValue("@title", disposableTask.getTitle());
+                command.Parameters.AddWithValue("@notes", disposableTask.getDescription());
+                command.Parameters.AddWithValue("@allowNotifications", disposableTask.getAllowNotifications());
+                command.Parameters.AddWithValue("@isComplete", disposableTask.getIsComplete());
+                command.Parameters.AddWithValue("@isRepeatable", 1);
+                //command.Parameters.AddWithValue("@taskFKey", );// Won't have this before you insert for the first time
+                //command.Parameters.AddWithValue("@taskDueDate", new DateTime()); //Doesn't work
+
+                SqlDataReader reader = command.ExecuteReader();
+                //Console.WriteLine("Result: Success!");
+                taskId = (int)reader.GetValue(0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("InsertDisposableTask: Failure!" + ex);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return taskId;
+        }
+
+        //Update or Save Task //TODO Save Subtasks
+        public void UpdateTask(DisposableTask disposableTask)
+        {
+            if (checkTaskExistsInDB(disposableTask.getTaskId()))
+            {
+                SqlConnection conn = null;
+                try
+                {
+                    conn = new SqlConnection(connectionString);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE `Task` SET `title` = @title, `notes` = @notes," +
+                                       "`allowNotifications` = @allowNotifications, `isComplete` = @isComplete, `isRepeatable` = @isRepeatable," +
+                                       "`taskFKey` = @taskFKey WHERE `taskId` =  @taskId", conn);
+                    cmd.Parameters.Add(new SqlParameter("taskId", disposableTask.getTaskId()));
+                    cmd.Parameters.Add(new SqlParameter("title", disposableTask.getTitle()));
+                    cmd.Parameters.Add(new SqlParameter("notes", disposableTask.getDescription()));
+                    cmd.Parameters.Add(new SqlParameter("allowNotifications", disposableTask.getAllowNotifications()));
+                    cmd.Parameters.Add(new SqlParameter("isComplete", disposableTask.getIsComplete()));
+                    cmd.Parameters.Add(new SqlParameter("isRepeatable", false));
+                    cmd.Parameters.Add(new SqlParameter("taskFKey", disposableTask.getTaskId()));
+                    //cmd.Parameters.Add(new SqlParameter("taskDueDate",  disposableTask.getTaskDueDate()));
+
+                    cmd.ExecuteNonQuery();
+                    //Console.WriteLine("Result: Success!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("UpdateTask Failure!" + ex);
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region SubTask Based Queries
+        //returns all subtasks with the subtaskFKey to match the parameter taskId
+        public Dictionary<int, SubTask> FetchAllSubTasks(int taskId)
+        {
+            Dictionary<int, SubTask> returnedSubTasks = new Dictionary<int, SubTask>();
+            SubTask tempSubTask;
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM `Subtask` WHERE `subtaskFKey` =  @taskId", conn);
+                cmd.Parameters.Add(new SqlParameter("subtaskFKey", taskId)); 
+                SqlDataReader reader = cmd.ExecuteReader();
+                int count = reader.FieldCount;
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        tempSubTask = new SubTask();
+                        SubTask temp = FetchSubTask(((int)reader.GetValue(i)));
+                        temp.setId((int)reader.GetValue(0)); //subtaskId
+                        temp.setDueDate((DateTime)reader.GetValue(1)); //dueDate
+                        temp.setTitle((String)reader.GetValue(2)); //title
+                        temp.setNotes((String)reader.GetValue(3)); //description
+
+                        //TODO THIS WON'T WORK
+                        //mySubTask.setFiles( = (LinkedList<String>)reader.GetValue(4); //filePath  
+                        //TODO THIS WON'T WORK
+
+                        temp.setFiles(new LinkedList<String>());
+                        temp.setRepeatFrom((DateTime)reader.GetValue(5)); //repeatFrom
+                        temp.setTaskComplete((Boolean)reader.GetValue(6)); //isComplete
+                        temp.setSubtaskFKey((int)reader.GetValue(7)); //subTaskFKey
+
+                        returnedSubTasks.Add(((int)reader.GetValue(i)), temp);
+                    }
+                }
+                //Console.WriteLine("Result: Success!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("fetchAllSubTasks: Failure!" + ex);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return returnedSubTasks;
+        }
+
+        //Returns a Subtask object for the passed in id
+        public SubTask FetchSubTask(int SubtaskId)
+        {
+            SqlConnection conn = null;
+            SubTask mySubTask = new SubTask();
+            if (CheckSubTaskExistsInDB(SubtaskId))
+            {
+                try
+                {
+                    conn = new SqlConnection(connectionString);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT* from `Subtask` WHERE `subtaskId` =  @SubtaskId", conn);
+                    cmd.Parameters.Add(new SqlParameter("SubtaskId", SubtaskId));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    int count = reader.FieldCount;
+
+                    //Database columns:
+                    //subtaskId dueDate title description filePath repeatFrom isComplete subtaskFKey
+
+                    mySubTask.setId((int)reader.GetValue(0)); //subtaskId
+                    mySubTask.setDueDate((DateTime)reader.GetValue(1)); //dueDate
+                    mySubTask.setTitle((String)reader.GetValue(2)); //title
+                    mySubTask.setNotes((String)reader.GetValue(3)); //description
+
+                    //TODO THIS WON'T WORK
+                    //mySubTask.setFiles( = (LinkedList<String>)reader.GetValue(4); //filePath  
+                    //TODO THIS WON'T WORK
+
+
+                    mySubTask.setFiles(new LinkedList<String>());
+                    mySubTask.setRepeatFrom((DateTime)reader.GetValue(5)); //repeatFrom
+                    mySubTask.setTaskComplete((Boolean)reader.GetValue(6)); //isComplete
+                    mySubTask.setSubtaskFKey((int)reader.GetValue(7)); //subTaskFKey
+                    //Console.WriteLine("Result: Success!");
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("fetchSubTask: Failure!" + ex);
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+            return mySubTask;
+        }
+
+        public void InsertSubTask(SubTask subTask)
+        {
+            //TODO
+        }
+
+        public void UpdateSubTask(SubTask subTask)
+        {
+            //TODO
+        }
+
+        public Boolean CheckSubTaskExistsInDB(int SubtaskId)
+        {
+            SqlConnection conn = null;
+            Boolean returnBool = false;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT* from `Subtask` WHERE `subtaskId` =  @SubtaskId", conn);
+                cmd.Parameters.Add(new SqlParameter("SubtaskId", SubtaskId));
+                SqlDataReader reader = cmd.ExecuteReader();
+                int count = reader.FieldCount;
+                if (reader.FieldCount > 0)
+                {
+                    returnBool = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("CheckSubTaskExistsInDB Failure!" + ex);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return returnBool;
+        }
+        #endregion
+
         public SubTask getSubTask(int inId){
             SubTask task = new SubTask();
             task.setId(inId);

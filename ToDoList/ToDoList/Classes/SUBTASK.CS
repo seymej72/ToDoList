@@ -9,7 +9,7 @@ namespace ToDoList
 {
     class SubTask
     {
-
+        ToDoDB db = new ToDoDB();
         private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
 
         DateTime dueDate;
@@ -18,9 +18,11 @@ namespace ToDoList
         String title;
         String notes;
         int subtaskId; //Key for subtask ID for subtask table of DB - Added by Jake
-        ToDoDB db;
+        DateTime repeatFrom;
+        Boolean taskComplete;
+        int subtaskFKey;
 
-        public SubTask(DateTime inDueDate, LinkedList<String> inFiles, String inTitle, String inNotes, int inId)
+        public SubTask(DateTime inDueDate, LinkedList<String> inFiles, String inTitle, String inNotes, int inId, DateTime repeatFrom, Boolean taskComplete)
         {
             dueDate = inDueDate;
             complete = false;
@@ -28,7 +30,8 @@ namespace ToDoList
             title = inTitle;
             notes = inNotes;
             subtaskId = inId;
-            
+            this.repeatFrom = repeatFrom;
+            this.taskComplete = taskComplete;
         }
 
         public SubTask()
@@ -40,18 +43,69 @@ namespace ToDoList
             notes = null;
         }
 
+        public void SaveSubTask()
+        {
+            if (db.CheckSubTaskExistsInDB(subtaskId))
+            {
+                //Update Table Row
+                db.UpdateSubTask(this);
+            }
+            else
+            {
+                //Insert new Table Row
+                db.InsertSubTask(this);
+            }
+        }
+
+        public void setRepeatFrom(DateTime date)
+        {
+            this.repeatFrom = date;
+        }
+
+        public void setSubtaskFKey(int FKey)
+        {
+            this.subtaskFKey = FKey;
+        }
+
+        public DateTime getRepeatFrom()
+
+        {
+            return this.repeatFrom;
+        }
+
+        public int getSubtaskFKey()
+
+        {
+            return this.subtaskFKey;
+        }
+
+        public Boolean getTaskComplete()
+        {
+            return this.taskComplete;
+        }
+
+        public void setTaskComplete(Boolean complete)
+        {
+            this.taskComplete = complete;
+        }
+
         public void setId(int inId)
         {
             subtaskId = inId;
         }
-        
+
         public  int getId()
         {
             return subtaskId;
         }
-        public void setDueDate(int month, int day, int year)
+        public void setDueDate(DateTime dueDate)
         {
-            dueDate = new DateTime(year, month, day);
+            this.dueDate = dueDate;
+        }
+
+        public void setDueDate(DateTime date)
+        {
+            dueDate = date;
         }
 
         public DateTime getDueDate()

@@ -63,7 +63,15 @@ namespace ToDoList
             {
                 subTitle = this.subTitleText.Text;
                 subNotes = this.subNotesText.Text;
-                dueDate = this.dueDatePicker.SelectedDate.Value.Date;
+                if (this.dueDatePicker.SelectedDate == null)
+                {
+                    dueDate = new DateTime();
+                }
+                else
+                {
+                    dueDate = this.dueDatePicker.SelectedDate.Value.Date;
+                }
+               
 
 
                 SubTask subt = new SubTask(dueDate, subTitle, subNotes);

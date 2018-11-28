@@ -52,6 +52,11 @@ namespace ToDoList
 
         private void generateAllTasks()
         {
+            //loop through tasks and display them on the dashboard
+            foreach(var task in this.tl)
+            {
+
+            }
 
         }
 

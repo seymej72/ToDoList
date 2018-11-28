@@ -47,6 +47,8 @@ namespace ToDoList
 
             SubTask subt = new SubTask(dueDate, subTitle, subNotes);
             
+           
+            
         }
 
         //if createTask is clicked
@@ -60,12 +62,21 @@ namespace ToDoList
             if (this.yesRadio.IsChecked == true)
             {
                 repeatable = true;
+                //create repeatableTask
+
+                RepeatableTask rt = new RepeatableTask();
+
             }
             else if (this.noRadio.IsChecked == true)
             {
                 repeatable = false;
+                //create disposableTask
+
+                DisposableTask dt = new DisposableTask();
+
             }
 
+            
 
 
             NavigationService nav = NavigationService.GetNavigationService(this);

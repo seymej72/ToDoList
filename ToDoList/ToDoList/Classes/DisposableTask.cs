@@ -13,10 +13,9 @@ namespace ToDoList
         protected Dictionary<int, SubTask> subTasks; //subTaskId maps to subTask
 
         //Creates new Disposable Task and Inserts it in the database
-        public DisposableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete, DateTime taskDueDate)
+        public DisposableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete)
         {
             subTasks = new Dictionary<int, SubTask>();
-            this.taskDueDate = taskDueDate;
             this.taskTitle = title;
             this.complete = isComplete;
             this.notificationsOn = allowNotifications;
@@ -130,11 +129,6 @@ namespace ToDoList
             this.taskFKey = taskFKey;
         }
 
-        public override void setTaskDueDate(DateTime taskDueDate)
-        {
-            this.taskDueDate = taskDueDate;
-        }
-
         public void setSubTasks(Dictionary<int, SubTask> subTasks)
         {
             this.subTasks = subTasks;
@@ -171,11 +165,6 @@ namespace ToDoList
         public override int getTaskFKey()
         {
             return this.taskFKey;
-        }
-
-        public override DateTime getTaskDueDate()
-        {
-            return this.taskDueDate;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////// 

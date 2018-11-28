@@ -29,7 +29,6 @@ namespace ToDoList
             //files = inFiles;
             title = inTitle;
             notes = inNotes;
-            subtaskId = inId;
         }
 
         public SubTask()
@@ -55,6 +54,10 @@ namespace ToDoList
             }
         }
 
+        public int getNextId()
+        {
+            return db.getNextId();
+        }
         public void setRepeatFrom(DateTime date)
         {
             this.repeatFrom = date;

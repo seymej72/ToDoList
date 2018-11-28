@@ -641,5 +641,35 @@ namespace ToDoList
             }
             return true;
         }
+
+        public int getNextId()
+        {
+            SqlConnection conn = null;
+            SqlCommand command = null;
+            SqlDataReader reader = null;
+
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "SELECT 'SubTaskId' FROM `SubTask` WHERE `SubTaskId` = (SELECT max(id) from SubTask;",
+                    conn);
+                reader = command.ExecuteReader();
+                reader.Read();
+                return (int)reader.GetValue(0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("this is not supposed to happen: " + ex);
+                return -1;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace ToDoList
         public EditTask()
         {
             InitializeComponent();
+
         }
 
         private void backToComplete(object sender, RoutedEventArgs e)

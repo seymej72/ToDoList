@@ -23,9 +23,7 @@ namespace ToDoList
             this.descrip = descrip;
             this.subTasks = subTaskss;
             this.isRepeatable = true;
-            // what if this is a new task? 
-            // db.SaveRepeatTask(this);
-
+            db.InsertRepeatTask(this);
         }
        
         
@@ -36,11 +34,7 @@ namespace ToDoList
             db.SaveRepeatTask(this);
         }
 
-        // Overloaded version of AddSubtask, would require different input
-        //public void AddSubtask(int subTaskId, SubTask newSubTask)
-       // {
-           // subTasks.Add(subTaskId, newSubTask);
-       // }
+
 
         public override void DeleteSubtask(int subTaskId)
         {
@@ -132,12 +126,21 @@ namespace ToDoList
         public void turnRepeatableOff()
         {
             //need to finish
+            // how do we stop repeatable?
             db.SaveRepeatTask(this);
         }
 
         public override void SaveTask()
         {
-            db.SaveRepeatTask(this);
+            if(db.doesTaskExist(this.taskId) == false)
+            {
+                db.InsertRepeatTask(this);
+            }
+            else
+            {
+                db.SaveRepeatTask(this);
+            }
+            
         }
 
         public override Boolean getRepeatability(){

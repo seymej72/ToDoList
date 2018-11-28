@@ -115,7 +115,13 @@ namespace ToDoList
                 username = this.usernameTextBox.Text;
                 password = this.passwordTextBox.Password.ToString();
 
+                bool check = todo.CheckInput(username, password);
+                if (check == true)
+                {
+                    //ToDoUser user = todo
+                }
 
+                //ToDoUser user = 
                 //todo.LoginUser();
 
             }

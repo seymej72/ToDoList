@@ -38,7 +38,7 @@ namespace ToDoList
         /// Validates the users input, cross checking with the Database
         /// </summary>
         /// <returns>True if the input passes and False if it does not</returns>
-        private bool CheckInput(string enteredUsername, string enteredPassword)
+        public bool CheckInput(string enteredUsername, string enteredPassword)
         {
             int enteredPasswordVal = HashPassword(enteredPassword);
 

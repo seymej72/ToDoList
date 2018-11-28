@@ -43,7 +43,7 @@ namespace ToDoList
         {
             InitializeComponent();
         }
-        public CreateList( ToDoUser user)
+        public CreateList(ToDoUser user)
         {
             InitializeComponent();
 
@@ -57,7 +57,7 @@ namespace ToDoList
 
             if (subTitle == "" && subNotes == "")
             {
-                
+
             }
             else
             {
@@ -80,9 +80,9 @@ namespace ToDoList
                 this.dueDatePicker.SelectedDate = null;
                 this.dueDatePicker.DisplayDate = DateTime.Today;
             }
-            
-           
-            
+
+
+
         }
 
         //if createTask is clicked
@@ -90,8 +90,8 @@ namespace ToDoList
         {
 
 
-             taskTitle = this.taskTitleText.Text;
-             taskDesc = this.descText.Text;
+            taskTitle = this.taskTitleText.Text;
+            taskDesc = this.descText.Text;
 
             if (this.yesRadio.IsChecked == true)
             {
@@ -120,11 +120,17 @@ namespace ToDoList
 
             }
 
-            
+
 
 
             //NavigationService nav = NavigationService.GetNavigationService(this);
-           // nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+            // nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void backButton(object sender, RoutedEventArgs e)
+        {
+            Dashboard dash = new Dashboard(user);
+            NavigationService.Navigate(dash);
         }
     }
 }

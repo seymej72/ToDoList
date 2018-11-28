@@ -14,5 +14,10 @@ namespace ToDoList.Classes
         {
             this.ToDoList = inList;
         }
+
+        public void addTask(Task newTask)
+        {
+            ToDoList.Add(newTask);
+        }
     }
 }

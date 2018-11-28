@@ -10,32 +10,34 @@ namespace ToDoList
     // have to add calls to database throughout.
     class RepeatableTask : Task
     {
-        DateTime firstEvent;
-        DateTime repeatOccurance;
+        ToDoDB db = new ToDoDB();
         protected Dictionary<int, SubTask> subTasks { get; set; } //subTaskId maps to subTask
 
 
-        public RepeatableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete, DateTime taskDueDate)
+        public RepeatableTask(String title, String descrip, Boolean allowNotifications, Dictionary<int,SubTask> subTaskss)
         {
 
             this.taskTitle = title;
             this.complete = false;
             this.notificationsOn = allowNotifications;
             this.descrip = descrip;
+            this.subTasks = subTaskss;
             // need to then store new repeatable task in DB
 
         }
-             
+       
+        
+
         public override void AddSubtask(int  subTaskId)
         {
-
+           
         }
 
-        // Overloaded version of AddSubtask
-        public void AddSubtask(int subTaskId, SubTask newSubTask)
-        {
-            subTasks.Add(subTaskId, newSubTask);
-        }
+        // Overloaded version of AddSubtask, would require different input
+        //public void AddSubtask(int subTaskId, SubTask newSubTask)
+       // {
+           // subTasks.Add(subTaskId, newSubTask);
+       // }
 
         public override void DeleteSubtask(int subTaskId)
         {
@@ -112,6 +114,11 @@ namespace ToDoList
         public override int getTaskFKey()
         {
             return this.taskFKey;
+        }
+
+        public void turnRepeatableOff()
+        {
+
         }
     }
 }

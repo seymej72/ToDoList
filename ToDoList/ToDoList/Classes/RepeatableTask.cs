@@ -92,6 +92,11 @@ namespace ToDoList
             
         }
 
+        public void setSubTasks(Dictionary<int, SubTask> subTasks)
+        {
+            this.subTasks = subTasks;
+        }
+        ///////////////////////////////////////////////Getters are below///////////////////////////////////////
         public override int getTaskId()
         {
             return this.taskId;
@@ -121,7 +126,7 @@ namespace ToDoList
         {
             return this.taskFKey;
         }
-
+        ///////////////////////////////////////////////////
         public void turnRepeatableOff()
         {
 

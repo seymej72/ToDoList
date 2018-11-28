@@ -676,6 +676,149 @@ namespace ToDoList
 
         #region RepeatableTask Based Queries
 
+        //Fetch existing DT from Database based on taskId and update this instance with its info
+        public RepeatableTask retrieveRepeatTask(int taskId)
+        {
+            SqlConnection conn = null;
+            RepeatableTask repeatTask = null;
+            if (doesTaskExist(taskId))
+            {
+                try
+                {
+                    conn = new SqlConnection(connectionString);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
+                    cmd.Parameters.Add(new SqlParameter("taskId", taskId));
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    repeatTask.setTaskId((int)reader.GetValue(0)); //TaskId
+                    repeatTask.setTitle((String)reader.GetValue(1)); //Title
+                    repeatTask.setDescription((String)reader.GetValue(2)); //Description
+                    repeatTask.setAllowNotifications((Boolean)reader.GetValue(3)); //allowNotifications
+                    repeatTask.setIsComplete((Boolean)reader.GetValue(4)); //isComplete
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("retrieveRepeatTask Failed!" + ex);
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+                repeatTask.setSubTasks(FetchAllSubTasks(taskId));
+            }
+            return repeatTask;
+        }
+
+        public Boolean doesTaskExist(int taskId)
+        {
+            SqlConnection conn = null;
+            Boolean returnBool = false;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT* from `Task` WHERE `TaskId`= @taskId", conn);
+                cmd.Parameters.Add(new SqlParameter("taskId", taskId));
+                SqlDataReader reader = cmd.ExecuteReader();
+                int count = reader.FieldCount;
+                if (reader.FieldCount > 0)
+                {
+                    returnBool = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("doesTaskExist Failure!" + ex);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return returnBool;
+        }
+
+        //Inserts new Repeatable task into the table
+        public int InsertRepeatTask(RepeatableTask newTask)
+        {
+            SqlConnection conn = null;
+            SqlCommand command = null;
+            int taskId = 0;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`) " +
+                    "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable);" +
+                    "SELECT `taskId` AS `taskId` FROM `Task` WHERE `taskId` = @@Identity;", conn);
+
+                command.Parameters.AddWithValue("@title", newTask.getTitle());
+                command.Parameters.AddWithValue("@notes", newTask.getDescription());
+                command.Parameters.AddWithValue("@allowNotifications", newTask.getAllowNotifications());
+                command.Parameters.AddWithValue("@isComplete", newTask.getIsComplete());
+                command.Parameters.AddWithValue("@isRepeatable", 1);
+
+                SqlDataReader reader = command.ExecuteReader();
+                taskId = (int)reader.GetValue(0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("InsertDisposableTask: Failure!" + ex);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return taskId;
+        }
+
+        //Saves Task, used by RepeatableTask.SaveTask()
+        public void SaveRepeatTask(RepeatableTask savedTask)
+        {
+            if (doesTaskExist(savedTask.getTaskId()))
+            {
+                SqlConnection conn = null;
+                try
+                {
+                    conn = new SqlConnection(connectionString);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE `Task` SET `title` = @title, `notes` = @notes," +
+                                       "`allowNotifications` = @allowNotifications, `isComplete` = @isComplete, `isRepeatable` = @isRepeatable," +
+                                       "`taskFKey` = @taskFKey WHERE `taskId` =  @taskId", conn);
+                    cmd.Parameters.Add(new SqlParameter("taskId", savedTask.getTaskId()));
+                    cmd.Parameters.Add(new SqlParameter("title", savedTask.getTitle()));
+                    cmd.Parameters.Add(new SqlParameter("notes", savedTask.getDescription()));
+                    cmd.Parameters.Add(new SqlParameter("allowNotifications", savedTask.getAllowNotifications()));
+                    cmd.Parameters.Add(new SqlParameter("isComplete", savedTask.getIsComplete()));
+                    cmd.Parameters.Add(new SqlParameter("isRepeatable", false));
+                    cmd.Parameters.Add(new SqlParameter("taskFKey", savedTask.getTaskId()));
+                    cmd.ExecuteNonQuery();
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("SaveRepeatTask Failure!" + ex);
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
         #endregion
 
     }

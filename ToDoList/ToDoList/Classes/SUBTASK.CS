@@ -10,8 +10,6 @@ namespace ToDoList
     class SubTask
     {
         ToDoDB db = new ToDoDB();
-        private string connectionStringToDB = "server =localhost; user=team3; password=x143; database=team3";
-
         DateTime dueDate;
         bool complete;
         LinkedList<String> files;

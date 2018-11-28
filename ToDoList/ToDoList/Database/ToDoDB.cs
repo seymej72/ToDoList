@@ -258,7 +258,7 @@ namespace ToDoList
 
                     //if ((Boolean)reader.GetValue(5)) //isRepeatable NEEDS TO BE FALSE
                     myDisposableTask.setTaskFKey((int)reader.GetValue(6)); //taskFKey
-                    myDisposableTask.setTaskDueDate((DateTime)reader.GetValue(7)); //DueDate
+                    
                                                                                    //Console.WriteLine("Result: Success!");
                 }
                 catch (Exception ex)
@@ -558,10 +558,10 @@ namespace ToDoList
 
                 reader = command.ExecuteReader();
                 reader.Read();
-                task.setDueDate(reader.GetValue(1));
-                task.setFiles(reader.GetValue(3));
-                task.setTitle(reader.GetValue(4));
-                task.setNotes(reader.GetValue(5));
+                task.setDueDate((DateTime)reader.GetValue(1));
+                task.setFiles((LinkedList<String>)reader.GetValue(3));
+                task.setTitle((String)reader.GetValue(4));
+                task.setNotes((String)reader.GetValue(5));
                 return task;
             }catch(Exception ex){
                 Console.WriteLine("this is not supposed to happen: " + ex);
@@ -606,6 +606,7 @@ namespace ToDoList
                   if (conn != null)
                     conn.Close();  
             }
+            return true;
         }
 
         public bool addSubTask(SubTask newTask){
@@ -620,12 +621,12 @@ namespace ToDoList
                     "INSERT INTO 'SubTask' (SubTaskID, DueDate, isComplete, FilePath, Title, Description, RepeatFrom) VALUES (@subTaskID, @dueDate, @isComplete, @filePath, @title, @description, @repeatFrom", conn
                 );
 
-                command.Parameters.AddWithValue("@subTaskId", newTask.getId());
-                command.Parameters.AddWithValue("@dueDate", newTask.getDueDate());
-                command.Parameters.AddWithValue("@isComplete", newTask.isComplete());
-                command.Parameters.AddWithValue("@filePath", newTask.getFiles());
-                command.Parameters.AddWithValue("@title", newTask.getTitle());
-                command.Parameters.AddWithValue("@description", newTask.getNotes());
+                command.Parameters.AddWithValue("@subTaskId", inTask.getId());
+                command.Parameters.AddWithValue("@dueDate", inTask.getDueDate());
+                command.Parameters.AddWithValue("@isComplete", inTask.isComplete());
+                command.Parameters.AddWithValue("@filePath", inTask.getFiles());
+                command.Parameters.AddWithValue("@title", inTask.getTitle());
+                command.Parameters.AddWithValue("@description", inTask.getNotes());
                 command.Parameters.AddWithValue("@repeatfrom", null);
 
                 command.ExecuteNonQuery();
@@ -638,6 +639,7 @@ namespace ToDoList
                   if (conn != null)
                     conn.Close();  
             }
+            return true;
         }
     }
 }

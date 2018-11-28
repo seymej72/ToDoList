@@ -29,5 +29,21 @@ namespace ToDoList.Classes
         {
             return ToDoList;
         }
+
+        public void switchTaskType(int index)
+        {
+            Task testTask = null;
+
+            if (ToDoList[index].getRepeatability() == true)
+            {
+                testTask = ToDoList[index];
+                DisposableTask newTestTask = (DisposableTask)testTask;
+            }
+            else
+            {
+                testTask = ToDoList[index];
+                RepeatableTask newTestTask = (RepeatableTask)testTask;
+            }
+        }
     }
 }

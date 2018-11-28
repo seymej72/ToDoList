@@ -11,7 +11,7 @@ namespace ToDoList
     class RepeatableTask : Task
     {
         ToDoDB db = new ToDoDB();
-        protected Dictionary<int, SubTask> subTasks { get; set; } //subTaskId maps to subTask
+        
 
 
         public RepeatableTask(String title, String descrip, Dictionary<int,SubTask> subTaskss)
@@ -54,6 +54,15 @@ namespace ToDoList
         public override void setTaskId(int taskId)
         {
             this.taskId = taskId;
+        }
+        public override void setRepeatability(Boolean isRepeatable)
+        {
+            this.isRepeatable = isRepeatable;
+           /// below is just test code to conver repeatable task to disposable task, should we put outside of class or in
+           // Dictionary<int, SubTask> testDic = null;
+          //  RepeatableTask testForCast = new RepeatableTask("dfjdj", "dkjfdjfd", testDic);
+           // Task testTask = testForCast;
+           // DisposableTask newTestTask = (DisposableTask)testTask;
         }
 
         public override void setTitle(String theTitle)
@@ -128,12 +137,6 @@ namespace ToDoList
             return this.taskFKey;
         }
         ///////////////////////////////////////////////////
-        public void turnRepeatableOff()
-        {
-            //need to finish
-            // how do we stop repeatable?
-            db.SaveRepeatTask(this);
-        }
 
         public override void SaveTask()
         {

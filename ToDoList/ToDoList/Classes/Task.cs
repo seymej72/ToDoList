@@ -15,6 +15,7 @@ namespace ToDoList
         protected String descrip;
         protected int taskFKey; //Add getters and setters
         protected bool isRepeatable;
+        protected Dictionary<int, SubTask> subTasks;
 
         public abstract void setTaskId(int taskId);
 
@@ -27,6 +28,8 @@ namespace ToDoList
         public abstract void setDescription(String descrip);
 
         public abstract void setTaskFKey(int taskFKey);
+
+        public abstract void setRepeatability(Boolean isRepeatable);
 
         public abstract void AddSubtask(int subTaskId);
 

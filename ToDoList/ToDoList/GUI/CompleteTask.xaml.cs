@@ -21,7 +21,9 @@ namespace ToDoList
     public partial class CompleteTask : Page
     {
         private ToDoUser userObject = new ToDoUser();
-        private int taskIndex; 
+        private int taskIndex;
+        private List<Task> tasks = new List<Task>();
+        private Dictionary<int, SubTask> subtasks = new Dictionary<int, SubTask>();
 
 
         public CompleteTask()
@@ -37,17 +39,22 @@ namespace ToDoList
 
         private void fillTaskInfo()
         {
-            List<Task> tasks = userObject.getUserToDoList()[0].getTaskListList();
+            this.tasks = userObject.getUserToDoList()[0].getTaskListList();
 
 
             this.TaskTitleText.Text = tasks[taskIndex].getTitle();
             this.TaskDescriptionText.Text = tasks[taskIndex].getDescription();
 
-            /*bool repeating = tasks[taskIndex].get
-            if ()
-            {
+            //bool repeating = tasks[taskIndex].getRepeatability();
+           // if ()
+            //{
 
-            }*/
+            //}
+        }
+
+        private void fillSubtasks()
+        {
+            //tasks.getsubTasks
         }
 
         private void editClick(object sender, RoutedEventArgs e)

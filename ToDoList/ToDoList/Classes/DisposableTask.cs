@@ -192,7 +192,7 @@ namespace ToDoList
         }
 
         public override bool getRepeatability(){
-            return isReapeatable;
+            return this.isRepeatable;
         }
     }
 }

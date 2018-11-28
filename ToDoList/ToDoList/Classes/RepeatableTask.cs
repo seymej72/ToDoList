@@ -22,7 +22,7 @@ namespace ToDoList
             this.notificationsOn = false;
             this.descrip = descrip;
             this.subTasks = subTaskss;
-            this.isReapeatable = true;
+            this.isRepeatable = true;
             // what if this is a new task? 
             // db.SaveRepeatTask(this);
 
@@ -141,7 +141,7 @@ namespace ToDoList
         }
 
         public override bool getRepeatability(){
-            return isReapeatable;
+            return this.isRepeatable;
         }
     }
 }

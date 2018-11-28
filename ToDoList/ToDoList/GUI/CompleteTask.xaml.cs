@@ -112,7 +112,7 @@ namespace ToDoList
                     this.sub2Desc.Visibility = Visibility.Visible;
 
                     bool two = this.sub2.IsChecked.Value;
-                    this.sub2.Content = subs[0].getTitle();
+                    this.sub2.Content = subs[1].getTitle();
                     this.sub2Date.Text = subs[1].getDueDate().ToString("yyyy/MM/dd");
                     this.sub2Desc.Text = subs[1].getNotes();
 
@@ -137,7 +137,7 @@ namespace ToDoList
                     this.sub2Desc.Visibility = Visibility.Visible;
 
                     bool two = this.sub2.IsChecked.Value;
-                    this.sub2.Content = subs[0].getTitle();
+                    this.sub2.Content = subs[1].getTitle();
                     this.sub2Date.Text = subs[1].getDueDate().ToString("yyyy/MM/dd");
                     this.sub2Desc.Text = subs[1].getNotes();
 
@@ -146,7 +146,7 @@ namespace ToDoList
                     this.sub3Desc.Visibility = Visibility.Visible;
 
                     bool three = this.sub3.IsChecked.Value;
-                    this.sub3.Content = subs[0].getTitle();
+                    this.sub3.Content = subs[2].getTitle();
                     this.sub3Date.Text = subs[2].getDueDate().ToString("yyyy/MM/dd");
                     this.sub3Desc.Text = subs[2].getNotes();
                 }

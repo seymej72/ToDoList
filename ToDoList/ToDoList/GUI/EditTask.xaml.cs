@@ -25,6 +25,8 @@ namespace ToDoList
         private List<Task> tasks = new List<Task>();
         private Dictionary<int, SubTask> subtasks = new Dictionary<int, SubTask>();
         private int taskIndex;
+        private int subCount;
+        private List<SubTask> subs = new List<SubTask>();
 
         public EditTask()
         {
@@ -69,14 +71,13 @@ namespace ToDoList
             int dictSize = subtasks.Count();
             if (dictSize > 0)
             {
-                List<SubTask> subs = new List<SubTask>();
-
+                
                 foreach (KeyValuePair<int, SubTask> entry in subtasks)
                 {
                     subs.Add(entry.Value);
                 }
 
-                int subCount = subs.Count();
+                 subCount = subs.Count();
 
                 if (subCount == 1)
                 {
@@ -209,6 +210,79 @@ namespace ToDoList
 
         private void editTask(object sender, RoutedEventArgs e)
         {
+            //task info
+            tasks[taskIndex].setTitle(this.TitleTextBox.Text);
+            tasks[taskIndex].setDescription(this.descTextBox.Text);
+
+            bool yes = this.yesButton.IsChecked.Value;
+            bool no = this.noButton.IsChecked.Value;
+
+            /*
+             * TODO: if the repeatable value changes the disposable/repeatable task needs to be changed 
+             */
+            //if (yes == true)
+            //{
+
+            //}
+            //else if (no == true)
+            //{
+
+            //}
+
+            //subtasks
+
+            int index = 0;
+            foreach (KeyValuePair<int, SubTask> entry in subtasks)
+            {
+                subs.Add(entry.Value);
+                String title = "";
+                String notes = "";
+                DateTime date = new DateTime();
+
+                if (index == 0)
+                {
+                    title = this.sub1NameBox.Text;
+                    notes = this.sub1NotesBox.Text;
+                    if (this.sub1DatePicker.SelectedDate.Value.Date != null)
+                    {
+                        date = this.sub1DatePicker.SelectedDate.Value.Date;
+                    }
+                    
+                }
+                else if (index == 1)
+                {
+                    title = this.sub2NameBox.Text;
+                    notes = this.sub2NotesBox.Text;
+                    if (this.sub1DatePicker.SelectedDate.Value.Date != null)
+                    {
+                        date = this.sub2DatePicker.SelectedDate.Value.Date;
+                    }
+                }
+                else if (index == 2)
+                {
+                    title = this.sub3NameBox.Text;
+                    notes = this.sub3NotesBox.Text;
+                    if (this.sub1DatePicker.SelectedDate.Value.Date != null)
+                    {
+                        date = this.sub3DatePicker.SelectedDate.Value.Date;
+                    }
+                }
+
+                entry.Value.setTitle(title);
+                entry.Value.setNotes(notes);
+
+                
+                if (date != null)
+                {
+                    entry.Value.setDueDate(date);
+                }
+                
+
+                index++;
+            }
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
 
         }
 

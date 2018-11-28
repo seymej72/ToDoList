@@ -14,6 +14,7 @@ namespace ToDoList
         protected Boolean notificationsOn;
         protected String descrip;
         protected int taskFKey; //Add getters and setters
+        protected bool isReapeatable;
 
         public abstract void setTaskId(int taskId);
 

@@ -23,7 +23,7 @@ namespace ToDoList
             this.subTasks = subTasks;
             this.descrip = descrip;
             this.complete = false;
-            this.notificationsOn = false;
+            this.isRepeatable = false;
         }
 
 
@@ -33,6 +33,7 @@ namespace ToDoList
         public DisposableTask()
         {
             subTasks = new Dictionary<int, SubTask>();
+            this.isRepeatable = false;
         }
 
         /// <summary>
@@ -188,6 +189,10 @@ namespace ToDoList
         public override int getTaskFKey()
         {
             return this.taskFKey;
+        }
+
+        public bool getReapeatability(){
+            return isReapeatable;
         }
     }
 }

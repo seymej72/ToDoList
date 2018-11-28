@@ -10,11 +10,9 @@ namespace ToDoList
     
     class RepeatableTask : Task
     {
-        List<DisposableTask> copiesOfRepeatableTask;
-        // map of subtasks
-        //List<SubTask> listOfSubtasks;
         DateTime firstEvent;
         DateTime repeatOccurance;
+        protected Dictionary<int, SubTask> subTasks { get; set; } //subTaskId maps to subTask
 
 
         public RepeatableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete, DateTime taskDueDate)
@@ -28,12 +26,7 @@ namespace ToDoList
             // need to then store new repeatable task in DB
             // also need to create repeatable list of disposable tasks.
         }
-       
-        private void createListOfFutureTasks()
-        {
-            // will have to go through and create copies, 30 or so future tasks and put them in list.
-        }
-        
+             
         public override void AddSubtask(int  subTaskId)
         {
 
@@ -61,60 +54,31 @@ namespace ToDoList
         public override void setTitle(String theTitle)
         {
             this.taskTitle = theTitle;
-            foreach (DisposableTask current in copiesOfRepeatableTask)
-            {
-                if (current.getIsComplete() == false)
-                {
-                    current.setTitle(theTitle);
-                }
-            }
         }
 
         public override void setIsComplete(Boolean complete)
         {
-
+            foreach( KeyValuePair<int, SubTask> entry in subTasks)
+            {
+               // entry.Value.dueDate = entry.Value.dueDate.AddDays(7);
+            }
+            
         }
 
         public override void setAllowNotifications(Boolean notifications)
         {
             this.notificationsOn = notifications;
-            foreach(DisposableTask current in copiesOfRepeatableTask)
-            {
-                if (current.getIsComplete() == false)
-                {
-                    current.setAllowNotifications(notifications);
-                }
-            }
         }
 
 
         public override void setDescription(String descri)
         {
             this.descrip = descri;
-            foreach (DisposableTask current in copiesOfRepeatableTask)
-            {
-                if (current.getIsComplete() == false)
-                {
-                    current.setDescription(descrip);
-                }
-            }
         }
 
         public override void setTaskFKey(int taskFKey)
         {
             
-        }
-
-        public override void setTaskDueDate(DateTime taskDueDate)
-        {
-            this.taskDueDate = taskDueDate;
-            foreach (DisposableTask current in copiesOfRepeatableTask)
-            {
-                if (current.getIsComplete() == false)
-                {
-                   // current.setTaskDueDate(taskDueDate); // do not want to set all disposable tasks to same date, want them offset
-                }
-            }
         }
 
         public override int getTaskId()
@@ -140,11 +104,6 @@ namespace ToDoList
         public override String getDescription()
         {
             return this.descrip;
-        }
-
-        public override DateTime getTaskDueDate()
-        {
-            return this.taskDueDate;
         }
 
         public override int getTaskFKey()

@@ -109,14 +109,6 @@ namespace ToDoList
             return notes;
         }
 
-        public bool addToDB(){
-            return db.addSubTask(this);
-        }
-
-        public bool editInDb(int inId){
-           return db.editSubTask(this, inId);
-        }
-
 
 
         public String toString()

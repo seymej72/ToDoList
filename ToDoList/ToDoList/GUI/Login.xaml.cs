@@ -111,6 +111,10 @@ namespace ToDoList
             }
             else if(submitButtonText == "Log In")
             //if logging in
+
+            /*
+             *for now: user can only make a user & use a blank list, they cannot log in with an existing user
+             */
             {
                 username = this.usernameTextBox.Text;
                 password = this.passwordTextBox.Password.ToString();
@@ -119,6 +123,7 @@ namespace ToDoList
                 if (check == true)
                 {
                     //ToDoUser user = todo
+                    //blake->needs data from database to construct user before we can log in a user
                 }
 
                 //ToDoUser user = 

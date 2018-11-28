@@ -49,9 +49,9 @@ namespace ToDoList
         {
             return subtaskId;
         }
-        public void setDueDate(int month, int day, int year)
+        public void setDueDate(DateTime dueDate)
         {
-            dueDate = new DateTime(year, month, day);
+            this.dueDate = dueDate;
         }
 
         public DateTime getDueDate()
@@ -107,14 +107,6 @@ namespace ToDoList
         public String getNotes()
         {
             return notes;
-        }
-
-        public bool addToDB(){
-            return db.addSubTask(this);
-        }
-
-        public bool editInDb(int inId){
-           return db.editSubTask(this, inId);
         }
 
 

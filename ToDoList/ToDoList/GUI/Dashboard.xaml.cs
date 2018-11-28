@@ -64,86 +64,90 @@ namespace ToDoList
             {
                 List<Task> task = tl[0].getTaskListList();
 
-                int size = task.Count();
-
-                if (size == 0)
+                if (task != null)
                 {
-                    this.TaskOne.Visibility = Visibility.Hidden;
-                    this.TaskOneText.Visibility = Visibility.Hidden;
-                    this.TaskTwo.Visibility = Visibility.Hidden;
-                    this.TaskTwoText.Visibility = Visibility.Hidden;
-                    this.TaskThree.Visibility = Visibility.Hidden;
-                    this.TaskThreeText.Visibility = Visibility.Hidden;
-                    this.TaskFour.Visibility = Visibility.Hidden;
-                    this.TaskFourText.Visibility = Visibility.Hidden;
+                    int size = task.Count();
 
+                    if (size == 0)
+                    {
+                        this.TaskOne.Visibility = Visibility.Hidden;
+                        this.TaskOneText.Visibility = Visibility.Hidden;
+                        this.TaskTwo.Visibility = Visibility.Hidden;
+                        this.TaskTwoText.Visibility = Visibility.Hidden;
+                        this.TaskThree.Visibility = Visibility.Hidden;
+                        this.TaskThreeText.Visibility = Visibility.Hidden;
+                        this.TaskFour.Visibility = Visibility.Hidden;
+                        this.TaskFourText.Visibility = Visibility.Hidden;
+
+                    }
+                    else if (size == 1)
+                    {
+                        this.TaskOne.Visibility = Visibility.Visible;
+                        this.TaskOneText.Visibility = Visibility.Visible;
+                        this.TaskOneText.Text = task[0].getTitle();
+
+                        this.TaskTwo.Visibility = Visibility.Hidden;
+                        this.TaskTwoText.Visibility = Visibility.Hidden;
+                        this.TaskThree.Visibility = Visibility.Hidden;
+                        this.TaskThreeText.Visibility = Visibility.Hidden;
+                        this.TaskFour.Visibility = Visibility.Hidden;
+                        this.TaskFourText.Visibility = Visibility.Hidden;
+                    }
+                    else if (size == 2)
+                    {
+                        this.TaskOne.Visibility = Visibility.Visible;
+                        this.TaskOneText.Visibility = Visibility.Visible;
+                        this.TaskOneText.Text = task[0].getTitle();
+
+                        this.TaskTwo.Visibility = Visibility.Visible;
+                        this.TaskTwoText.Visibility = Visibility.Visible;
+                        this.TaskTwoText.Text = task[1].getTitle();
+
+                        this.TaskThree.Visibility = Visibility.Hidden;
+                        this.TaskThreeText.Visibility = Visibility.Hidden;
+                        this.TaskFour.Visibility = Visibility.Hidden;
+                        this.TaskFourText.Visibility = Visibility.Hidden;
+
+                    }
+                    else if (size == 3)
+                    {
+                        this.TaskOne.Visibility = Visibility.Visible;
+                        this.TaskOneText.Visibility = Visibility.Visible;
+                        this.TaskOneText.Text = task[0].getTitle();
+
+                        this.TaskTwo.Visibility = Visibility.Visible;
+                        this.TaskTwoText.Visibility = Visibility.Visible;
+                        this.TaskTwoText.Text = task[1].getTitle();
+
+                        this.TaskThree.Visibility = Visibility.Visible;
+                        this.TaskThreeText.Visibility = Visibility.Visible;
+                        this.TaskThreeText.Text = task[2].getTitle();
+
+
+                        this.TaskFour.Visibility = Visibility.Hidden;
+                        this.TaskFourText.Visibility = Visibility.Hidden;
+                    }
+                    else if (size == 4)
+                    {
+                        this.TaskOne.Visibility = Visibility.Visible;
+                        this.TaskOneText.Visibility = Visibility.Visible;
+                        this.TaskOneText.Text = task[0].getTitle();
+
+                        this.TaskTwo.Visibility = Visibility.Visible;
+                        this.TaskTwoText.Visibility = Visibility.Visible;
+                        this.TaskTwoText.Text = task[1].getTitle();
+
+                        this.TaskThree.Visibility = Visibility.Visible;
+                        this.TaskThreeText.Visibility = Visibility.Visible;
+                        this.TaskThreeText.Text = task[2].getTitle();
+
+
+                        this.TaskFour.Visibility = Visibility.Visible;
+                        this.TaskFourText.Visibility = Visibility.Visible;
+                        this.TaskThreeText.Text = task[3].getTitle();
+                    }
                 }
-                else if (size == 1)
-                {
-                    this.TaskOne.Visibility = Visibility.Visible;
-                    this.TaskOneText.Visibility = Visibility.Visible;
-                    this.TaskOneText.Text = task[0].getTitle();
-
-                    this.TaskTwo.Visibility = Visibility.Hidden;
-                    this.TaskTwoText.Visibility = Visibility.Hidden;
-                    this.TaskThree.Visibility = Visibility.Hidden;
-                    this.TaskThreeText.Visibility = Visibility.Hidden;
-                    this.TaskFour.Visibility = Visibility.Hidden;
-                    this.TaskFourText.Visibility = Visibility.Hidden;
-                }
-                else if (size == 2)
-                {
-                    this.TaskOne.Visibility = Visibility.Visible;
-                    this.TaskOneText.Visibility = Visibility.Visible;
-                    this.TaskOneText.Text = task[0].getTitle();
-
-                    this.TaskTwo.Visibility = Visibility.Visible;
-                    this.TaskTwoText.Visibility = Visibility.Visible;
-                    this.TaskTwoText.Text = task[1].getTitle();
-
-                    this.TaskThree.Visibility = Visibility.Hidden;
-                    this.TaskThreeText.Visibility = Visibility.Hidden;
-                    this.TaskFour.Visibility = Visibility.Hidden;
-                    this.TaskFourText.Visibility = Visibility.Hidden;
-
-                }
-                else if (size == 3)
-                {
-                    this.TaskOne.Visibility = Visibility.Visible;
-                    this.TaskOneText.Visibility = Visibility.Visible;
-                    this.TaskOneText.Text = task[0].getTitle();
-
-                    this.TaskTwo.Visibility = Visibility.Visible;
-                    this.TaskTwoText.Visibility = Visibility.Visible;
-                    this.TaskTwoText.Text = task[1].getTitle();
-
-                    this.TaskThree.Visibility = Visibility.Visible;
-                    this.TaskThreeText.Visibility = Visibility.Visible;
-                    this.TaskThreeText.Text = task[2].getTitle();
-
-
-                    this.TaskFour.Visibility = Visibility.Hidden;
-                    this.TaskFourText.Visibility = Visibility.Hidden;
-                }
-                else if (size == 4)
-                {
-                    this.TaskOne.Visibility = Visibility.Visible;
-                    this.TaskOneText.Visibility = Visibility.Visible;
-                    this.TaskOneText.Text = task[0].getTitle();
-
-                    this.TaskTwo.Visibility = Visibility.Visible;
-                    this.TaskTwoText.Visibility = Visibility.Visible;
-                    this.TaskTwoText.Text = task[1].getTitle();
-
-                    this.TaskThree.Visibility = Visibility.Visible;
-                    this.TaskThreeText.Visibility = Visibility.Visible;
-                    this.TaskThreeText.Text = task[2].getTitle();
-
-
-                    this.TaskFour.Visibility = Visibility.Visible;
-                    this.TaskFourText.Visibility = Visibility.Visible;
-                    this.TaskThreeText.Text = task[3].getTitle();
-                }
+               
             }
             
 

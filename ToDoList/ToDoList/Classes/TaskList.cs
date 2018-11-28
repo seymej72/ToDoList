@@ -8,7 +8,12 @@ namespace ToDoList.Classes
 {
     public class TaskList
     {
-        List<Task> ToDoList;
+        List<Task> ToDoList = new List<Task>();
+
+        public TaskList()
+        {
+
+        }
 
         public TaskList(List<Task> inList)
         {

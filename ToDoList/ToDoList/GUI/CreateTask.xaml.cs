@@ -117,8 +117,8 @@ namespace ToDoList
             
 
 
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+            //NavigationService nav = NavigationService.GetNavigationService(this);
+           // nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

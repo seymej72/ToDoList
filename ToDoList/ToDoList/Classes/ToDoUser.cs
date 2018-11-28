@@ -18,7 +18,7 @@ namespace ToDoList
 
         public ToDoUser()
         {
-
+            UserToDoList.Add(new TaskList());
         }
         /// <summary>
         /// Constructor for a new User
@@ -33,6 +33,8 @@ namespace ToDoList
             this.PasswordValue = inPasswordVal;
             this.UserId = this.db.CreateToDoUser(this.Name, this.PasswordValue);
             this.UserToDoList = new List<TaskList>();
+
+            UserToDoList.Add(new TaskList());
         }
 
         public void setName(String inName){

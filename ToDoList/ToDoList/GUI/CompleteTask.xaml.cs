@@ -39,6 +39,7 @@ namespace ToDoList
             this.taskIndex = taskIndex;
 
             fillTaskInfo();
+            fillSubtasks();
         }
 
         private void fillTaskInfo()
@@ -66,19 +67,24 @@ namespace ToDoList
             int dictSize = subtasks.Count();
             if (dictSize > 0)
             {
-                //foreach (KeyValuePair<>)
-                //{
+                List<SubTask> subs = new List<SubTask>();
 
-                //}
+                foreach (KeyValuePair<int, SubTask> entry in subtasks)
+                {
+                    subs.Add(entry.Value);
+                }
 
-                if (dictSize == 1)
+                int subCount = subs.Count();
+
+                if (subCount == 1)
                 {
                     this.sub1.Visibility = Visibility.Visible;
                     this.sub1Date.Visibility = Visibility.Visible;
                     this.sub1Desc.Visibility = Visibility.Visible;
 
                     bool one = this.sub1.IsChecked.Value;
-                    //this.sub1Date.Text = subtasks
+                    this.sub1Date.Text = subs[0].getDueDate().ToString("yyyy/MM/dd");
+                    this.sub1Desc.Text = subs[0].getNotes();
 
                     this.sub2.Visibility = Visibility.Hidden;
                     this.sub2Date.Visibility = Visibility.Hidden;
@@ -89,34 +95,54 @@ namespace ToDoList
                     this.sub3Desc.Visibility = Visibility.Hidden;
 
                 }
-                else if (dictSize == 2)
+                else if (subCount == 2)
                 {
                     this.sub1.Visibility = Visibility.Visible;
                     this.sub1Date.Visibility = Visibility.Visible;
                     this.sub1Desc.Visibility = Visibility.Visible;
 
+                    bool one = this.sub1.IsChecked.Value;
+                    this.sub1Date.Text = subs[0].getDueDate().ToString("yyyy/MM/dd");
+                    this.sub1Desc.Text = subs[0].getNotes();
+
                     this.sub2.Visibility = Visibility.Visible;
                     this.sub2Date.Visibility = Visibility.Visible;
                     this.sub2Desc.Visibility = Visibility.Visible;
+
+                    bool two = this.sub2.IsChecked.Value;
+                    this.sub2Date.Text = subs[1].getDueDate().ToString("yyyy/MM/dd");
+                    this.sub2Desc.Text = subs[1].getNotes();
 
                     this.sub3.Visibility = Visibility.Hidden;
                     this.sub3Date.Visibility = Visibility.Hidden;
                     this.sub3Desc.Visibility = Visibility.Hidden;
 
                 }
-                else if (dictSize == 3)
+                else if (subCount == 3)
                 {
                     this.sub1.Visibility = Visibility.Visible;
                     this.sub1Date.Visibility = Visibility.Visible;
                     this.sub1Desc.Visibility = Visibility.Visible;
 
+                    bool one = this.sub1.IsChecked.Value;
+                    this.sub1Date.Text = subs[0].getDueDate().ToString("yyyy/MM/dd");
+                    this.sub1Desc.Text = subs[0].getNotes();
+
                     this.sub2.Visibility = Visibility.Visible;
                     this.sub2Date.Visibility = Visibility.Visible;
                     this.sub2Desc.Visibility = Visibility.Visible;
 
+                    bool two = this.sub2.IsChecked.Value;
+                    this.sub2Date.Text = subs[1].getDueDate().ToString("yyyy/MM/dd");
+                    this.sub2Desc.Text = subs[1].getNotes();
+
                     this.sub3.Visibility = Visibility.Visible;
                     this.sub3Date.Visibility = Visibility.Visible;
                     this.sub3Desc.Visibility = Visibility.Visible;
+
+                    bool three = this.sub3.IsChecked.Value;
+                    this.sub3Date.Text = subs[2].getDueDate().ToString("yyyy/MM/dd");
+                    this.sub3Desc.Text = subs[2].getNotes();
                 }
             }
             else

@@ -93,6 +93,11 @@ namespace ToDoList
             this.subTasks = subTasks;
         }
         ///////////////////////////////////////////////Getters are below///////////////////////////////////////
+        public override Boolean getRepeatability()
+        {
+            return this.isRepeatable;
+        }
+
         public override int getTaskId()
         {
             return this.taskId;
@@ -141,10 +146,6 @@ namespace ToDoList
                 db.SaveRepeatTask(this);
             }
             
-        }
-
-        public override Boolean getRepeatability(){
-            return this.isRepeatable;
         }
 
         public override Dictionary<int, SubTask> getSubTask()

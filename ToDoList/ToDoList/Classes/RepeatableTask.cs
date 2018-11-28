@@ -17,20 +17,13 @@ namespace ToDoList
         DateTime repeatOccurance;
 
 
-        RepeatableTask(DateTime firstOccurance, DateTime repeatOccur, String newTitle, Boolean allowNotif, String description, List<DisposableTask> copiesOfRepeatable)
+        public RepeatableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete, DateTime taskDueDate)
         {
 
-            taskTitle = newTitle;
-            complete = false;
-            notificationsOn = allowNotif;
-            descrip = description;
-            firstEvent = firstOccurance;
-            repeatOccurance = repeatOccur;
-            copiesOfRepeatableTask = copiesOfRepeatable; // copiesOfRepeatable will be null if this is a new task
-            if(copiesOfRepeatable == null)
-            {
-                // have to call, create new list of disposable tasks
-            }
+            this.taskTitle = title;
+            this.complete = false;
+            this.notificationsOn = allowNotifications;
+            this.descrip = descrip;
             // need to input list of disposable tasks as well
             // need to then store new repeatable task in DB
             // also need to create repeatable list of disposable tasks.

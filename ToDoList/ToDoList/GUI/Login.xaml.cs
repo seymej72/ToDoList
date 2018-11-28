@@ -99,12 +99,7 @@ namespace ToDoList
 
                 if (password == passCheck)
                 {
-                    bool success = todo.RegisterUser(username, password);
-
-                    if (success == true)
-                    {
-
-                    }
+                    todo.RegisterUser(username, password);
                 }
 
             }

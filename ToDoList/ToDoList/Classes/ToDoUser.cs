@@ -30,8 +30,16 @@ namespace ToDoList
             this.UserToDoList = new List<TaskList>();
         }
 
+        public void setName(String inName){
+            Name = inName;
+        }
+        public String getName(){
+            return this.Name;
+        }
 
-
+        public List getUserToDoList(){
+            return UserToDoList;
+        }
         public void SaveUser()
         {
             foreach (var task in UserToDoList[0].getTaskListList())

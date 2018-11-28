@@ -101,10 +101,10 @@ namespace ToDoList
                 if (password == passCheck)
                 {
                     ToDoUser user =  todo.RegisterUser(username, password);
-                    int userID = user.UserId;
-                    List<TaskList> tl = user.LoadList(userID);
+                    //int userID = user.UserId;
+                    //List<TaskList> tl = user.LoadList(userID);
 
-                    dashboard dash = new dashboard(tl, username);
+                    dashboard dash = new dashboard(user);
                     NavigationService.Navigate(dash);
                 }
 

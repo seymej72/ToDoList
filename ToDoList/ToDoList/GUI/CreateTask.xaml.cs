@@ -33,13 +33,13 @@ namespace ToDoList
 
         private Dictionary<int, SubTask> dict;
 
-        private List<TaskList> tl;
+        private ToDoUser user;
 
         public CreateList()
         {
             InitializeComponent();
         }
-        public CreateList( List<TaskList> tl)
+        public CreateList( ToDoUser user)
         {
             InitializeComponent();
 

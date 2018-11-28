@@ -22,7 +22,7 @@ namespace ToDoList
         Boolean taskComplete;
         int subtaskFKey;
 
-        public SubTask(DateTime inDueDate, String inTitle, String inNotes, int inId)
+        public SubTask(DateTime inDueDate, String inTitle, String inNotes)
         {
             dueDate = inDueDate;
             complete = false;

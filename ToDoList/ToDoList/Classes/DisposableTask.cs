@@ -9,7 +9,7 @@ namespace ToDoList
     class DisposableTask : Task
     {
         ToDoDB db = new ToDoDB();
-        protected Dictionary<int, SubTask> subTasks; //subTaskId maps to subTask
+        
 
         /// <summary>
         /// Constructor for a new DisposableTask
@@ -123,6 +123,11 @@ namespace ToDoList
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// Setters
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public override void setRepeatability(Boolean isRepeatable)
+        {
+            this.isRepeatable = isRepeatable;
+        }
+
         public override void setTaskId(int taskId)
         {
             this.taskId = taskId;

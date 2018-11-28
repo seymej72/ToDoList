@@ -195,6 +195,8 @@ namespace ToDoList
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("/GUI/CompleteTask.xaml", UriKind.RelativeOrAbsolute));
+
+
         }
     }
 }

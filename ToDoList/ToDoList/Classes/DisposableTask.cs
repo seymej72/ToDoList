@@ -191,7 +191,7 @@ namespace ToDoList
             return this.taskFKey;
         }
 
-        public override bool getReapeatability(){
+        public override bool getRepeatability(){
             return isReapeatable;
         }
     }

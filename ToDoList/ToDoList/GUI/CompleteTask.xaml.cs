@@ -43,11 +43,11 @@ namespace ToDoList
             this.TaskTitleText.Text = tasks[taskIndex].getTitle();
             this.TaskDescriptionText.Text = tasks[taskIndex].getDescription();
 
-            bool repeating = tasks[taskIndex].get
+            /*bool repeating = tasks[taskIndex].get
             if ()
             {
 
-            }
+            }*/
         }
 
         private void editClick(object sender, RoutedEventArgs e)

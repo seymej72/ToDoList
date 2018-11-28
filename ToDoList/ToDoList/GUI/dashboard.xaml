@@ -48,15 +48,15 @@
                 <Rectangle Name="mintGreenHeader" Grid.Row="0" Grid.Column="1" Width="824" Height="50" Fill="#FF30B994"></Rectangle>
 
                 <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="10,9,0,12" HorizontalAlignment="Left" Width="255" Text="Tasks" Foreground="White" />
-                <TextBlock Grid.Column="1" Name="usernameText" Grid.Row="0" VerticalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,10,40,10" HorizontalAlignment="Right" Width="125" Text="Username" Foreground="White" TextAlignment="Right" />
+                <TextBlock Grid.Column="1" Name="usernameText" Grid.Row="0" VerticalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,10,40,10" HorizontalAlignment="Right" Width="125" Text="" Foreground="White" TextAlignment="Right" />
 
                 <Rectangle Name="whiteBackground" Grid.Row="1" Grid.Column="1" Grid.RowSpan="10" Fill="#FFF0F0F0" Margin="0,0,1,0"/>
-                <Border Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick">
+                <Border Visibility="Hidden" Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
                     </Border.Effect>
                 </Border>
-                <TextBlock Grid.Row="1" Grid.Column="1" Margin="38,166,646,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Visibility="Hidden" Margin="38,166,646,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
 
                 <Border  Grid.Row="4" Grid.Column="1" Width="75" Height="75" CornerRadius="100" Background="#FF30B994" Margin="703,36,46,68">
                     <Border.Effect>

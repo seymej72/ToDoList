@@ -22,8 +22,8 @@ namespace ToDoList
     public partial class dashboard : Page
     {
 
-        List<TaskList> tl;
-        string username; 
+        private List<TaskList> tl;
+        private string username; 
 
 
         public dashboard()
@@ -33,20 +33,28 @@ namespace ToDoList
 
         public dashboard(List<TaskList> tl, string username)
         {
+
+            InitializeComponent();
             this.tl = tl;
             this.username = username;
             setUsername();
         }
 
-        public void setUsername()
+        private void setUsername()
         {
-            this.usernameText.Text = username;
+           usernameText.Text = username;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+        private void generateAllTasks()
+        {
+
+        }
+
 
         private void createList(object sender, RoutedEventArgs e)
         {

@@ -81,10 +81,10 @@ namespace ToDoList
 
         }
 
-        //private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        //{
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
-        //}
+        }
 
         private void submitButtonClick(object sender, RoutedEventArgs e)
         {

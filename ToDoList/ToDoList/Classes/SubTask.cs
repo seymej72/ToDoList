@@ -163,7 +163,23 @@ namespace ToDoList
             return notes;
         }
 
+        public void addtoDB(){
+            db.addSubTask(this);
+        }
 
+        public void editInDB(int oldTask){
+            db.editSubTask(this, oldTask);
+        }
+
+        public void getFromDB(int inId){
+            SubTask temp = db.getSubTask(inId);
+            this.complete = temp.complete;
+            this.dueDate = temp.dueDate;
+            this.files = temp.files;
+            this.subtaskId = temp.subtaskId;
+            this.title = temp.title;
+            this.notes = temp.notes;
+        }
 
         public String toString()
         {

@@ -258,6 +258,7 @@ namespace ToDoList
                 return task;
             }catch(Exception ex){
                 Console.WriteLine("this is not supposed to happen: " + ex);
+                return null;
             }
             finally{
                   if (conn != null)
@@ -292,6 +293,7 @@ namespace ToDoList
                 deletecmd.ExecuteNonQuery();
             }catch(Exception ex){
                Console.WriteLine("this is not supposed to happen" + ex);
+                return false;
             }
             finally{
                   if (conn != null)
@@ -323,6 +325,7 @@ namespace ToDoList
 
             }catch(Exception ex){
                Console.WriteLine("this is not supposed to happen" + ex);
+                return false;
             }
             finally{
                   if (conn != null)

@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ToDoList
 {
-   public class SubTask
+    public class SubTask
     {
         ToDoDB db = new ToDoDB();
         DateTime dueDate;

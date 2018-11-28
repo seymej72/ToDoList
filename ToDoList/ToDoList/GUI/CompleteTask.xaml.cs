@@ -168,8 +168,11 @@ namespace ToDoList
 
         private void editClick(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/GUI/EditTask.xaml", UriKind.RelativeOrAbsolute));
+            EditTask et = new EditTask(userObject, taskIndex, tasks, subtasks);
+            NavigationService.Navigate(et);
+
+            // NavigationService nav = NavigationService.GetNavigationService(this);
+            //nav.Navigate(new Uri("/GUI/EditTask.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void backToDash(object sender, RoutedEventArgs e)

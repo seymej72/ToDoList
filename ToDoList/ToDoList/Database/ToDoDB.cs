@@ -187,5 +187,102 @@ namespace ToDoList
             }
         }
         #endregion
+
+        public SubTask getSubTask(int inId){
+            SubTask task = new SubTask();
+            task.setId(inId);
+            SqlConnection conn = null;
+            SqlCommand command = null;
+            SqlDataReader reader = null;
+
+            try{
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "SELECT * FROM `SubTask` WHERE `SubTaskId` = @inId;",
+                    conn);
+                command.Parameters.AddWithValue("@inId", inId);
+
+                reader = command.ExecuteReader();
+                reader.Read();
+                task.setDueDate(reader.GetValue(1));
+                task.setFiles(reader.GetValue(3));
+                task.setTitle(reader.GetValue(4));
+                task.setNotes(reader.GetValue(5));
+                return task;
+            }catch(Exception ex){
+                Console.WriteLine("this is not supposed to happen: " + ex);
+            }
+            finally{
+                  if (conn != null)
+                    conn.Close();  
+            }
+        }
+
+        public bool editSubTask(SubTask newTask, int oldTask){
+            SqlConnection conn = null;
+            SqlCommand command = null;
+
+            try{
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "INSERT INTO 'SubTask' (SubTaskID, DueDate, isComplete, FilePath, Title, Description, RepeatFrom) VALUES (@subTaskID, @dueDate, @isComplete, @filePath, @title, @description, @repeatFrom", conn
+                );
+
+                command.Parameters.AddWithValue("@subTaskId", newTask.getId());
+                command.Parameters.AddWithValue("@dueDate", newTask.getDueDate());
+                command.Parameters.AddWithValue("@isComplete", newTask.isComplete());
+                command.Parameters.AddWithValue("@filePath", newTask.getFiles());
+                command.Parameters.AddWithValue("@title", newTask.getTitle());
+                command.Parameters.AddWithValue("@description", newTask.getNotes());
+                command.Parameters.AddWithValue("@repeatfrom", null);
+
+                command.ExecuteNonQuery();
+
+                SqlCommand deletecmd = new SqlCommand("DELETE FROM 'SubTask' WHERE 'SubTaskID' = @oldId", conn);
+                deletecmd.Parameters.AddWithValue("@oldId", oldTask);
+                deletecmd.ExecuteNonQuery();
+            }catch(Exception ex){
+               Console.WriteLine("this is not supposed to happen" + ex);
+            }
+            finally{
+                  if (conn != null)
+                    conn.Close();  
+            }
+        }
+
+        public bool addSubTask(SubTask inTask){
+            SqlConnection conn = null;
+            SqlCommand command = null;
+
+            try{
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "INSERT INTO 'SubTask' (SubTaskID, DueDate, isComplete, FilePath, Title, Description, RepeatFrom) VALUES (@subTaskID, @dueDate, @isComplete, @filePath, @title, @description, @repeatFrom", conn
+                );
+
+                command.Parameters.AddWithValue("@subTaskId", newTask.getId());
+                command.Parameters.AddWithValue("@dueDate", newTask.getDueDate());
+                command.Parameters.AddWithValue("@isComplete", newTask.isComplete());
+                command.Parameters.AddWithValue("@filePath", newTask.getFiles());
+                command.Parameters.AddWithValue("@title", newTask.getTitle());
+                command.Parameters.AddWithValue("@description", newTask.getNotes());
+                command.Parameters.AddWithValue("@repeatfrom", null);
+
+                command.ExecuteNonQuery();
+
+            }catch(Exception ex){
+               Console.WriteLine("this is not supposed to happen" + ex);
+            }
+            finally{
+                  if (conn != null)
+                    conn.Close();  
+            }
+        }
     }
 }

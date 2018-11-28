@@ -46,14 +46,14 @@
 
         <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="36" Margin="0,170,0,0">Subtasks</TextBlock>
 
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,250,680,0">Title:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="0,70,400,130" BorderBrush="Black"></TextBox>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="59,214,704,36">Title:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="129,219,495,351" BorderBrush="Black"></TextBox>
 
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="40,250,0,0">Notes:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="400,70,0,130" BorderBrush="Black"></TextBox>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,214,335,36">Notes:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="504,219,70,351" BorderBrush="Black"></TextBox>
 
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,300,620,0">Due Date:</Label>
-        <DatePicker Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="0,80,380,40" Height="30"></DatePicker>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,264,296,36">Due Date:</Label>
+        <DatePicker Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="538,269,184,301" Height="30"></DatePicker>
 
         <Border Grid.Row="2" Grid.Column="1" Height="40" Width="160" Background="#FF30B994" BorderBrush="#FF0C8036" HorizontalAlignment="right" Margin="0,520,40,0" >
             <Button Style="{StaticResource ButtonStyle1}" Grid.Row="2" Grid.Column="1"  Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Global Sans Serif" FontSize="24">Edit Task</Button>
@@ -62,5 +62,17 @@
         <Border Grid.Row="2" Grid.Column="1" Height="40" Width="160" Background="#FF30B994" BorderBrush="#FF0C8036" HorizontalAlignment="right" Margin="0,520,620,0" >
             <Button Style="{StaticResource ButtonStyle1}" Grid.Row="2" Grid.Column="1"  Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Global Sans Serif" FontSize="24"  Click="backToComplete">Back</Button>
         </Border>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="59,315,704,-45" Content="Title:" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="129,320,495,250" BorderBrush="Black"/>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,315,335,-45" Content="Notes:" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="504,320,70,250" BorderBrush="Black"/>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,369,296,-49" Content="Due Date:" Grid.RowSpan="2"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="538,374,184,196" Height="30"/>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="59,420,704,-150" Content="Title:" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="129,425,495,145" BorderBrush="Black"/>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,420,335,-150" Content="Notes:" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="504,425,70,145" BorderBrush="Black"/>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,470,296,-150" Content="Due Date:" Grid.RowSpan="2"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="538,475,184,95" Height="30"/>
     </Grid>
 </Page>

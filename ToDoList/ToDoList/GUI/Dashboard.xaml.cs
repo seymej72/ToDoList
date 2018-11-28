@@ -169,11 +169,34 @@ namespace ToDoList
            // nav.Navigate(new Uri("/GUI/CreateTask.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void taskClick(object sender, RoutedEventArgs e)
+        private void taskClick1(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/GUI/CompleteTask.xaml", UriKind.RelativeOrAbsolute));
+            int taskIndex = 0;
+            sendToCompleteTask(taskIndex);
         }
+
+        private void taskClick2(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 1;
+            sendToCompleteTask(taskIndex);
+        }
+        private void taskClick3(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 2;
+            sendToCompleteTask(taskIndex);
+        }
+        private void taskClick4(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 3;
+            sendToCompleteTask(taskIndex);
+        }
+
+        private void sendToCompleteTask(int taskIndex)
+        {
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+
 
        
         //need: +add button always goes to bottom of display

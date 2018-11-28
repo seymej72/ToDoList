@@ -20,9 +20,34 @@ namespace ToDoList
     /// </summary>
     public partial class CompleteTask : Page
     {
+        private ToDoUser userObject = new ToDoUser();
+        private int taskIndex; 
+
+
         public CompleteTask()
         {
             InitializeComponent();
+        }
+
+        public CompleteTask(ToDoUser user, int taskIndex)
+        {
+            userObject = user;
+            this.taskIndex = taskIndex;
+        }
+
+        private void fillTaskInfo()
+        {
+            List<Task> tasks = userObject.getUserToDoList()[0].getTaskListList();
+
+
+            this.TaskTitleText.Text = tasks[taskIndex].getTitle();
+            this.TaskDescriptionText.Text = tasks[taskIndex].getDescription();
+
+            bool repeating = tasks[taskIndex].get
+            if ()
+            {
+
+            }
         }
 
         private void editClick(object sender, RoutedEventArgs e)
@@ -33,8 +58,12 @@ namespace ToDoList
 
         private void backToDash(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+
+            Dashboard dash = new Dashboard(userObject);
+            NavigationService.Navigate(dash);
+
+            //NavigationService nav = NavigationService.GetNavigationService(this);
+            //nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

@@ -238,12 +238,21 @@ namespace ToDoList
                 String title = "";
                 String notes = "";
                 DateTime date = new DateTime();
+                DateTime test = default(DateTime);
 
+
+                /*
+                 * TODO: if DateTime doesn't have a value it crashes :) 
+                 */
                 if (index == 0)
                 {
                     title = this.sub1NameBox.Text;
                     notes = this.sub1NotesBox.Text;
-                    if (this.sub1DatePicker.SelectedDate.Value.Date != null)
+                    if (this.sub1DatePicker.SelectedDate.Value.Date == test)
+                    {
+                        //if null
+                    }
+                    else
                     {
                         date = this.sub1DatePicker.SelectedDate.Value.Date;
                     }
@@ -253,7 +262,11 @@ namespace ToDoList
                 {
                     title = this.sub2NameBox.Text;
                     notes = this.sub2NotesBox.Text;
-                    if (this.sub1DatePicker.SelectedDate.Value.Date != null)
+                    if (this.sub2DatePicker.SelectedDate.Value.Date == test)
+                    {
+                        //null
+                    }
+                    else
                     {
                         date = this.sub2DatePicker.SelectedDate.Value.Date;
                     }
@@ -262,7 +275,11 @@ namespace ToDoList
                 {
                     title = this.sub3NameBox.Text;
                     notes = this.sub3NotesBox.Text;
-                    if (this.sub1DatePicker.SelectedDate.Value.Date != null)
+                    if (this.sub3DatePicker.SelectedDate.Value.Date == test )
+                    {
+                        //null
+                    }
+                    else
                     {
                         date = this.sub3DatePicker.SelectedDate.Value.Date;
                     }

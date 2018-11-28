@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToDoList.Classes;
 
 namespace ToDoList
 {
@@ -99,7 +100,12 @@ namespace ToDoList
 
                 if (password == passCheck)
                 {
-                    todo.RegisterUser(username, password);
+                    ToDoUser user =  todo.RegisterUser(username, password);
+                    int userID = user.UserId;
+                    List<TaskList> tl = user.LoadList(userID);
+
+                    dashboard dash = new dashboard(tl);
+                    NavigationService.Navigate(dash);
                 }
 
             }

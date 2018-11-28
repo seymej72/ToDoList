@@ -18,6 +18,7 @@ namespace ToDoList
         String title;
         String notes;
         int subtaskId; //Key for subtask ID for subtask table of DB - Added by Jake
+        ToDoDB db;
 
         public SubTask(DateTime inDueDate, LinkedList<String> inFiles, String inTitle, String inNotes, int inId)
         {
@@ -27,6 +28,7 @@ namespace ToDoList
             title = inTitle;
             notes = inNotes;
             subtaskId = inId;
+            
         }
 
         public SubTask()

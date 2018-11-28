@@ -31,6 +31,16 @@ namespace ToDoList
         }
 
 
+
+        public void SaveUser()
+        {
+            foreach (var task in UserToDoList[0].getTaskListList())
+            {
+                task.SaveTask();
+            }
+        }
+
+
         /// <summary>
         /// Sets the users name to something new and updates it in the database
         /// </summary>

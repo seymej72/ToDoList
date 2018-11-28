@@ -95,7 +95,6 @@ namespace ToDoList
 
                 //todo: for sara: just pass THE USER OBJECT to EVERY PAGE
 
-
             }
             else if (this.noRadio.IsChecked == true)
             {

@@ -140,7 +140,7 @@ namespace ToDoList
             db.SaveRepeatTask(this);
         }
 
-        public bool getRepeatability(){
+        public override bool getRepeatability(){
             return isReapeatable;
         }
     }

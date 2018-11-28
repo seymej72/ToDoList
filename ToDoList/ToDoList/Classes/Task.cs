@@ -50,5 +50,7 @@ namespace ToDoList
         public abstract String getDescription();
 
         public abstract int getTaskFKey();
+
+        public abstract bool getRepeatability();
     }
 }

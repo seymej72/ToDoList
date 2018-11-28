@@ -14,7 +14,7 @@ namespace ToDoList
         protected Dictionary<int, SubTask> subTasks { get; set; } //subTaskId maps to subTask
 
 
-        public RepeatableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete, DateTime taskDueDate, Dictionary<int,SubTask> subTaskss)
+        public RepeatableTask(String title, String descrip, Boolean allowNotifications, Dictionary<int,SubTask> subTaskss)
         {
 
             this.taskTitle = title;
@@ -25,7 +25,27 @@ namespace ToDoList
             // need to then store new repeatable task in DB
 
         }
-             
+        public void StoreRepeat()
+        {
+            if (db.checkTaskExistsInDB(taskId))
+            {
+                //Update Table Row
+                db.UpdateTask(this);
+            }
+            else
+            {
+                //Insert new Table Row
+                taskId = db.InsertDisposableTask(this);
+                db.UpdateTask(this); //Need to update for taskId
+            }
+            //Save SubTasks
+            Dictionary<int, SubTask>.KeyCollection SubTaskIdCollection = subTasks.Keys;
+            foreach (int i in SubTaskIdCollection)
+            {
+                subTasks[i].SaveSubTask();
+            }
+        }
+
         public override void AddSubtask(int  subTaskId)
         {
            

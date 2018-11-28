@@ -126,5 +126,10 @@ namespace ToDoList
         {
 
         }
+
+        public override void SaveTask()
+        {
+
+        }
     }
 }

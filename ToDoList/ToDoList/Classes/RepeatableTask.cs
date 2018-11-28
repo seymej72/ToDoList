@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ToDoList
 {
-    // have to add calls to database throughout
+    // have to add calls to database throughout.
     class RepeatableTask : Task
     {
         DateTime firstEvent;

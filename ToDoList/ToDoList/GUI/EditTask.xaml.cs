@@ -40,6 +40,7 @@ namespace ToDoList
             this.taskIndex = taskIndex;
 
             fillTaskInfo();
+            fillSubtaskInfo();
 
         }
 
@@ -85,7 +86,9 @@ namespace ToDoList
                     this.sub1Date.Visibility = Visibility.Visible;
                     this.sub1DatePicker.Visibility = Visibility.Visible;
 
-                    this.sub1NameBox.Text = 
+                    this.sub1NameBox.Text = subs[0].getTitle();
+                    this.sub1NotesBox.Text = subs[0].getNotes();
+                    this.sub1DatePicker.DisplayDate = subs[0].getDueDate();
 
                     this.sub2Name.Visibility = Visibility.Hidden;
                     this.sub2NameBox.Visibility = Visibility.Hidden;
@@ -102,13 +105,6 @@ namespace ToDoList
                     this.sub3DatePicker.Visibility = Visibility.Hidden;
 
                     
-
-                    bool one = this.sub1.IsChecked.Value;
-                    this.sub1Date.Text = subs[0].getDueDate().ToString("yyyy/MM/dd");
-                    this.sub1Desc.Text = subs[0].getNotes();
-
-                    
-
                 }
                 else if (subCount == 2)
                 {
@@ -119,12 +115,21 @@ namespace ToDoList
                     this.sub1Date.Visibility = Visibility.Visible;
                     this.sub1DatePicker.Visibility = Visibility.Visible;
 
+                    this.sub1NameBox.Text = subs[0].getTitle();
+                    this.sub1NotesBox.Text = subs[0].getNotes();
+                    this.sub1DatePicker.DisplayDate = subs[0].getDueDate();
+
                     this.sub2Name.Visibility = Visibility.Visible;
                     this.sub2NameBox.Visibility = Visibility.Visible;
                     this.sub2Notes.Visibility = Visibility.Visible;
                     this.sub2NotesBox.Visibility = Visibility.Visible;
                     this.sub2Date.Visibility = Visibility.Visible;
                     this.sub2DatePicker.Visibility = Visibility.Visible;
+
+                    this.sub2NameBox.Text = subs[1].getTitle();
+                    this.sub2NotesBox.Text = subs[1].getNotes();
+                    this.sub2DatePicker.DisplayDate = subs[1].getDueDate();
+
 
                     this.sub3Name.Visibility = Visibility.Hidden;
                     this.sub3NameBox.Visibility = Visibility.Hidden;
@@ -144,6 +149,10 @@ namespace ToDoList
                     this.sub1Date.Visibility = Visibility.Visible;
                     this.sub1DatePicker.Visibility = Visibility.Visible;
 
+                    this.sub1NameBox.Text = subs[0].getTitle();
+                    this.sub1NotesBox.Text = subs[0].getNotes();
+                    this.sub1DatePicker.DisplayDate = subs[0].getDueDate();
+
                     this.sub2Name.Visibility = Visibility.Visible;
                     this.sub2NameBox.Visibility = Visibility.Visible;
                     this.sub2Notes.Visibility = Visibility.Visible;
@@ -151,12 +160,20 @@ namespace ToDoList
                     this.sub2Date.Visibility = Visibility.Visible;
                     this.sub2DatePicker.Visibility = Visibility.Visible;
 
+                    this.sub2NameBox.Text = subs[1].getTitle();
+                    this.sub2NotesBox.Text = subs[1].getNotes();
+                    this.sub2DatePicker.DisplayDate = subs[1].getDueDate();
+
                     this.sub3Name.Visibility = Visibility.Visible;
                     this.sub3NameBox.Visibility = Visibility.Visible;
                     this.sub3Notes.Visibility = Visibility.Visible;
                     this.sub3NotesBox.Visibility = Visibility.Visible;
                     this.sub3Date.Visibility = Visibility.Visible;
                     this.sub3DatePicker.Visibility = Visibility.Visible;
+
+                    this.sub3NameBox.Text = subs[2].getTitle();
+                    this.sub3NotesBox.Text = subs[2].getNotes();
+                    this.sub3DatePicker.DisplayDate = subs[2].getDueDate();
 
                 }
             }
@@ -189,11 +206,21 @@ namespace ToDoList
             }
         }
 
+        private void editTask(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         private void backToComplete(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/GUI/CompleteTask.xaml", UriKind.RelativeOrAbsolute));
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+
+
+            //NavigationService nav = NavigationService.GetNavigationService(this);
+            //nav.Navigate(new Uri("/GUI/CompleteTask.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

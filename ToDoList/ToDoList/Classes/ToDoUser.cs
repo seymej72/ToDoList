@@ -37,7 +37,7 @@ namespace ToDoList
             return this.Name;
         }
 
-        public List getUserToDoList(){
+        public List<TaskList> getUserToDoList(){
             return UserToDoList;
         }
         public void SaveUser()

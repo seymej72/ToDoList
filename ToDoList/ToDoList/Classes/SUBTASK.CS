@@ -54,6 +54,10 @@ namespace ToDoList
             }
         }
 
+        public int getNextId()
+        {
+            return db.getNextId();
+        }
         public void setRepeatFrom(DateTime date)
         {
             this.repeatFrom = date;

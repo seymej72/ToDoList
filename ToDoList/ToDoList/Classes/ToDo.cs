@@ -8,8 +8,8 @@ namespace ToDoList
 {
     public class ToDo
     {
-        ToDoUser CurrentUser;
-        ToDoDB db = new ToDoDB();
+        public ToDoUser CurrentUser;
+        private ToDoDB db = new ToDoDB();
         
         /// <summary>
         /// Good ole main

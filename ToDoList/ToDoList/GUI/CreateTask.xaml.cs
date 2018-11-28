@@ -23,18 +23,18 @@ namespace ToDoList
     {
 
 
-        private string taskTitle;
-        private string taskDesc;
+        private String taskTitle;
+        private String taskDesc;
         private Boolean repeatable;
 
-        private string subTitle;
-        private string subNotes;
+        private String subTitle;
+        private String subNotes;
         private DateTime dueDate;
 
-        private Dictionary<int, SubTask> dict;
+        private Dictionary<int, SubTask> dict = new Dictionary<int, SubTask>();
 
-        private ToDoUser user;
-        private List<TaskList> list;
+        private ToDoUser user = new ToDoUser();
+        private List<TaskList> list = new List<TaskList>();
 
         public CreateList()
         {
@@ -45,7 +45,7 @@ namespace ToDoList
             InitializeComponent();
 
             this.user = user;
-            this.list = user.getUserToDoList();
+            this.list = this.user.getUserToDoList();
 
         }
         //notes field->somehow wrap text onto new line to fill box area? (it's all just going onto one line)
@@ -84,22 +84,21 @@ namespace ToDoList
         {
 
 
-            String taskTitle = this.taskTitleText.Text;
-            String taskDesc = this.descText.Text;
+             taskTitle = this.taskTitleText.Text;
+             taskDesc = this.descText.Text;
 
             if (this.yesRadio.IsChecked == true)
             {
-                repeatable = true;
+                this.repeatable = true;
                 //create repeatableTask
 
                 RepeatableTask rt = new RepeatableTask(taskTitle, taskDesc, dict);
-
-                
                 list[0].addTask(rt);
 
-               // tl[0].addTask(rt);
+                Dashboard dash = new Dashboard(user);
+                NavigationService.Navigate(dash);
 
-                //todo: for sara: just pass THE USER OBJECT to EVERY PAGE
+
 
             }
             else if (this.noRadio.IsChecked == true)
@@ -110,7 +109,8 @@ namespace ToDoList
                 DisposableTask dt = new DisposableTask(taskTitle, taskDesc, dict);
                 list[0].addTask(dt);
 
-
+                Dashboard dash = new Dashboard(user);
+                NavigationService.Navigate(dash);
 
             }
 

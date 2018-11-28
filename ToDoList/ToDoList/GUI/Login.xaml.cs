@@ -104,7 +104,7 @@ namespace ToDoList
                     //int userID = user.UserId;
                     //List<TaskList> tl = user.LoadList(userID);
 
-                    dashboard dash = new dashboard(user);
+                    Dashboard dash = new Dashboard(user);
                     NavigationService.Navigate(dash);
                 }
 

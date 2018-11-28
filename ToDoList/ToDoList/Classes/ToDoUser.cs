@@ -15,6 +15,11 @@ namespace ToDoList
         public int PasswordValue;
         ToDoDB db = new ToDoDB();
 
+
+        public ToDoUser()
+        {
+
+        }
         /// <summary>
         /// Constructor for a new User
         /// Sets the Username of the user, puts them in the Database

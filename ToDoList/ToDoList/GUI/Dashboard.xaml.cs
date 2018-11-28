@@ -19,31 +19,35 @@ namespace ToDoList
     /// <summary>
     /// Interaction logic for dashboard.xaml
     /// </summary>
-    public partial class dashboard : Page
+    public partial class Dashboard : Page
     {
 
-        private ToDoUser user;
-        private String username;
+        private  String username;
+        private  String password;
+        private ToDoUser userObject = new ToDoUser();
+        
 
 
-        public dashboard()
+        public Dashboard()
         {
             InitializeComponent();
         }
 
-        public dashboard(ToDoUser user )
+        public Dashboard(ToDoUser user )
         {
 
             InitializeComponent();
-            
+
+            this.userObject = user;
         
-            this.username = user.Name;
+            this.username = this.userObject.getName();
             setUsername( this.username);
         }
 
         private void setUsername(String username)
         {
            this.usernameText.Text = username;
+            this.usernameText.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -64,7 +68,7 @@ namespace ToDoList
 
         private void createList(object sender, RoutedEventArgs e)
         {
-            CreateList ct = new CreateList(user);
+            CreateList ct = new CreateList(userObject);
             NavigationService.Navigate(ct);
 
             //NavigationService nav = NavigationService.GetNavigationService(this);

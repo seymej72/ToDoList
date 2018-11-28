@@ -81,10 +81,10 @@ namespace ToDoList
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        //private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void submitButtonClick(object sender, RoutedEventArgs e)
         {
@@ -104,16 +104,15 @@ namespace ToDoList
                     int userID = user.UserId;
                     List<TaskList> tl = user.LoadList(userID);
 
-                    dashboard dash = new dashboard(tl);
+                    dashboard dash = new dashboard(tl, username);
                     NavigationService.Navigate(dash);
                 }
 
             }
             else if(submitButtonText == "Log In")
             //if logging in
-
             /*
-             *for now: user can only make a user & use a blank list, they cannot log in with an existing user
+             * for now: user can only make a user & use a blank list, they cannot log in with an existing user
              */
             {
                 username = this.usernameTextBox.Text;

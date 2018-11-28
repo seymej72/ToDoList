@@ -22,7 +22,8 @@ namespace ToDoList
             this.notificationsOn = false;
             this.descrip = descrip;
             this.subTasks = subTaskss;
-            // need to store in db
+            // what if this is a new task? 
+            // db.SaveRepeatTask(this);
 
         }
        
@@ -31,7 +32,7 @@ namespace ToDoList
         public override void AddSubtask(int  subTaskId)
         {
             subTasks.Add(subTaskId, db.FetchSubTask(subTaskId));
-                // need to right db method yet
+            db.SaveRepeatTask(this);
         }
 
         // Overloaded version of AddSubtask, would require different input
@@ -43,8 +44,8 @@ namespace ToDoList
         public override void DeleteSubtask(int subTaskId)
         {
             subTasks.Remove(subTaskId);
-                // need to right method in db to save this change
-            
+            db.SaveRepeatTask(this);
+
         }
 
       
@@ -52,7 +53,7 @@ namespace ToDoList
         {
                 subTasks.Remove(oldSubTaskId);
                 subTasks.Add(newSubTaskId, db.FetchSubTask(newSubTaskId));
-                // need to save to db 
+                db.SaveRepeatTask(this);
         }
         //////////////////////////////////// At the end of each one of these setters have to add saves to the database, should just be "save repeat"
         public override void setTaskId(int taskId)
@@ -72,8 +73,8 @@ namespace ToDoList
             {
                entry.Value.setDueDate(entry.Value.getDueDate().AddDays(7));
             }
-            // need to save these changes to the data base
-            
+            db.SaveRepeatTask(this);
+
         }
 
         public override void setAllowNotifications(Boolean notifications)
@@ -129,12 +130,13 @@ namespace ToDoList
         ///////////////////////////////////////////////////
         public void turnRepeatableOff()
         {
-
+            //need to finish
+            db.SaveRepeatTask(this);
         }
 
         public override void SaveTask()
         {
-
+            db.SaveRepeatTask(this);
         }
     }
 }

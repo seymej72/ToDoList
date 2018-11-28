@@ -22,7 +22,7 @@ namespace ToDoList
             this.notificationsOn = false;
             this.descrip = descrip;
             this.subTasks = subTaskss;
-            // need to then store new repeatable task in DB
+            // need to store in db
 
         }
        
@@ -30,16 +30,8 @@ namespace ToDoList
 
         public override void AddSubtask(int  subTaskId)
         {
-
-            if (subTasks.ContainsKey(subTaskId))
-            {
-                throw new SubTaskAlreadyExistsException();
-            }
-            else
-            {
-                subTasks.Add(subTaskId, db.FetchSubTask(subTaskId));
-                // I need to save this to db yet
-            }
+            subTasks.Add(subTaskId, db.FetchSubTask(subTaskId));
+                // need to right db method yet
         }
 
         // Overloaded version of AddSubtask, would require different input
@@ -50,24 +42,19 @@ namespace ToDoList
 
         public override void DeleteSubtask(int subTaskId)
         {
-            if (subTasks.ContainsKey(subTaskId))
-            {
-                throw new SubTaskDoesntExistException();
-            }
-            else
-            {
-                subTasks[subTaskId].markComplete();
+            subTasks.Remove(subTaskId);
                 // need to right method in db to save this change
-            }
             
         }
 
       
         public override void EditSubtask(int oldSubTaskId, int newSubTaskId)
         {
-
+                subTasks.Remove(oldSubTaskId);
+                subTasks.Add(newSubTaskId, db.FetchSubTask(newSubTaskId));
+                // need to save to db 
         }
-
+        //////////////////////////////////// At the end of each one of these setters have to add saves to the database, should just be "save repeat"
         public override void setTaskId(int taskId)
         {
             this.taskId = taskId;
@@ -85,6 +72,7 @@ namespace ToDoList
             {
                entry.Value.setDueDate(entry.Value.getDueDate().AddDays(7));
             }
+            // need to save these changes to the data base
             
         }
 

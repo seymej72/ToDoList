@@ -99,12 +99,7 @@ namespace ToDoList
 
                 if (password == passCheck)
                 {
-                    bool success = todo.RegisterUser(username, password);
-
-                    if (success == true)
-                    {
-
-                    }
+                    todo.RegisterUser(username, password);
                 }
 
             }
@@ -115,9 +110,11 @@ namespace ToDoList
                 password = this.passwordTextBox.Password.ToString();
 
 
+                //todo.LoginUser();
 
             }
             
+
             
             //sends user to dashboard if login is valid
             NavigationService nav = NavigationService.GetNavigationService(this);

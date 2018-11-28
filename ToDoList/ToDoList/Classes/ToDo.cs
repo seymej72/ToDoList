@@ -54,22 +54,24 @@ namespace ToDoList
         /// <param name="desiredUsernam">The desired username of the user</param>
         /// <param name="desiredPassword">The desired password of the user</param>
         /// <returns>True if the user was registered/created succesfully or False if not</returns>
-        public bool RegisterUser(string desiredUsername, string desiredPassword)
+        public ToDoUser RegisterUser(string desiredUsername, string desiredPassword)
         {
             int passwordVal = HashPassword(desiredPassword);
 
             CurrentUser = new ToDoUser(desiredUsername, passwordVal);
             LoginUser(CurrentUser);
-            return true;
+            return CurrentUser;
         }
 
         /// <summary>
         /// Gathers all the pertinent data for a user and displays the main page
         /// </summary>
         /// <param name="User">The User being logged in</param>
-        private void LoginUser(ToDoUser User)
+        private ToDoUser LoginUser(ToDoUser User)
         {
             //TODO: Display the main page after successful login after querying the DB for all the required info
+            User.LoadList(User.UserId);
+            return CurrentUser;
         }
 
         /// <summary>

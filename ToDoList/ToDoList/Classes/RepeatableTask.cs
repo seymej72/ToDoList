@@ -14,17 +14,14 @@ namespace ToDoList
         DateTime repeatOccurance;
         protected Dictionary<int, SubTask> subTasks { get; set; } //subTaskId maps to subTask
 
-        RepeatableTask(String newTitle, String description, Boolean allowNotif, Boolean isComplete, DateTime taskDueDate)
+
+        public RepeatableTask(String title, String descrip, Boolean allowNotifications, Boolean isComplete, DateTime taskDueDate)
         {
 
-            taskTitle = newTitle;
-            complete = false;
-            notificationsOn = allowNotif;
-            descrip = description;
-            firstEvent = taskDueDate;
- 
-            // copiesOfRepeatable will be null if this is a new task
-
+            this.taskTitle = title;
+            this.complete = false;
+            this.notificationsOn = allowNotifications;
+            this.descrip = descrip;
             // need to input list of disposable tasks as well
             // need to then store new repeatable task in DB
             // also need to create repeatable list of disposable tasks.

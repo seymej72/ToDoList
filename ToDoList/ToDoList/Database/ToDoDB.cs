@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToDoList.Classes;
 
 namespace ToDoList
 {
@@ -130,6 +131,50 @@ namespace ToDoList
             {
                 Console.WriteLine("Something went horribly wrong! " + ex);
                 return false;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+        }
+
+        public List<TaskList> LoadList(int userId)
+        {
+            List<TaskList> taskList = new List<TaskList>();
+            SqlConnection conn = null;
+            SqlCommand command = null;
+
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                command = new SqlCommand(
+                    "SELECT * FROM `Task` WHERE `taskFKey` = @userId;",
+                    conn
+                );
+
+                command.Parameters.AddWithValue("@userId", userId);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    if(reader.GetValue(5).Equals(1))
+                    {
+                        //RepeatableTask currentTask = new RepeatableTask(reader.GetValue(1), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5), reader.GetValue(7));
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+                return taskList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Something went horribly wrong! " + ex);
+                return new List<TaskList>();
             }
             finally
             {

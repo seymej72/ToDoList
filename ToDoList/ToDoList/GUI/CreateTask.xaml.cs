@@ -91,7 +91,7 @@ namespace ToDoList
                 //create repeatableTask
 
                 RepeatableTask rt = new RepeatableTask(taskTitle, taskDesc, dict);
-
+                SaveUser(); //Pass User Around to every screen
 
 
             }
@@ -101,7 +101,7 @@ namespace ToDoList
                 //create disposableTask
 
                 DisposableTask dt = new DisposableTask(taskTitle, taskDesc, dict);
-
+                SaveUser();
             }
 
             

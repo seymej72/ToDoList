@@ -609,7 +609,7 @@ namespace ToDoList
             return true;
         }
 
-        public bool addSubTask(SubTask inTask){
+        public bool addSubTask(SubTask newTask){
             SqlConnection conn = null;
             SqlCommand command = null;
 

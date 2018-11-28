@@ -63,8 +63,11 @@ namespace ToDoList
 
         private void createList(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/GUI/CreateTask.xaml", UriKind.RelativeOrAbsolute));
+            CreateList ct = new CreateList(tl);
+            NavigationService.Navigate(ct);
+
+            //NavigationService nav = NavigationService.GetNavigationService(this);
+           // nav.Navigate(new Uri("/GUI/CreateTask.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void taskClick(object sender, RoutedEventArgs e)

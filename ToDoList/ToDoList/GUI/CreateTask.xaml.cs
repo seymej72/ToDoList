@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToDoList.Classes;
 
 namespace ToDoList
 {
@@ -32,16 +33,28 @@ namespace ToDoList
 
         private Dictionary<int, SubTask> dict;
 
+        private List<TaskList> tl;
+
         public CreateList()
         {
             InitializeComponent();
         }
+        public CreateList( List<TaskList> tl)
+        {
+            InitializeComponent();
 
+            this.tl = tl;
+
+        }
         //notes field->somehow wrap text onto new line to fill box area? (it's all just going onto one line)
         private void addSubTask(object sender, RoutedEventArgs e)
         {
 
             if (subTitle == "" && subNotes == "")
+            {
+                
+            }
+            else
             {
                 subTitle = this.subTitleText.Text;
                 subNotes = this.subNotesText.Text;
@@ -50,6 +63,7 @@ namespace ToDoList
 
                 SubTask subt = new SubTask(dueDate, subTitle, subNotes);
                 int nextId = subt.getNextId();
+                subt.setId(nextId);
 
                 dict.Add(nextId, subt);
 
@@ -68,15 +82,17 @@ namespace ToDoList
         {
 
 
-            taskTitle = this.taskTitleText.Text;
-            taskDesc = this.descText.Text;
+            String taskTitle = this.taskTitleText.Text;
+            String taskDesc = this.descText.Text;
 
             if (this.yesRadio.IsChecked == true)
             {
                 repeatable = true;
                 //create repeatableTask
 
-                RepeatableTask rt = new RepeatableTask(tastTitle, taskDesc, );
+                RepeatableTask rt = new RepeatableTask(taskTitle, taskDesc, dict);
+
+
 
             }
             else if (this.noRadio.IsChecked == true)
@@ -84,7 +100,7 @@ namespace ToDoList
                 repeatable = false;
                 //create disposableTask
 
-                DisposableTask dt = new DisposableTask();
+                DisposableTask dt = new DisposableTask(taskTitle, taskDesc, dict);
 
             }
 

@@ -57,6 +57,40 @@ namespace ToDoList
 
         private void generateAllTasks()
         {
+
+            List<TaskList> tl = userObject.getUserToDoList();
+            List<Task> task = tl[0].getTaskListList();
+
+            int size = task.Count();
+
+            if (size == 0)
+            {
+                this.TaskOne.Visibility = Visibility.Hidden;
+                this.TaskOneText.Visibility = Visibility.Hidden;
+                this.TaskTwo.Visibility = Visibility.Hidden;
+                this.TaskTwoText.Visibility = Visibility.Hidden;
+                this.TaskThree.Visibility = Visibility.Hidden;
+                this.TaskThreeText.Visibility = Visibility.Hidden;
+                this.TaskFour.Visibility = Visibility.Hidden;
+                this.TaskFourText.Visibility = Visibility.Hidden;
+            }
+            else if (size == 1)
+            {
+
+            }
+            else if (size == 2)
+            {
+
+            }
+            else if (size == 3)
+            {
+
+            }
+            else if (size == 4)
+            {
+
+            }
+
             //loop through tasks and display them on the dashboard
             //foreach(var task in )//in TaskList's List
             //{

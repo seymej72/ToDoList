@@ -103,11 +103,6 @@ namespace ToDoList
             this.dueDate = dueDate;
         }
 
-        public void setDueDate(DateTime date)
-        {
-            dueDate = date;
-        }
-
         public DateTime getDueDate()
         {
             return dueDate;

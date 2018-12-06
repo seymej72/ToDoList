@@ -58,5 +58,28 @@ namespace ToDoList
 
         public abstract Dictionary<int, SubTask> getSubTask();
 
+        public override Boolean Equals(Object obj)
+        {
+            Boolean returnBool = false;
+            if (obj is Task)
+            {
+                Task temp = (Task)obj;
+                if (this.taskId.Equals(temp.taskId) &&
+                    this.taskTitle.Equals(temp.taskTitle) &&
+                    this.complete.Equals(temp.complete) &&
+                    this.notificationsOn.Equals(temp.notificationsOn) &&
+                    this.descrip.Equals(temp.descrip) &&
+                    this.taskFKey.Equals(temp.taskFKey) &&
+                    this.isRepeatable.Equals(temp.isRepeatable) &&
+
+                    //Compares the two dictionarys:
+                    this.subTasks.Count == temp.subTasks.Count && !this.subTasks.Except(temp.subTasks).Any())
+                {
+                    returnBool = true;
+                }
+            }
+            return returnBool;
+        }
+
     }
 }

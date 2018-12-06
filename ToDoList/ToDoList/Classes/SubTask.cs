@@ -185,5 +185,26 @@ namespace ToDoList
             }
             return tmp + "no";
         }
+
+        public override Boolean Equals(Object obj)
+        {
+            Boolean returnBool = false;
+            if (obj is SubTask)
+            {
+                SubTask temp = (SubTask)obj;
+                if (this.dueDate.Equals(temp.dueDate) &&
+                    this.complete.Equals(temp.complete) &&
+                    this.files.Equals(temp.files) &&
+                    this.title.Equals(temp.title) &&
+                    this.notes.Equals(temp.notes) &&
+                    this.subtaskId.Equals(temp.subtaskId) &&
+                    this.repeatFrom.Equals(temp.repeatFrom) &&
+                    this.subtaskFKey.Equals(temp.subtaskFKey))
+                {
+                    returnBool = true;
+                }
+            }
+            return returnBool;
+        }
     }
 }

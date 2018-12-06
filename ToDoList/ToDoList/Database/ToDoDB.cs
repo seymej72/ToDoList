@@ -506,12 +506,43 @@ namespace ToDoList
 
         public void InsertSubTask(SubTask subTask)
         {
-            //TODO
+            addSubTask(subTask);
         }
 
         public void UpdateSubTask(SubTask subTask)
         {
-            //TODO
+            if (checkTaskExistsInDB(subTask.getId()))
+            {
+                MySqlConnection conn = null;
+                try
+                {
+                    conn = new MySqlConnection(connectionString);
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand("UPDATE `SubTask` SET `DueDate` = @DueDate, `isComplete` = @isComplete," +
+                                       "`FilePath` = @FilePath, `Title` = @Title, `Description` = @Description," +
+                                       "`RepeatFrom` = @RepeatFrom WHERE `SubTaskID` =  @SubTaskID", conn);
+
+                    cmd.Parameters.Add(new SqlParameter("DueDate", subTask.getDueDate()));
+                    cmd.Parameters.Add(new SqlParameter("isComplete", subTask.getTaskComplete()));
+                    cmd.Parameters.Add(new SqlParameter("FilePath", subTask.getFiles()));
+                    cmd.Parameters.Add(new SqlParameter("Title", subTask.getTitle()));
+                    cmd.Parameters.Add(new SqlParameter("Description", subTask.getNotes()));
+                    cmd.Parameters.Add(new SqlParameter("RepeatFrom", subTask.getRepeatFrom()));
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("UpdateSubTask Failure!" + ex);
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+
         }
 
         public Boolean CheckSubTaskExistsInDB(int SubtaskId)

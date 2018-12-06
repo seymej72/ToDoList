@@ -9,11 +9,9 @@ using ToDoList.Classes;
 
 namespace ToDoList
 {
-    class ToDoDB
+    public class ToDoDB
     {
         private string connectionString = "Server=localhost; Database=team3; Uid=team3; Pwd=x143";
-
-        
 
         #region User Based Queries
 
@@ -261,11 +259,7 @@ namespace ToDoList
                     myDisposableTask.setDescription((String)reader.GetValue(2)); //Notes
                     myDisposableTask.setAllowNotifications((Boolean)reader.GetValue(3)); //allowNotifications
                     myDisposableTask.setIsComplete((Boolean)reader.GetValue(4)); //isComplete
-
-                    //if ((Boolean)reader.GetValue(5)) //isRepeatable NEEDS TO BE FALSE
                     myDisposableTask.setTaskFKey((int)reader.GetValue(6)); //taskFKey
-                    
-                                                                                   //Console.WriteLine("Result: Success!");
                 }
                 catch (Exception ex)
                 {
@@ -315,7 +309,6 @@ namespace ToDoList
         }
 
         //Inserts the new row into the TASK table and returns the new Task ID it gets auto assigned 
-        //TODO Cannot upload DATETIME
         public int InsertDisposableTask(DisposableTask disposableTask)
         {
             MySqlConnection conn = null;
@@ -336,11 +329,8 @@ namespace ToDoList
                 command.Parameters.AddWithValue("@allowNotifications", disposableTask.getAllowNotifications());
                 command.Parameters.AddWithValue("@isComplete", disposableTask.getIsComplete());
                 command.Parameters.AddWithValue("@isRepeatable", 1);
-                //command.Parameters.AddWithValue("@taskFKey", );// Won't have this before you insert for the first time
-                //command.Parameters.AddWithValue("@taskDueDate", new DateTime()); //Doesn't work
 
                 MySqlDataReader reader = command.ExecuteReader();
-                //Console.WriteLine("Result: Success!");
                 taskId = (int)reader.GetValue(0);
             }
             catch (Exception ex)
@@ -357,7 +347,7 @@ namespace ToDoList
             return taskId;
         }
 
-        //Update or Save Task //TODO Save Subtasks
+        //Update or Save Task 
         public void UpdateTask(DisposableTask disposableTask)
         {
             if (checkTaskExistsInDB(disposableTask.getTaskId()))
@@ -377,10 +367,8 @@ namespace ToDoList
                     cmd.Parameters.Add(new SqlParameter("isComplete", disposableTask.getIsComplete()));
                     cmd.Parameters.Add(new SqlParameter("isRepeatable", false));
                     cmd.Parameters.Add(new SqlParameter("taskFKey", disposableTask.getTaskId()));
-                    //cmd.Parameters.Add(new SqlParameter("taskDueDate",  disposableTask.getTaskDueDate()));
 
                     cmd.ExecuteNonQuery();
-                    //Console.WriteLine("Result: Success!");
                 }
                 catch (Exception ex)
                 {
@@ -506,12 +494,43 @@ namespace ToDoList
 
         public void InsertSubTask(SubTask subTask)
         {
-            //TODO
+            addSubTask(subTask);
         }
 
         public void UpdateSubTask(SubTask subTask)
         {
-            //TODO
+            if (checkTaskExistsInDB(subTask.getId()))
+            {
+                MySqlConnection conn = null;
+                try
+                {
+                    conn = new MySqlConnection(connectionString);
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand("UPDATE `SubTask` SET `DueDate` = @DueDate, `isComplete` = @isComplete," +
+                                       "`FilePath` = @FilePath, `Title` = @Title, `Description` = @Description," +
+                                       "`RepeatFrom` = @RepeatFrom WHERE `SubTaskID` =  @SubTaskID", conn);
+
+                    cmd.Parameters.Add(new SqlParameter("DueDate", subTask.getDueDate()));
+                    cmd.Parameters.Add(new SqlParameter("isComplete", subTask.getTaskComplete()));
+                    cmd.Parameters.Add(new SqlParameter("FilePath", subTask.getFiles()));
+                    cmd.Parameters.Add(new SqlParameter("Title", subTask.getTitle()));
+                    cmd.Parameters.Add(new SqlParameter("Description", subTask.getNotes()));
+                    cmd.Parameters.Add(new SqlParameter("RepeatFrom", subTask.getRepeatFrom()));
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("UpdateSubTask Failure!" + ex);
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+
         }
 
         public Boolean CheckSubTaskExistsInDB(int SubtaskId)

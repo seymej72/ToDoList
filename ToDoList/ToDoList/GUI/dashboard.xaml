@@ -25,19 +25,19 @@
 
 
                 <Rectangle Name="navyBackground" Grid.Row="0" Grid.Column="0" Grid.RowSpan="10" Fill="#FF202F3E"></Rectangle>
-                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="top" HorizontalAlignment="Center" Foreground="White" Margin="10,20,10,0" FontFamily="Global Sans Serif" FontSize="18">Search</Label>
-                <TextBox Name="searchField" Grid.Row="1" Grid.Column="0" Width="180" Height="30" VerticalAlignment="Top" Margin="10,50,10,0"></TextBox>
+                <Label Visibility="Hidden" Grid.Row="1" Grid.Column="0" VerticalAlignment="top" HorizontalAlignment="Center" Foreground="White" Margin="10,20,10,0" FontFamily="Global Sans Serif" FontSize="18">Search</Label>
+                <TextBox Visibility="Hidden" Name="searchField" Grid.Row="1" Grid.Column="0" Width="180" Height="30" VerticalAlignment="Top" Margin="10,50,10,0"></TextBox>
 
-                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="top" HorizontalAlignment="Center" Foreground="White" Margin="10,90,10,0" FontFamily="Global Sans Serif" FontSize="18">Filter By:</Label>
+                <Label Visibility="Hidden" Grid.Row="1" Grid.Column="0" VerticalAlignment="top" HorizontalAlignment="Center" Foreground="White" Margin="10,90,10,0" FontFamily="Global Sans Serif" FontSize="18">Filter By:</Label>
 
-                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,76,40,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Date</Label>
-                <RadioButton Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,120,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
-                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,130,40,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Title</Label>
-                <RadioButton Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,147,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
-                <Label Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="60,164,28,164" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" Width="112" >Last Modified</Label>
-                <RadioButton Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="0,170,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
-                <Label Grid.Row="2" Grid.Column="0" Grid.RowSpan="2"  HorizontalAlignment="Center" Margin="50,10,0,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Recently Created</Label>
-                <RadioButton Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="0,15,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+                <Label Visibility="Hidden" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,76,40,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Date</Label>
+                <RadioButton Visibility="Hidden" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,120,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+                <Label  Visibility="Hidden" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,130,40,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Title</Label>
+                <RadioButton Visibility="Hidden" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,147,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+                <Label Visibility="Hidden" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="60,164,28,164" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" Width="112" >Last Modified</Label>
+                <RadioButton Visibility="Hidden" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="0,170,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+                <Label Visibility="Hidden" Grid.Row="2" Grid.Column="0" Grid.RowSpan="2"  HorizontalAlignment="Center" Margin="50,10,0,0" FontFamily="Global Sans Serif" FontSize="16" Foreground="#FF69726F" >Recently Created</Label>
+                <RadioButton Visibility="Hidden" Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="0,15,40,0" Width="80" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="center" HorizontalAlignment="Center" Foreground="White" FontSize="36" FontFamily="Arial Rounded MT Bold" Text="todo" Margin="10,3,0,5">
                     <TextBlock.Effect>
@@ -79,8 +79,85 @@
                 </Border>
                 <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskFourText" Visibility="Hidden" Margin="644,166,40,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
 
+                <Border Visibility="Hidden" Grid.Row="2" Name="TaskFive" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick5">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TaskFiveText" Visibility="Hidden" Margin="38,165,646,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
 
-                <Border  Grid.Row="4" Grid.Column="1" Width="75" Height="75" CornerRadius="100" Background="#FF30B994" Margin="703,36,46,68">
+                <Border Visibility="Hidden" Grid.Row="2" Name="TaskSix" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="228,0,456,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick6">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TaskSixText" Visibility="Hidden" Margin="228,165,456,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="2" Name="TaskSeven" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="436,0,248,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick7">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TaskSevenText" Visibility="Hidden" Margin="436,165,248,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="2" Name="TaskEight" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="644,0,40,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick8">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TaskEightText" Visibility="Hidden" Margin="644,165,40,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="3" Name="TaskNine" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick9">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="3" Grid.Column="1" Name="TaskNineText" Visibility="Hidden" Margin="38,168,646,177" TextAlignment="Center" FontFamily="Global Sans Serif" Grid.RowSpan="2">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="3" Name="TaskTen" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="228,0,456,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick10">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="3" Grid.Column="1" Name="TaskTenText" Visibility="Hidden" Margin="228,168,456,177" TextAlignment="Center" FontFamily="Global Sans Serif" Grid.RowSpan="2">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="3" Name="TaskEleven" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="436,0,248,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick11">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="3" Grid.Column="1" Name="TaskElevenText" Visibility="Hidden" Margin="436,168,248,177" TextAlignment="Center" FontFamily="Global Sans Serif" Grid.RowSpan="2">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="3" Name="TaskTwelve" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="644,0,40,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick12">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="3" Grid.Column="1" Name="TaskTwelveText" Visibility="Hidden" Margin="644,168,40,177" TextAlignment="Center" FontFamily="Global Sans Serif" Grid.RowSpan="2">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="4" Name="TaskThirteen" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick13">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="4" Grid.Column="1" Name="TaskThirteenText" Visibility="Hidden" Margin="38,165,646,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="4" Name="TaskFourteen" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="228,0,456,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick14">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="4" Grid.Column="1" Name="TaskFourteenText" Visibility="Hidden" Margin="228,165,456,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border Visibility="Hidden" Grid.Row="4" Name="TaskFifteen" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="436,0,248,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick15">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="4" Grid.Column="1" Name="TaskFifteenText" Visibility="Hidden" Margin="436,165,248,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+
+                <Border  Grid.Row="4" Grid.Column="2" Width="75" Height="75" CornerRadius="100" Background="#FF30B994" Margin="703,36,46,68">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFCBCDCC"/>
                     </Border.Effect>

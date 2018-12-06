@@ -185,5 +185,45 @@ namespace ToDoList
             }
             return tmp + "no";
         }
+
+        public override Boolean Equals(Object obj)
+        {
+            Boolean returnBool = false;
+            if (obj is SubTask)
+            {
+                SubTask temp = (SubTask)obj;
+                if (this.dueDate.Equals(temp.dueDate) &&
+                    this.complete.Equals(temp.complete) &&
+                    this.files.Equals(temp.files) &&
+                    this.title.Equals(temp.title) &&
+                    this.notes.Equals(temp.notes) &&
+                    this.subtaskId.Equals(temp.subtaskId) &&
+                    this.repeatFrom.Equals(temp.repeatFrom) &&
+                    this.subtaskFKey.Equals(temp.subtaskFKey))
+                {
+                    returnBool = true;
+                }
+            }
+            return returnBool;
+        }
+
+
+        //Believe that this works?
+        public override int GetHashCode()
+        {
+            unchecked
+            { 
+            int hash = 13;
+            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.dueDate) ? this.dueDate.GetHashCode() : 0);
+            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.complete) ? this.complete.GetHashCode() : 0);
+            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.files) ? this.files.GetHashCode() : 0);
+            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.title) ? this.title.GetHashCode() : 0);
+            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.notes) ? this.notes.GetHashCode() : 0);
+            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.subtaskId) ? this.subtaskId.GetHashCode() : 0);
+            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.repeatFrom) ? this.repeatFrom.GetHashCode() : 0);
+            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.subtaskFKey) ? this.subtaskFKey.GetHashCode() : 0);
+            return hash;
+            }
+        }
     }
 }

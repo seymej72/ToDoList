@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ToDoList
 {
     // have to add calls to database throughout.
-    class RepeatableTask : Task
+    public class RepeatableTask : Task
     {
         ToDoDB db = new ToDoDB();
         

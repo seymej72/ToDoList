@@ -81,5 +81,22 @@ namespace ToDoList
             return returnBool;
         }
 
+        //Believe that this works?
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 13;
+                hash = (hash * 7) + (!Object.ReferenceEquals(null, this.taskId) ? this.taskId.GetHashCode() : 0);
+                hash = (hash * 7) + (!Object.ReferenceEquals(null, this.taskTitle) ? this.taskTitle.GetHashCode() : 0);
+                hash = (hash * 7) + (!Object.ReferenceEquals(null, this.complete) ? this.complete.GetHashCode() : 0);
+                hash = (hash * 7) + (!Object.ReferenceEquals(null, this.notificationsOn) ? this.notificationsOn.GetHashCode() : 0);
+                hash = (hash * 7) + (!Object.ReferenceEquals(null, this.descrip) ? this.descrip.GetHashCode() : 0);
+                hash = (hash * 7) + (!Object.ReferenceEquals(null, this.taskFKey) ? this.taskFKey.GetHashCode() : 0);
+                hash = (hash * 7) + (!Object.ReferenceEquals(null, this.isRepeatable) ? this.isRepeatable.GetHashCode() : 0);
+                return hash;
+            }
+        }
+
     }
 }

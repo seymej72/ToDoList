@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToDoList
 {
-    class DisposableTask : Task
+    public class DisposableTask : Task
     {
         ToDoDB db = new ToDoDB();
         

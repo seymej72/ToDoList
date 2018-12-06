@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 namespace ToDoList
 {
     // have to add calls to database throughout.
-    class RepeatableTask : Task
+    public class RepeatableTask : Task
     {
         ToDoDB db = new ToDoDB();
         
-
 
         public RepeatableTask(String title, String descrip, Dictionary<int,SubTask> subTaskss)
         {
@@ -27,7 +26,6 @@ namespace ToDoList
         }
        
         
-
         public override void AddSubtask(int  subTaskId)
         {
             subTasks.Add(subTaskId, db.FetchSubTask(subTaskId));
@@ -40,7 +38,6 @@ namespace ToDoList
         {
             subTasks.Remove(subTaskId);
             db.SaveRepeatTask(this);
-
         }
 
       
@@ -50,7 +47,7 @@ namespace ToDoList
                 subTasks.Add(newSubTaskId, db.FetchSubTask(newSubTaskId));
                 db.SaveRepeatTask(this);
         }
-        //////////////////////////////////// At the end of each one of these setters have to add saves to the database, should just be "save repeat"
+      
         public override void setTaskId(int taskId)
         {
             this.taskId = taskId;
@@ -58,16 +55,12 @@ namespace ToDoList
         public override void setRepeatability(Boolean isRepeatable)
         {
             this.isRepeatable = isRepeatable;
-           /// below is just test code to conver repeatable task to disposable task, should we put outside of class or in
-           // Dictionary<int, SubTask> testDic = null;
-          //  RepeatableTask testForCast = new RepeatableTask("dfjdj", "dkjfdjfd", testDic);
-           // Task testTask = testForCast;
-           // DisposableTask newTestTask = (DisposableTask)testTask;
         }
 
         public override void setTitle(String theTitle)
         {
             this.taskTitle = theTitle;
+            db.SaveRepeatTask(this);
         }
 
         // Is called when all subtasks have been marked complete.
@@ -136,7 +129,7 @@ namespace ToDoList
         {
             return this.taskFKey;
         }
-        ///////////////////////////////////////////////////
+        //////////////////////////////////////
 
         public override void SaveTask()
         {

@@ -52,9 +52,9 @@ namespace ToDoList
         {
             this.taskId = taskId;
         }
-        public override void setRepeatability(Boolean isRepeatable)
+        public override void setRepeatability(Boolean Repeatable)
         {
-            this.isRepeatable = isRepeatable;
+            this.isRepeatable = Repeatable;
         }
 
         public override void setTitle(String theTitle)

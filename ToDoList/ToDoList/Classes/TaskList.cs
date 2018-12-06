@@ -39,12 +39,14 @@ namespace ToDoList.Classes
                 testTask = ToDoList[index];
                 DisposableTask newTestTask = (DisposableTask)testTask;
                 newTestTask.setRepeatability(false);
+                ToDoList[index] = newTestTask;
             }
             else
             {
                 testTask = ToDoList[index];
                 RepeatableTask newTestTask = (RepeatableTask)testTask;
                 newTestTask.setRepeatability(true);
+                ToDoList[index] = newTestTask;
             }
         }
     }

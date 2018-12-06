@@ -237,8 +237,8 @@ namespace ToDoList
                 subs.Add(entry.Value);
                 String title = "";
                 String notes = "";
+
                 DateTime date = new DateTime();
-                DateTime test = default(DateTime);
 
 
                 /*
@@ -248,23 +248,23 @@ namespace ToDoList
                 {
                     title = this.sub1NameBox.Text;
                     notes = this.sub1NotesBox.Text;
-                    if (this.sub1DatePicker.SelectedDate.Value.Date == test)
+
+                    if (this.sub1DatePicker.SelectedDate == null)
                     {
-                        //if null
+                        date = new DateTime();
                     }
                     else
                     {
                         date = this.sub1DatePicker.SelectedDate.Value.Date;
                     }
-                    
                 }
                 else if (index == 1)
                 {
                     title = this.sub2NameBox.Text;
                     notes = this.sub2NotesBox.Text;
-                    if (this.sub2DatePicker.SelectedDate.Value.Date == test)
+                    if (this.sub2DatePicker.SelectedDate == null)
                     {
-                        //null
+                        date = new DateTime();
                     }
                     else
                     {
@@ -275,9 +275,9 @@ namespace ToDoList
                 {
                     title = this.sub3NameBox.Text;
                     notes = this.sub3NotesBox.Text;
-                    if (this.sub3DatePicker.SelectedDate.Value.Date == test )
+                    if (this.sub3DatePicker.SelectedDate == null)
                     {
-                        //null
+                        date = new DateTime();
                     }
                     else
                     {
@@ -289,7 +289,7 @@ namespace ToDoList
                 entry.Value.setNotes(notes);
 
                 
-                if (date != null)
+                if (date != new DateTime())
                 {
                     entry.Value.setDueDate(date);
                 }

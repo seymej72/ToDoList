@@ -1021,6 +1021,90 @@ namespace ToDoList
             NavigationService.Navigate(comp);
         }
 
+        private void taskClick5(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 4;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+
+        private void taskClick6(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 5;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+
+        private void taskClick7(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 6;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+
+        private void taskClick8(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 7;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+
+        private void taskClick9(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 8;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+        private void taskClick10(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 9;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+        private void taskClick11(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 10;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+        private void taskClick12(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 11;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+        private void taskClick13(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 12;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+
+        private void taskClick14(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 13;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+
+        private void taskClick15(object sender, RoutedEventArgs e)
+        {
+            int taskIndex = 14;
+
+            CompleteTask comp = new CompleteTask(userObject, taskIndex);
+            NavigationService.Navigate(comp);
+        }
+
         /*
         private void sendToCompleteTask(int taskIndex)
         {
@@ -1029,7 +1113,7 @@ namespace ToDoList
         }*/
 
 
-       
+
         //need: +add button always goes to bottom of display
 
         //need: when lists are added, add a new RowDefinition (increase grid.rowspan on navyBackground & whiteBackground)

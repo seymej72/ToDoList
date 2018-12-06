@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -183,6 +184,9 @@ namespace ToDoList
 
         private void backToDash(object sender, RoutedEventArgs e)
         {
+            // call needs to add something to check for completion of all tasks
+            // that would require seven days being added to all the timelines for repeatable tasks
+
 
             Dashboard dash = new Dashboard(userObject);
             NavigationService.Navigate(dash);

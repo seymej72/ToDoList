@@ -123,9 +123,9 @@ namespace ToDoList
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// Setters
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public override void setRepeatability(Boolean isRepeatable)
+        public override void setRepeatability(Boolean Repeatable)
         {
-            this.isRepeatable = isRepeatable;
+            this.isRepeatable = Repeatable;
         }
 
         public override void setTaskId(int taskId)

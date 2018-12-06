@@ -33,17 +33,18 @@ namespace ToDoList.Classes
         public void switchTaskType(int index)
         {
             Task testTask = null;
-
+            Console.WriteLine("got there");
             if (ToDoList[index].getRepeatability() == true)
             {
-                testTask = ToDoList[index];
+                testTask = (Task)ToDoList[index];
                 DisposableTask newTestTask = (DisposableTask)testTask;
                 newTestTask.setRepeatability(false);
                 ToDoList[index] = newTestTask;
+                Console.WriteLine("got there");
             }
             else
             {
-                testTask = ToDoList[index];
+                testTask = (Task)ToDoList[index];
                 RepeatableTask newTestTask = (RepeatableTask)testTask;
                 newTestTask.setRepeatability(true);
                 ToDoList[index] = newTestTask;

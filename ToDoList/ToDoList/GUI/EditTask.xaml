@@ -32,49 +32,49 @@
                 <DropShadowEffect Color="#FF474747" BlurRadius="7"/>
             </Border.Effect>
         </Border>
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,25,280,0">Title:</Label>
-        <TextBox Name="TitleTextBox" Grid.Row="2" Grid.Column="1" Width="200" Height="30" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"></TextBox>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="237,68,526,-23" Grid.RowSpan="2">Title:</Label>
+        <TextBox Name="TitleTextBox" Grid.Row="2" Grid.Column="1" Width="200" Height="30" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="315,68,309,0"></TextBox>
 
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,75,540,0">Description:</Label>
-        <TextBox Name="descTextBox" Grid.Row="2" Grid.Column="1" Width="400" Height="40" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0"></TextBox>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="74,115,614,-20" Grid.RowSpan="2">Description:</Label>
+        <TextBox Name="descTextBox" Grid.Row="2" Grid.Column="1" Width="400" Height="40" BorderBrush="Black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="212,120,212,0"></TextBox>
 
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,130,350,0">Repeatable:</Label>
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="18"  Margin="0,135,80,0">Yes</Label>
-        <RadioButton Name="yesButton" Grid.Row="2" Grid.Column="1" HorizontalAlignment="center"  Margin="0,143,140,0" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="18"  Margin="60,135,0,0">No</Label>
-        <RadioButton Name="noButton" Grid.Row="2" Grid.Column="1" HorizontalAlignment="center"  Margin="10,143,0,0" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="169,165,516,-15" Grid.RowSpan="2">Repeatable:</Label>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="18"  Margin="348,170,437,2">Yes</Label>
+        <RadioButton GroupName="editRadio" Name="yesButton" Grid.Row="2" Grid.Column="1" HorizontalAlignment="center"  Margin="333,178,476,10" Style="{DynamicResource RadioButtonStyle1}"/>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="18"  Margin="427,170,364,2">No</Label>
+        <RadioButton GroupName="editRadio" Name="noButton" Grid.Row="2" Grid.Column="1" HorizontalAlignment="center"  Margin="411,178,398,2" Style="{DynamicResource RadioButtonStyle1}"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="36" Margin="0,170,0,0">Subtasks</TextBlock>
 
-        <Label Name="sub1Name" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="59,214,704,36">Title:</Label>
-        <TextBox Name="sub1NameBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="129,219,495,351" BorderBrush="Black"></TextBox>
+        <Label Name="sub1Name" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="63,248,700,2">Title:</Label>
+        <TextBox Name="sub1NameBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="133,253,491,317" BorderBrush="Black"></TextBox>
 
-        <Label Name="sub1Notes" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,214,335,36">Notes:</Label>
-        <TextBox Name="sub1NotesBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="504,219,70,351" BorderBrush="Black"></TextBox>
+        <Label Name="sub1Notes" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="414,248,331,2">Notes:</Label>
+        <TextBox Name="sub1NotesBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="508,253,66,317" BorderBrush="Black"></TextBox>
 
-        <Label Name="sub1Date" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,264,296,36">Due Date:</Label>
-        <DatePicker Name="sub1DatePicker" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="538,269,184,301" Height="30"></DatePicker>
+        <Label Name="sub1Date" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="414,298,292,2">Due Date:</Label>
+        <DatePicker Name="sub1DatePicker" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="542,303,180,267" Height="30"></DatePicker>
 
-        <Border Grid.Row="2" Grid.Column="1" Height="40" Width="160" Background="#FF30B994" BorderBrush="#FF0C8036" HorizontalAlignment="right" Margin="0,520,40,0" >
+        <Border Grid.Row="2" Grid.Column="1" Height="40" Width="160" Background="#FF30B994" BorderBrush="#FF0C8036" HorizontalAlignment="right" Margin="0,20,30,541" >
             <Button Style="{StaticResource ButtonStyle1}" Grid.Row="2" Grid.Column="1"  Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Global Sans Serif" FontSize="24" Click="editTask">Edit Task</Button>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="1" Height="40" Width="160" Background="#FF30B994" BorderBrush="#FF0C8036" HorizontalAlignment="right" Margin="0,520,620,0" >
+        <Border Grid.Row="2" Grid.Column="1" Height="40" Width="160" Background="#FF30B994" BorderBrush="#FF0C8036" HorizontalAlignment="right" Margin="0,20,636,541" >
             <Button Style="{StaticResource ButtonStyle1}" Grid.Row="2" Grid.Column="1"  Background="Transparent" BorderBrush="Transparent" Foreground="White" FontFamily="Global Sans Serif" FontSize="24"  Click="backToComplete">Back</Button>
         </Border>
-        
-        <Label Name="sub2Name" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="59,315,704,-45" Content="Title:" Grid.RowSpan="2"/>
-        <TextBox Name="sub2NameBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="129,320,495,250" BorderBrush="Black"/>
-        <Label Name="sub2Notes" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,315,335,-45" Content="Notes:" Grid.RowSpan="2"/>
-        <TextBox Name="sub2NotesBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="504,320,70,250" BorderBrush="Black"/>
-        <Label Name="sub2Date" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,369,296,-49" Content="Due Date:" Grid.RowSpan="2"/>
-        <DatePicker Name="sub2DatePicker" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="538,374,184,196" Height="30"/>
-        
-        <Label Name="sub3Name" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="59,420,704,-150" Content="Title:" Grid.RowSpan="2"/>
-        <TextBox Name="sub3NameBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="129,425,495,145" BorderBrush="Black"/>
-        <Label Name="sub3Notes" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,420,335,-150" Content="Notes:" Grid.RowSpan="2"/>
-        <TextBox Name="sub3NotesBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="504,425,70,145" BorderBrush="Black"/>
-        <Label Name="sub3Date" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="410,470,296,-150" Content="Due Date:" Grid.RowSpan="2"/>
-        <DatePicker Name="sub3DatePicker" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="538,475,184,95" Height="30"/>
+
+        <Label Name="sub2Name" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="63,349,700,-79" Content="Title:" Grid.RowSpan="2"/>
+        <TextBox Name="sub2NameBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="133,354,491,216" BorderBrush="Black"/>
+        <Label Name="sub2Notes" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="414,349,331,-79" Content="Notes:" Grid.RowSpan="2"/>
+        <TextBox Name="sub2NotesBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="508,354,66,216" BorderBrush="Black"/>
+        <Label Name="sub2Date" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="414,403,292,-83" Content="Due Date:" Grid.RowSpan="2"/>
+        <DatePicker Name="sub2DatePicker" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="542,408,180,162" Height="30"/>
+
+        <Label Name="sub3Name" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="63,454,700,-184" Content="Title:" Grid.RowSpan="2"/>
+        <TextBox Name="sub3NameBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="200" Height="30" Margin="133,459,491,111" BorderBrush="Black"/>
+        <Label Name="sub3Notes" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="414,454,331,-184" Content="Notes:" Grid.RowSpan="2"/>
+        <TextBox Name="sub3NotesBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="30" Margin="508,459,66,111" BorderBrush="Black"/>
+        <Label Name="sub3Date" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="24" Margin="414,504,292,-184" Content="Due Date:" Grid.RowSpan="2"/>
+        <DatePicker Name="sub3DatePicker" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="542,509,180,61" Height="30"/>
+
     </Grid>
 </Page>

@@ -41,9 +41,9 @@
         
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,130,350,0">Repeatable:</Label>
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="18"  Margin="0,135,80,0">Yes</Label>
-        <RadioButton Name="yesRadio" Grid.Row="2" Grid.Column="1" HorizontalAlignment="center"  Margin="0,143,140,0" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+        <RadioButton GroupName="createRadio" Name="yesRadio" Grid.Row="2" Grid.Column="1" HorizontalAlignment="center"  Margin="0,143,140,0" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
         <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="center" FontFamily="Global Sans Serif" FontSize="18"  Margin="60,135,0,0">No</Label>
-        <RadioButton Name="noRadio" Grid.Row="2" Grid.Column="1" HorizontalAlignment="center"  Margin="10,143,0,0" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
+        <RadioButton GroupName="createRadio" Name="noRadio" Grid.Row="2" Grid.Column="1" HorizontalAlignment="center"  Margin="10,143,0,0" Style="{DynamicResource RadioButtonStyle1}"></RadioButton>
 
         <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Global Sans Serif" FontSize="36" Margin="0,170,0,0">Subtasks</TextBlock>
 

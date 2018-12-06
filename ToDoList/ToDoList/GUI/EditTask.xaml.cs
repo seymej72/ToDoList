@@ -217,17 +217,24 @@ namespace ToDoList
             bool yes = this.yesButton.IsChecked.Value;
             bool no = this.noButton.IsChecked.Value;
 
+            bool repeating = tasks[taskIndex].getRepeatability();
             /*
              * TODO: if the repeatable value changes the disposable/repeatable task needs to be changed 
              */
-            //if (yes == true)
-            //{
-
-            //}
-            //else if (no == true)
-            //{
-
-            //}
+            if (yes == true)
+            {
+                if (repeating != yes)
+                {
+                    userObject.getUserToDoList()[0].switchTaskType(taskIndex);
+                }
+            }
+            else if (no == true)
+            {
+                if (repeating != no)
+                {
+                    userObject.getUserToDoList()[0].switchTaskType(taskIndex);
+                }
+            }
 
             //subtasks
 

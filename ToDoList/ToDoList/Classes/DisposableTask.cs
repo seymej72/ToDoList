@@ -41,7 +41,7 @@ namespace ToDoList
         /// </summary>
         public override void SaveTask()
         {
-            if (db.checkTaskExistsInDB(taskId))
+            if (db.CheckTaskExistsInDB(taskId))
             {
                 db.UpdateTask(this);
             }

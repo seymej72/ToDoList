@@ -240,44 +240,42 @@ namespace ToDoList
         #region DisposableTask Based Queries
 
         //Fetch existing DT from Database based on taskId and update this instance with its info
-        public DisposableTask fetchDisposableTask(int taskId)
+        public DisposableTask FetchDisposableTask(int taskId)
         {
             MySqlConnection conn = null;
-            DisposableTask myDisposableTask = null;
-            if (checkTaskExistsInDB(taskId))
-            {
-                try
-                {
-                    conn = new MySqlConnection(connectionString);
-                    conn.Open();
-                    MySqlCommand cmd = new MySqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
-                    cmd.Parameters.Add(new MySqlParameter("taskId", taskId));
-                    MySqlDataReader reader = cmd.ExecuteReader();
+            DisposableTask myDisposableTask = new DisposableTask();
 
-                    myDisposableTask.setTaskId((int)reader.GetValue(0)); //TaskId
-                    myDisposableTask.setTitle((String)reader.GetValue(1)); //Title
-                    myDisposableTask.setDescription((String)reader.GetValue(2)); //Notes
-                    myDisposableTask.setAllowNotifications((Boolean)reader.GetValue(3)); //allowNotifications
-                    myDisposableTask.setIsComplete((Boolean)reader.GetValue(4)); //isComplete
-                    myDisposableTask.setTaskFKey((int)reader.GetValue(6)); //taskFKey
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("fetchDisposableTask Failure!" + ex);
-                }
-                finally
-                {
-                    if (conn != null)
-                    {
-                        conn.Close();
-                    }
-                }
-                myDisposableTask.setSubTasks(FetchAllSubTasks(taskId));
+            try
+            {
+                conn = new MySqlConnection(connectionString);
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
+                cmd.Parameters.Add(new MySqlParameter("taskId", taskId));
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                myDisposableTask.setTaskId((int)reader.GetValue(0)); //TaskId
+                myDisposableTask.setTitle((String)reader.GetValue(1)); //Title
+                myDisposableTask.setDescription((String)reader.GetValue(2)); //Notes
+                myDisposableTask.setAllowNotifications((Boolean)reader.GetValue(3)); //allowNotifications
+                myDisposableTask.setIsComplete((Boolean)reader.GetValue(4)); //isComplete
+                myDisposableTask.setTaskFKey((int)reader.GetValue(6)); //taskFKey
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("FetchDisposableTask Failure!" + ex);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            myDisposableTask.setSubTasks(FetchAllSubTasks(taskId));
             return myDisposableTask;
         }
 
-        public Boolean checkTaskExistsInDB(int taskId)
+        public Boolean CheckTaskExistsInDB(int taskId)
         {
             MySqlConnection conn = null;
             Boolean returnBool = false;
@@ -288,15 +286,19 @@ namespace ToDoList
                 MySqlCommand cmd = new MySqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
                 cmd.Parameters.Add(new MySqlParameter("taskId", taskId));
                 MySqlDataReader reader = cmd.ExecuteReader();
-                int count = reader.FieldCount;
-                if(reader.FieldCount > 0)
+                if (reader.Read() && reader.GetValue(0) != DBNull.Value)
                 {
                     returnBool = true;
+                    Console.WriteLine("EXISTS");
+                }
+                else
+                {
+                    Console.WriteLine("DOES NOT EXIST");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("checkTaskExistsInDB Failure!" + ex);
+                Console.WriteLine("CheckTaskExistsInDB Failure!" + ex);
             }
             finally
             {
@@ -321,8 +323,7 @@ namespace ToDoList
 
                 //command executes an insert and a select in order to return the taskId from that insertion
                 command = new MySqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`) " +
-                    "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable);" +
-                    "SELECT `taskId` AS `taskId` FROM `Task` WHERE `taskId` = @@Identity;", conn);
+                    "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable);", conn);
 
                 command.Parameters.AddWithValue("@title", disposableTask.getTitle());
                 command.Parameters.AddWithValue("@notes", disposableTask.getDescription());
@@ -331,7 +332,6 @@ namespace ToDoList
                 command.Parameters.AddWithValue("@isRepeatable", 1);
 
                 MySqlDataReader reader = command.ExecuteReader();
-                taskId = (int)reader.GetValue(0);
             }
             catch (Exception ex)
             {
@@ -344,13 +344,14 @@ namespace ToDoList
                     conn.Close();
                 }
             }
+            taskId = GetNextTaskId();
             return taskId;
         }
 
         //Update or Save Task 
         public void UpdateTask(DisposableTask disposableTask)
         {
-            if (checkTaskExistsInDB(disposableTask.getTaskId()))
+            if (CheckTaskExistsInDB(disposableTask.getTaskId()))
             {
                 MySqlConnection conn = null;
                 try
@@ -381,6 +382,36 @@ namespace ToDoList
                         conn.Close();
                     }
                 }
+            }
+        }
+
+        public int GetNextTaskId()
+        {
+            MySqlConnection conn = null;
+            MySqlCommand command = null;
+            MySqlDataReader reader = null;
+
+            try
+            {
+                conn = new MySqlConnection(connectionString);
+                conn.Open();
+
+                command = new MySqlCommand(
+                    "SELECT max(taskId) FROM Task;",
+                    conn);
+                reader = command.ExecuteReader();
+                reader.Read();
+                return (int)reader.GetValue(0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("this is not supposed to happen: " + ex);
+                return -1;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
             }
         }
         #endregion
@@ -499,7 +530,7 @@ namespace ToDoList
 
         public void UpdateSubTask(SubTask subTask)
         {
-            if (checkTaskExistsInDB(subTask.getId()))
+            if (CheckTaskExistsInDB(subTask.getId()))
             {
                 MySqlConnection conn = null;
                 try

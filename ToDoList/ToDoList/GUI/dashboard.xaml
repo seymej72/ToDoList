@@ -51,36 +51,63 @@
                 <TextBlock Grid.Column="1" Name="usernameText" Grid.Row="0" VerticalAlignment="center" FontFamily="Global Sans Serif" FontSize="24" Margin="0,10,40,10" HorizontalAlignment="Right" Width="125" Text="" Foreground="White" TextAlignment="Right" />
 
                 <Rectangle Name="whiteBackground" Grid.Row="1" Grid.Column="1" Grid.RowSpan="10" Fill="#FFF0F0F0" Margin="0,0,1,0"/>
-                <Border Visibility="Hidden" Name="TaskOne" Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick1">
+                <Border Visibility="Visible" Name="TaskOne" Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick1">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
                     </Border.Effect>
                 </Border>
-                <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskOneText" Visibility="Hidden" Margin="38,166,646,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskOneText" Visibility="Visible" Margin="38,166,646,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
 
-                <Border Visibility="Hidden" Name="TaskTwo" Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="228,0,456,10" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick2">
+                <Border Visibility="Visible" Name="TaskTwo" Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="228,0,456,10" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick2">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
                     </Border.Effect>
                 </Border>
-                <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskTwoText" Visibility="Hidden" Margin="228,166,456,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskTwoText" Visibility="Visible" Margin="228,166,456,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
 
-                <Border Visibility="Hidden" Name="TaskThree" Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="436,0,248,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick3">
+                <Border Visibility="Visible" Name="TaskThree" Grid.Row="1" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="436,0,248,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick3">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
                     </Border.Effect>
                 </Border>
-                <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskThreeText" Visibility="Hidden" Margin="436,168,248,177" TextAlignment="Center" FontFamily="Global Sans Serif" Grid.RowSpan="2">Task Title</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskThreeText" Visibility="Visible" Margin="436,168,248,177" TextAlignment="Center" FontFamily="Global Sans Serif" Grid.RowSpan="2">Task Title</TextBlock>
 
-                <Border Visibility="Hidden" Grid.Row="1" Name="TaskFour" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="644,0,40,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick4">
+                <Border Visibility="Visible" Grid.Row="1" Name="TaskFour" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="644,0,40,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick4">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
                     </Border.Effect>
                 </Border>
-                <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskFourText" Visibility="Hidden" Margin="644,166,40,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="TaskFourText" Visibility="Visible" Margin="644,166,40,0" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
 
+                <Border Visibility="Visible" Grid.Row="2" Name="TaskFive" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="38,0,646,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick5">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TaskFiveText" Visibility="Visible" Margin="38,165,646,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
 
-                <Border  Grid.Row="4" Grid.Column="1" Width="75" Height="75" CornerRadius="100" Background="#FF30B994" Margin="703,36,46,68">
+                <Border Visibility="Visible" Grid.Row="2" Name="TaskSix" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="228,0,456,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick6">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TaskSixText" Visibility="Visible" Margin="228,165,456,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border Visibility="Visible" Grid.Row="2" Name="TaskSeven" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="436,0,248,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick7">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TaskSevenText" Visibility="Visible" Margin="436,165,248,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border Visibility="Visible" Grid.Row="2" Name="TaskEight" Grid.Column="1" Height="155" Width="140" CornerRadius="15" BorderBrush="#FF69726F" BorderThickness="1" Margin="644,0,40,14" Background="White" VerticalAlignment="Bottom" MouseLeftButtonDown="taskClick8">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#FFD8E4E0" BlurRadius="10" ShadowDepth="2"/>
+                    </Border.Effect>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TaskEightText" Visibility="Visible" Margin="644,165,40,1" TextAlignment="Center" FontFamily="Global Sans Serif">Task Title</TextBlock>
+
+                <Border  Grid.Row="4" Grid.Column="2" Width="75" Height="75" CornerRadius="100" Background="#FF30B994" Margin="703,36,46,68">
                     <Border.Effect>
                         <DropShadowEffect Color="#FFCBCDCC"/>
                     </Border.Effect>

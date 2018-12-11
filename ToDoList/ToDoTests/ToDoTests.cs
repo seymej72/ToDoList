@@ -8,7 +8,7 @@ namespace ToDoTests
     [TestClass]
     public class ToDoTests
     {
-
+       //TEST
         #region ToDo class Tests
         [TestMethod]
         public void TestHashing()

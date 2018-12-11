@@ -9,7 +9,7 @@ namespace ToDoList
     public class DisposableTask : Task
     {
         ToDoDB db = new ToDoDB();
-        
+        //TEST
 
         /// <summary>
         /// Constructor for a new DisposableTask

@@ -15,14 +15,13 @@ namespace ToDoList
 
         public RepeatableTask(String title, String descrip, Dictionary<int,SubTask> subTaskss)
         {
-
             this.taskTitle = title;
             this.complete = false;
             this.notificationsOn = false;
             this.descrip = descrip;
             this.subTasks = subTaskss;
             this.isRepeatable = true;
-            db.InsertRepeatTask(this);
+
         }
        
         

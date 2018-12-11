@@ -15,11 +15,11 @@ namespace ToDoTests
         {
             var ToDoObj = new ToDo();
 
-            string pass = "1325465465";
+            string pass = "testPassword";
 
             int potentialPassword = ToDoObj.HashPassword(pass);
 
-            Assert.AreEqual(51082944, potentialPassword);
+            Assert.AreEqual(-1540890086, potentialPassword);
         }
 
         [TestMethod]

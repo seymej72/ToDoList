@@ -17,12 +17,6 @@ namespace ToDoList
         /// <param name="args"></param>
         public void Main(String[] args)
         {
-            //TODO: Literally everything
-
-            //test
-            //test
-
-
 
         }
 
@@ -81,10 +75,12 @@ namespace ToDoList
         /// <returns>The hashed password value</returns>
         public int HashPassword(string inPassword)
         {
-            int passwordVal1 = Int32.Parse(inPassword.Substring(2, 4));
-            int passwordVal2 = passwordVal1 * Int32.Parse(inPassword.Substring(0, 5));
-            int passwordVal3 = passwordVal2 % 7;
-            return passwordVal1 * 20064 + passwordVal3 / passwordVal2;
+            //int passwordVal1 = Int32.Parse(inPassword.Substring(2, 4));
+            //int passwordVal2 = passwordVal1 * Int32.Parse(inPassword.Substring(0, 5));
+            //int passwordVal3 = passwordVal2 % 7;
+            //return passwordVal1 * 20064 + passwordVal3 / passwordVal2;
+
+            return inPassword.GetHashCode();
         }
 
     }

@@ -123,13 +123,14 @@ namespace ToDoList
                 {
                     //ToDoUser user = todo
                     //blake->needs data from database to construct user before we can log in a user
+                    NavigationService nav = NavigationService.GetNavigationService(this);
+                    nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
                 }
 
                 //ToDoUser user = 
                 //todo.LoginUser();
                 //sends user to dashboard if login is valid
-                NavigationService nav = NavigationService.GetNavigationService(this);
-                nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+                
             }
             
 

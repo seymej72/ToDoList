@@ -93,7 +93,7 @@ namespace ToDoList
         /// <param name="UserId">The ID of the user</param>
         public List<TaskList> LoadList(int UserId)
         {
-            //this.UserToDoList = this.db.LoadList(UserId);
+            this.UserToDoList = this.db.LoadList(UserId);
             return this.UserToDoList;
         }
 

@@ -19,15 +19,6 @@ namespace ToDoList
         {
 
         }
-
-        /// <summary>
-        /// Function to display the main login in screen
-        /// </summary>
-        private void DisplayLogin()
-        {
-            //TODO: Hookup with Sara's GUI to display the main login screen
-        }
-
         /// <summary>
         /// Validates the users input, cross checking with the Database
         /// </summary>
@@ -63,7 +54,6 @@ namespace ToDoList
         /// <param name="User">The User being logged in</param>
         private ToDoUser LoginUser(ToDoUser User)
         {
-            //TODO: Display the main page after successful login after querying the DB for all the required info
             User.LoadList(User.UserId);
             return CurrentUser;
         }
@@ -74,12 +64,7 @@ namespace ToDoList
         /// <param name="inPassword">the password to be hashed</param>
         /// <returns>The hashed password value</returns>
         public int HashPassword(string inPassword)
-        {
-            //int passwordVal1 = Int32.Parse(inPassword.Substring(2, 4));
-            //int passwordVal2 = passwordVal1 * Int32.Parse(inPassword.Substring(0, 5));
-            //int passwordVal3 = passwordVal2 % 7;
-            //return passwordVal1 * 20064 + passwordVal3 / passwordVal2;
-
+        { 
             return inPassword.GetHashCode();
         }
 

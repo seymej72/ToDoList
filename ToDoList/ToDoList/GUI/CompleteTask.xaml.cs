@@ -26,6 +26,7 @@ namespace ToDoList
         private List<Task> tasks = new List<Task>();
         private Dictionary<int, SubTask> subtasks = new Dictionary<int, SubTask>();
         private List<SubTask> subs = new List<SubTask>();
+        private int subCount;
 
 
         public CompleteTask()
@@ -76,7 +77,7 @@ namespace ToDoList
                     subs.Add(entry.Value);
                 }
 
-                int subCount = subs.Count();
+                subCount = subs.Count();
 
                 if (subCount == 1)
                 {

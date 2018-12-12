@@ -48,7 +48,7 @@ namespace ToDoList
 
         private void fillTaskInfo()
         {
-            this.tasks = userObject.getUserToDoList()[0].getTaskListList();
+            this.tasks = userObject.getUserToDoList()[0].getTaskList();
 
 
             this.TaskTitleText.Text = tasks[taskIndex].getTitle();

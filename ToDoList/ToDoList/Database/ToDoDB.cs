@@ -219,7 +219,7 @@ namespace ToDoList
                 MySqlDataReader reader = command.ExecuteReader();
                 reader.Read();
                 String actualPasswordVal = reader.GetValue(0).ToString();
-                if (actualPasswordVal == enteredPasswordVal)
+                if (actualPasswordVal.Equals(enteredPasswordVal))
                     return true;
                 else
                     return false;

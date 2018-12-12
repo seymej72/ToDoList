@@ -98,7 +98,7 @@ namespace ToDoList
                 password = this.passwordTextBox.Password.ToString();
                 passCheck = this.passwordRetypeTextBox.Password.ToString();
 
-                if (password == passCheck)
+                if (password.Equals(passCheck))
                 {
                     ToDoUser user =  todo.RegisterUser(username, password);
                     //int userID = user.UserId;

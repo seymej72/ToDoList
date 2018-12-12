@@ -124,6 +124,8 @@ namespace ToDoList
 
                 DisposableTask dt = new DisposableTask(taskTitle, taskDesc, dict);
                 dt.setTaskFKey(user.UserId);
+                //dt.setTaskFKey(55);
+                //TODO user.UserId does not return the correct ID
                 dt.SaveTask();
                 list[0].addTask(dt);
 

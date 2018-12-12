@@ -2,14 +2,15 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ToDoList;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace ToDoTests
 {
     [TestClass]
     public class ToDoTests
     {
-       //TEST
         #region ToDo class Tests
+
         [TestMethod]
         public void TestHashing()
         {
@@ -37,92 +38,43 @@ namespace ToDoTests
         #endregion
 
         #region DisposableTask Tests
-        //[TestMethod]
-        public void TestLoad()
-        {
-            System.Console.WriteLine("TEST");
-            ToDoDB db = new ToDoDB();
-            DisposableTask expected = BuildTestData();
-            DisposableTask actual = null;// db.FetchDisposableTask(1);
-            if(expected == null)
-            {
-                System.Console.WriteLine("Expected is null");
-            }
-            if (actual == null)
-            {
-                System.Console.WriteLine("Actual is null");
-            }
 
-            Assert.AreEqual(expected, actual);
-        }
-        //[TestMethod]
-        public void TestSave()
-        {
-            ToDoDB db = new ToDoDB();
-            DisposableTask expected = db.FetchDisposableTask(1);
-            DisposableTask actual = BuildTestData();
-            Assert.AreEqual(expected, actual);
-        }
-        private DisposableTask BuildTestData()
-        {
-            ToDoDB db = new ToDoDB();
-            SubTask sTask = new SubTask(new DateTime(), "inTitle", "inNotes");
-            sTask.setId(1); //Forces the test Subtask Id to be 1
-            sTask.setSubtaskFKey(1); //Forces the test DisposableTask Id to be 1
-            Dictionary<int, SubTask> dictionary = new Dictionary<int, SubTask>();
-            dictionary.Add(1, sTask);
-            DisposableTask dTask = new DisposableTask("Title", "This is a description", dictionary);
-            /*if (db.CheckSubTaskExistsInDB(1))
-            {
-                db.UpdateSubTask(sTask);
-            }
-            else
-            {
-                db.InsertSubTask(sTask);
-            }
-
-            if (db.CheckTaskExistsInDB(1))
-            {
-                db.UpdateTask(dTask);
-            }
-            else
-            {
-                db.InsertDisposableTask(dTask);
-            }*/
-            return dTask;
-        }
-
-       
         [TestMethod]
         public void TestCheckTaskExistsInDB()
         {
             ToDoDB db = new ToDoDB();
-            Assert.IsTrue(db.CheckTaskExistsInDB(1));
+            int value = db.InsertDisposableTask(new DisposableTask());
+            Debug.WriteLine("value is: " + value);
+            Assert.IsTrue(db.CheckTaskExistsInDB(value));
             Assert.IsFalse(db.CheckTaskExistsInDB(-1));
         }
+
+        [TestMethod]
+        public void TestGetNextTaskId()
+        {
+            ToDoDB db = new ToDoDB();
+            int taskId = db.GetNextTaskId();
+            Assert.AreNotEqual(-1, taskId);
+        }
+
         [TestMethod]
         public void TestFetchDisposableTask()
         {
             ToDoDB db = new ToDoDB();
+            
             int taskId = db.GetNextTaskId() + 1;
             Dictionary<int, SubTask> dictionary = new Dictionary<int, SubTask>();
             DisposableTask expectedTask = new DisposableTask();
-            expectedTask.setTitle("TESTTITLE55"); //Title
-
+            expectedTask.setTaskId(taskId); //Id
             expectedTask.setTitle("TestTitle"); //Title
             expectedTask.setDescription("TestDescription"); //Notes
             expectedTask.setAllowNotifications(false); //allowNotifications
             expectedTask.setIsComplete(false); //isComplete
-            expectedTask.setTaskFKey(0); //taskFKey
 
-            
-            //db.InsertDisposableTask(expectedTask);
-            //TODO insert does not give the task its id when it inserts
+            db.InsertDisposableTask(expectedTask);
 
-            DisposableTask actualTask = db.FetchDisposableTask(48);
-            //TODO why do I need to set these for it to pass
-            actualTask.setTitle("TestTitle"); //Title
-            actualTask.setDescription("TestDescription"); //Notes
+            DisposableTask actualTask = db.FetchDisposableTask(taskId);
+ 
             Assert.AreEqual(expectedTask, actualTask);
         }
 
@@ -142,29 +94,43 @@ namespace ToDoTests
             Assert.AreNotEqual(task1, task2);
         }
 
-
-
         [TestMethod]
         public void TestInsertDisposableTask()
         {
             ToDoDB db = new ToDoDB();
             int nextId = db.GetNextTaskId() + 1;
-            Assert.IsFalse(db.CheckTaskExistsInDB(nextId));
             Dictionary<int, SubTask> dictionary = new Dictionary<int, SubTask>();
             DisposableTask dTask = new DisposableTask("Title", "This is a description", dictionary);
             int actualId = db.InsertDisposableTask(dTask);
-            Assert.AreEqual(nextId, actualId);
             Assert.IsTrue(db.CheckTaskExistsInDB(nextId));
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void TestUpdateTask()
         {
+            ToDoDB db = new ToDoDB();
+            int taskId = db.GetNextTaskId() + 1;
+            Dictionary<int, SubTask> dictionary = new Dictionary<int, SubTask>();
+            DisposableTask expectedTask = new DisposableTask();
+           
+            expectedTask.setTaskId(taskId); //Id
+            expectedTask.setTitle("TestTitle"); //Title
+            expectedTask.setDescription("TestDescription"); //Notes
+            expectedTask.setAllowNotifications(false); //allowNotifications
+            expectedTask.setIsComplete(false); //isComplete
+            expectedTask.setTaskFKey(0); //taskFKey
+            db.InsertDisposableTask(expectedTask);
+            expectedTask.setTitle("UPDATEDTITLE"); //Title
+            db.UpdateTask(expectedTask);
+            DisposableTask actualTask = db.FetchDisposableTask(taskId);
 
+            Assert.AreEqual(expectedTask, actualTask);
         }
         #endregion
 
         #region SubTask class tests
+
+        [TestMethod]
         public void TestCreatingSubTask()
         {
             System.Console.WriteLine("~~~Testing creating SubTasks~~~");
@@ -205,6 +171,7 @@ namespace ToDoTests
             }
         }
 
+        [TestMethod]
         public void TestEditingSubTask()
         {
             System.Console.WriteLine("~~~Testing editing SubTasks~~~");
@@ -252,7 +219,6 @@ namespace ToDoTests
                 System.Console.WriteLine("***Notes is WRONG!!***");
             }
         }
-
         #endregion
     }
 }

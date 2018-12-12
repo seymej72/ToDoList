@@ -75,7 +75,7 @@ namespace ToDoList
 
 
                 SubTask subt = new SubTask(dueDate, subTitle, subNotes);
-
+                subt.SaveSubTask();
                 this.idCount++;
 
                 //int nextId = subt.getNextId();

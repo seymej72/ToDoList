@@ -109,7 +109,7 @@ namespace ToDoList
                 RepeatableTask rt = new RepeatableTask(taskTitle, taskDesc, dict);
                 rt.setTaskFKey(user.UserId);
                 rt.SaveTask(); //save task to db
-                list[0].addTask(rt);
+                list.Add(rt);
 
                 Dashboard dash = new Dashboard(user);
                 NavigationService.Navigate(dash);
@@ -127,7 +127,7 @@ namespace ToDoList
                 //dt.setTaskFKey(55);
                 //TODO user.UserId does not return the correct ID
                 dt.SaveTask(); //save task to db
-                list[0].addTask(dt);
+                list.Add(dt);
 
                 Dashboard dash = new Dashboard(user);
                 NavigationService.Navigate(dash);

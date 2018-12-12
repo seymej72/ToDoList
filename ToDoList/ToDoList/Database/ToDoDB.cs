@@ -143,7 +143,7 @@ namespace ToDoList
 
         public List<Task> LoadList(int userId)
         {
-            List<Task> taskList = new List<TaskList>();
+            List<Task> taskList = new List<Task>();
             MySqlConnection conn = null;
             MySqlCommand command = null;
 
@@ -161,25 +161,27 @@ namespace ToDoList
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    int index = 0;
+                    int Rindex = 0;
+                    int Dindex = 0;
                     if(reader.GetValue(5).Equals(1))
                     {
-                        RepeatableTask currentTask = new RepeatableTask((String)reader.GetValue(1), (String)reader.GetValue(3), new Dictionary<int, SubTask>(index, reader.GetValue(4)));
+                        RepeatableTask currentTask = new RepeatableTask((String)reader.GetValue(1), (String)reader.GetValue(3), new Dictionary<int, SubTask>(Rindex, reader.GetValue(4)));
                         taskList.Add(currentTask);
                     }
                     else
                     {
-                        DisposableTask currentTask = new DisposableTask((String)reader.GetValue(1), (String)reader.GetValue(3), new Dictionary<int, SubTask>(index, reader.GetValue(4)));
+                        DisposableTask currentTask = new DisposableTask((String)reader.GetValue(1), (String)reader.GetValue(3), new Dictionary<int, SubTask>(Dindex, reader.GetValue(4)));
                         taskList.Add(currentTask);
                     }
-                    index++;
+                    Rindex++;
+                    Dindex++;
                 }
                 return taskList;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Something went horribly wrong! " + ex);
-                return new List<TaskList>();
+                return new List<Task>();
             }
             finally
             {

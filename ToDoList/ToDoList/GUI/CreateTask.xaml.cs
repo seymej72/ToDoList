@@ -75,7 +75,7 @@ namespace ToDoList
 
 
                 SubTask subt = new SubTask(dueDate, subTitle, subNotes);
-                subt.SaveSubTask();
+                subt.SaveSubTask(); //save subtask to db
                 this.idCount++;
 
                 //int nextId = subt.getNextId();
@@ -108,7 +108,7 @@ namespace ToDoList
 
                 RepeatableTask rt = new RepeatableTask(taskTitle, taskDesc, dict);
                 rt.setTaskFKey(user.UserId);
-                rt.SaveTask();
+                rt.SaveTask(); //save task to db
                 list[0].addTask(rt);
 
                 Dashboard dash = new Dashboard(user);
@@ -126,7 +126,7 @@ namespace ToDoList
                 dt.setTaskFKey(user.UserId);
                 //dt.setTaskFKey(55);
                 //TODO user.UserId does not return the correct ID
-                dt.SaveTask();
+                dt.SaveTask(); //save task to db
                 list[0].addTask(dt);
 
                 Dashboard dash = new Dashboard(user);

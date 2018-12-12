@@ -31,15 +31,17 @@ namespace ToDoList.Classes
         }
 
         public void switchTaskType(int index)
-        {
-            if (ToDoList[index].getRepeatability() == true)
             {
+            bool repeating = ToDoList[index].getRepeatability();
+            Console.WriteLine(repeating);
+            if (repeating == true)
+                {
                 DisposableTask newTask = new DisposableTask(ToDoList[index].getTitle(), ToDoList[index].getDescription(), ToDoList[index].getSubTask());
                 newTask.setTaskId(ToDoList[index].getTaskId());
                 ToDoList[index] = newTask;
                 ToDoList[index].SaveTask();
             }
-            else if (ToDoList[index].getRepeatability() == false)
+            else 
             {
                 
                     RepeatableTask newTask = new RepeatableTask(ToDoList[index].getTitle(), ToDoList[index].getDescription(), ToDoList[index].getSubTask());

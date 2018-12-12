@@ -111,7 +111,10 @@ namespace ToDoList
         {
             complete = true;
         }
-
+        public void setComplete(bool value)
+        {
+            this.complete = value;
+        }
         public bool isComplete()
         {
             return complete;

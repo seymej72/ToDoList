@@ -28,7 +28,7 @@ namespace ToDoList
         public override void AddSubtask(int  subTaskId)
         {
             subTasks.Add(subTaskId, db.FetchSubTask(subTaskId));
-            db.SaveRepeatTask(this);
+            SaveTask();
         }
 
 
@@ -36,15 +36,15 @@ namespace ToDoList
         public override void DeleteSubtask(int subTaskId)
         {
             subTasks.Remove(subTaskId);
-            db.SaveRepeatTask(this);
+            SaveTask();
         }
 
       
         public override void EditSubtask(int oldSubTaskId, int newSubTaskId)
         {
-                subTasks.Remove(oldSubTaskId);
-                subTasks.Add(newSubTaskId, db.FetchSubTask(newSubTaskId));
-                db.SaveRepeatTask(this);
+            subTasks.Remove(oldSubTaskId);
+            subTasks.Add(newSubTaskId, db.FetchSubTask(newSubTaskId));
+            SaveTask();
         }
       
         public override void setTaskId(int taskId)
@@ -59,7 +59,7 @@ namespace ToDoList
         public override void setTitle(String theTitle)
         {
             this.taskTitle = theTitle;
-            db.SaveRepeatTask(this);
+            SaveTask();
         }
 
         // Is called when all subtasks have been marked complete.
@@ -69,7 +69,7 @@ namespace ToDoList
             {
                entry.Value.setDueDate(entry.Value.getDueDate().AddDays(7));
             }
-            db.SaveRepeatTask(this);
+            SaveTask();
 
         }
 
@@ -82,6 +82,7 @@ namespace ToDoList
         public override void setDescription(String descri)
         {
             this.descrip = descri;
+            SaveTask();
         }
 
         public override void setTaskFKey(int taskFKey)
@@ -92,6 +93,7 @@ namespace ToDoList
         public void setSubTasks(Dictionary<int, SubTask> subTasks)
         {
             this.subTasks = subTasks;
+            SaveTask();
         }
         ///////////////////////////////////////////////Getters are below///////////////////////////////////////
         public override Boolean getRepeatability()

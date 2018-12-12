@@ -258,6 +258,7 @@ namespace ToDoList
                 myDisposableTask.setDescription((String)reader.GetValue(2)); //Notes
                 myDisposableTask.setAllowNotifications((Boolean)reader.GetValue(3)); //allowNotifications
                 myDisposableTask.setIsComplete((Boolean)reader.GetValue(4)); //isComplete
+                myDisposableTask.setRepeatability((Boolean)reader.GetValue(5)); //isRepeatable
                 myDisposableTask.setTaskFKey((int)reader.GetValue(6)); //taskFKey
             }
             catch (Exception ex)
@@ -317,17 +318,15 @@ namespace ToDoList
                 conn = new MySqlConnection(connectionString);
                 conn.Open();
 
-                //command executes an insert and a select in order to return the taskId from that insertion
-                command = new MySqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`) " +
-                    "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable);", conn);
+                command = new MySqlCommand("INSERT INTO `Task` (`title`,`notes`,`allowNotifications`, `isComplete`,`isRepeatable`, `taskFKey`) " +
+                    "VALUES(@title, @notes, @allowNotifications, @isComplete, @isRepeatable, @taskFKey);", conn);
 
                 command.Parameters.AddWithValue("@title", disposableTask.getTitle());
                 command.Parameters.AddWithValue("@notes", disposableTask.getDescription());
                 command.Parameters.AddWithValue("@allowNotifications", disposableTask.getAllowNotifications());
                 command.Parameters.AddWithValue("@isComplete", disposableTask.getIsComplete());
-                command.Parameters.AddWithValue("@isRepeatable", 1);
-
-                MySqlDataReader reader = command.ExecuteReader();
+                command.Parameters.AddWithValue("@isRepeatable", 0); //0 for not repeatable
+                command.Parameters.AddWithValue("@taskFKey", disposableTask.getTaskFKey());
             }
             catch (Exception ex)
             {
@@ -357,7 +356,7 @@ namespace ToDoList
                     conn = new MySqlConnection(connectionString);
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand("UPDATE `Task` SET `title` = @title, `notes` = @notes," +
-                                       "`allowNotifications` = @allowNotifications, `isComplete` = @isComplete, `isRepeatable` = @isRepeatable" +
+                                       "`allowNotifications` = @allowNotifications, `isComplete` = @isComplete, `isRepeatable` = @isRepeatable, `taskFKey` = @taskFKey" +
                                        " WHERE `taskId` =  @taskId", conn);
                     cmd.Parameters.AddWithValue("taskId", disposableTask.getTaskId());
                     cmd.Parameters.AddWithValue("title", disposableTask.getTitle());
@@ -365,7 +364,7 @@ namespace ToDoList
                     cmd.Parameters.AddWithValue("allowNotifications", disposableTask.getAllowNotifications());
                     cmd.Parameters.AddWithValue("isComplete", disposableTask.getIsComplete());
                     cmd.Parameters.AddWithValue("isRepeatable", false);
-              
+                    cmd.Parameters.AddWithValue("taskFKey", disposableTask.getTaskFKey());
 
                     cmd.ExecuteNonQuery();
                 }

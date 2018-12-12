@@ -445,14 +445,12 @@ namespace ToDoList
                         temp.setNotes((String)reader.GetValue(3)); //description
 
                         //TODO THIS WON'T WORK
-                        //mySubTask.setFiles( = (LinkedList<String>)reader.GetValue(4); //filePath  
                         //TODO THIS WON'T WORK
 
-                        temp.setFiles(new LinkedList<String>());
+
                         temp.setRepeatFrom((DateTime)reader.GetValue(5)); //repeatFrom
                         temp.setTaskComplete((Boolean)reader.GetValue(6)); //isComplete
                         temp.setSubtaskFKey((int)reader.GetValue(7)); //subTaskFKey
-
                         returnedSubTasks.Add(((int)reader.GetValue(i)), temp);
                     }
                 }
@@ -497,11 +495,9 @@ namespace ToDoList
                     mySubTask.setNotes((String)reader.GetValue(3)); //description
 
                     //TODO THIS WON'T WORK
-                    //mySubTask.setFiles( = (LinkedList<String>)reader.GetValue(4); //filePath  
                     //TODO THIS WON'T WORK
 
 
-                    mySubTask.setFiles(new LinkedList<String>());
                     mySubTask.setRepeatFrom((DateTime)reader.GetValue(5)); //repeatFrom
                     mySubTask.setTaskComplete((Boolean)reader.GetValue(6)); //isComplete
                     mySubTask.setSubtaskFKey((int)reader.GetValue(7)); //subTaskFKey
@@ -543,7 +539,6 @@ namespace ToDoList
 
                     cmd.Parameters.Add(new SqlParameter("DueDate", subTask.getDueDate()));
                     cmd.Parameters.Add(new SqlParameter("isComplete", subTask.getTaskComplete()));
-                    cmd.Parameters.Add(new SqlParameter("FilePath", subTask.getFiles()));
                     cmd.Parameters.Add(new SqlParameter("Title", subTask.getTitle()));
                     cmd.Parameters.Add(new SqlParameter("Description", subTask.getNotes()));
                     cmd.Parameters.Add(new SqlParameter("RepeatFrom", subTask.getRepeatFrom()));
@@ -615,7 +610,6 @@ namespace ToDoList
                 reader = command.ExecuteReader();
                 reader.Read();
                 task.setDueDate((DateTime)reader.GetValue(1));
-                task.setFiles((LinkedList<String>)reader.GetValue(3));
                 task.setTitle((String)reader.GetValue(4));
                 task.setNotes((String)reader.GetValue(5));
                 return task;
@@ -644,7 +638,6 @@ namespace ToDoList
                 command.Parameters.AddWithValue("@subTaskId", newTask.getId());
                 command.Parameters.AddWithValue("@dueDate", newTask.getDueDate());
                 command.Parameters.AddWithValue("@isComplete", newTask.isComplete());
-                command.Parameters.AddWithValue("@filePath", newTask.getFiles());
                 command.Parameters.AddWithValue("@title", newTask.getTitle());
                 command.Parameters.AddWithValue("@description", newTask.getNotes());
                 command.Parameters.AddWithValue("@repeatfrom", null);
@@ -680,7 +673,6 @@ namespace ToDoList
                 command.Parameters.AddWithValue("@subTaskId", inTask.getId());
                 command.Parameters.AddWithValue("@dueDate", inTask.getDueDate());
                 command.Parameters.AddWithValue("@isComplete", inTask.isComplete());
-                command.Parameters.AddWithValue("@filePath", inTask.getFiles());
                 command.Parameters.AddWithValue("@title", inTask.getTitle());
                 command.Parameters.AddWithValue("@description", inTask.getNotes());
                 command.Parameters.AddWithValue("@repeatfrom", null);

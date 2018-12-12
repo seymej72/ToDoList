@@ -230,7 +230,7 @@ namespace ToDoList
             }
             else if (no == true)
             {
-                if (repeating != no)
+                if (repeating == no)
                 {
                     userObject.getUserToDoList()[0].switchTaskType(taskIndex);
                 }

@@ -273,8 +273,19 @@ namespace ToDoList
 
         private void completeAll(object sender, RoutedEventArgs e)
         {
-            
-           
+            if (areAllChecked())
+            {
+                if (repeating)
+                {
+                    tasks[taskIndex].setIsComplete(true);
+                }
+                else
+                {
+                    tasks.Remove(tasks[taskIndex]);
+                }
+            }
+
+
         }
 
         private void editClick(object sender, RoutedEventArgs e)

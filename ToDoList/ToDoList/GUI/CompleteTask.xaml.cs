@@ -278,6 +278,48 @@ namespace ToDoList
            
         }
 
+        private bool areAllChecked()
+        {
+            if (this.subCount == 1)
+            {
+                if (this.sub1.IsChecked == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (this.subCount == 2)
+            {
+                if ((this.sub1.IsChecked == true) && (this.sub2.IsChecked == true))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (this.subCount == 3)
+            {
+                if ((this.sub1.IsChecked == true) && (this.sub2.IsChecked == true) && (this.sub3.IsChecked == true))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         private void editClick(object sender, RoutedEventArgs e)
         {
             EditTask et = new EditTask(userObject, taskIndex, tasks, subtasks);

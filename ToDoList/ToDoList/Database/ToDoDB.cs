@@ -327,6 +327,8 @@ namespace ToDoList
                 command.Parameters.AddWithValue("@isComplete", disposableTask.getIsComplete());
                 command.Parameters.AddWithValue("@isRepeatable", 0); //0 for not repeatable
                 command.Parameters.AddWithValue("@taskFKey", disposableTask.getTaskFKey());
+
+                command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

@@ -252,7 +252,7 @@ namespace ToDoList
                 MySqlCommand cmd = new MySqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
                 cmd.Parameters.Add(new MySqlParameter("taskId", taskId));
                 MySqlDataReader reader = cmd.ExecuteReader();
-
+                reader.Read();
                 myDisposableTask.setTaskId((int)reader.GetValue(0)); //TaskId
                 myDisposableTask.setTitle((String)reader.GetValue(1)); //Title
                 myDisposableTask.setDescription((String)reader.GetValue(2)); //Notes
@@ -286,14 +286,10 @@ namespace ToDoList
                 MySqlCommand cmd = new MySqlCommand("SELECT* from `Task` WHERE `TaskId` =  @taskId", conn);
                 cmd.Parameters.Add(new MySqlParameter("taskId", taskId));
                 MySqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read() && reader.GetValue(0) != DBNull.Value)
+                reader.Read();
+                if (reader.HasRows && reader.GetValue(0) != DBNull.Value)
                 {
                     returnBool = true;
-                    Console.WriteLine("EXISTS");
-                }
-                else
-                {
-                    Console.WriteLine("DOES NOT EXIST");
                 }
             }
             catch (Exception ex)
@@ -315,7 +311,7 @@ namespace ToDoList
         {
             MySqlConnection conn = null;
             MySqlCommand command = null;
-            int taskId = 0;
+           
             try
             {
                 conn = new MySqlConnection(connectionString);
@@ -344,8 +340,10 @@ namespace ToDoList
                     conn.Close();
                 }
             }
-            taskId = GetNextTaskId();
-            return taskId;
+            int highestId = GetNextTaskId();
+            disposableTask.setTaskId(highestId);
+            UpdateTask(disposableTask);
+            return highestId;
         }
 
         //Update or Save Task 
@@ -359,15 +357,15 @@ namespace ToDoList
                     conn = new MySqlConnection(connectionString);
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand("UPDATE `Task` SET `title` = @title, `notes` = @notes," +
-                                       "`allowNotifications` = @allowNotifications, `isComplete` = @isComplete, `isRepeatable` = @isRepeatable," +
-                                       "`taskFKey` = @taskFKey WHERE `taskId` =  @taskId", conn);
-                    cmd.Parameters.Add(new SqlParameter("taskId", disposableTask.getTaskId()));
-                    cmd.Parameters.Add(new SqlParameter("title", disposableTask.getTitle()));
-                    cmd.Parameters.Add(new SqlParameter("notes", disposableTask.getDescription()));
-                    cmd.Parameters.Add(new SqlParameter("allowNotifications", disposableTask.getAllowNotifications()));
-                    cmd.Parameters.Add(new SqlParameter("isComplete", disposableTask.getIsComplete()));
-                    cmd.Parameters.Add(new SqlParameter("isRepeatable", false));
-                    cmd.Parameters.Add(new SqlParameter("taskFKey", disposableTask.getTaskId()));
+                                       "`allowNotifications` = @allowNotifications, `isComplete` = @isComplete, `isRepeatable` = @isRepeatable" +
+                                       " WHERE `taskId` =  @taskId", conn);
+                    cmd.Parameters.AddWithValue("taskId", disposableTask.getTaskId());
+                    cmd.Parameters.AddWithValue("title", disposableTask.getTitle());
+                    cmd.Parameters.AddWithValue("notes", disposableTask.getDescription());
+                    cmd.Parameters.AddWithValue("allowNotifications", disposableTask.getAllowNotifications());
+                    cmd.Parameters.AddWithValue("isComplete", disposableTask.getIsComplete());
+                    cmd.Parameters.AddWithValue("isRepeatable", false);
+              
 
                     cmd.ExecuteNonQuery();
                 }
@@ -401,7 +399,16 @@ namespace ToDoList
                     conn);
                 reader = command.ExecuteReader();
                 reader.Read();
-                return (int)reader.GetValue(0);
+
+                if (!DBNull.Value.Equals((reader.GetValue(0))))
+                {
+                    return (int)reader.GetValue(0);
+                }
+                else
+                {
+                    return 0;
+
+                } 
             }
             catch (Exception ex)
             {
@@ -445,14 +452,12 @@ namespace ToDoList
                         temp.setNotes((String)reader.GetValue(3)); //description
 
                         //TODO THIS WON'T WORK
-                        //mySubTask.setFiles( = (LinkedList<String>)reader.GetValue(4); //filePath  
                         //TODO THIS WON'T WORK
 
-                        temp.setFiles(new LinkedList<String>());
+
                         temp.setRepeatFrom((DateTime)reader.GetValue(5)); //repeatFrom
                         temp.setTaskComplete((Boolean)reader.GetValue(6)); //isComplete
                         temp.setSubtaskFKey((int)reader.GetValue(7)); //subTaskFKey
-
                         returnedSubTasks.Add(((int)reader.GetValue(i)), temp);
                     }
                 }
@@ -497,11 +502,9 @@ namespace ToDoList
                     mySubTask.setNotes((String)reader.GetValue(3)); //description
 
                     //TODO THIS WON'T WORK
-                    //mySubTask.setFiles( = (LinkedList<String>)reader.GetValue(4); //filePath  
                     //TODO THIS WON'T WORK
 
 
-                    mySubTask.setFiles(new LinkedList<String>());
                     mySubTask.setRepeatFrom((DateTime)reader.GetValue(5)); //repeatFrom
                     mySubTask.setTaskComplete((Boolean)reader.GetValue(6)); //isComplete
                     mySubTask.setSubtaskFKey((int)reader.GetValue(7)); //subTaskFKey
@@ -543,7 +546,6 @@ namespace ToDoList
 
                     cmd.Parameters.Add(new SqlParameter("DueDate", subTask.getDueDate()));
                     cmd.Parameters.Add(new SqlParameter("isComplete", subTask.getTaskComplete()));
-                    cmd.Parameters.Add(new SqlParameter("FilePath", subTask.getFiles()));
                     cmd.Parameters.Add(new SqlParameter("Title", subTask.getTitle()));
                     cmd.Parameters.Add(new SqlParameter("Description", subTask.getNotes()));
                     cmd.Parameters.Add(new SqlParameter("RepeatFrom", subTask.getRepeatFrom()));
@@ -615,7 +617,6 @@ namespace ToDoList
                 reader = command.ExecuteReader();
                 reader.Read();
                 task.setDueDate((DateTime)reader.GetValue(1));
-                task.setFiles((LinkedList<String>)reader.GetValue(3));
                 task.setTitle((String)reader.GetValue(4));
                 task.setNotes((String)reader.GetValue(5));
                 return task;
@@ -644,7 +645,6 @@ namespace ToDoList
                 command.Parameters.AddWithValue("@subTaskId", newTask.getId());
                 command.Parameters.AddWithValue("@dueDate", newTask.getDueDate());
                 command.Parameters.AddWithValue("@isComplete", newTask.isComplete());
-                command.Parameters.AddWithValue("@filePath", newTask.getFiles());
                 command.Parameters.AddWithValue("@title", newTask.getTitle());
                 command.Parameters.AddWithValue("@description", newTask.getNotes());
                 command.Parameters.AddWithValue("@repeatfrom", null);
@@ -680,7 +680,6 @@ namespace ToDoList
                 command.Parameters.AddWithValue("@subTaskId", inTask.getId());
                 command.Parameters.AddWithValue("@dueDate", inTask.getDueDate());
                 command.Parameters.AddWithValue("@isComplete", inTask.isComplete());
-                command.Parameters.AddWithValue("@filePath", inTask.getFiles());
                 command.Parameters.AddWithValue("@title", inTask.getTitle());
                 command.Parameters.AddWithValue("@description", inTask.getNotes());
                 command.Parameters.AddWithValue("@repeatfrom", null);

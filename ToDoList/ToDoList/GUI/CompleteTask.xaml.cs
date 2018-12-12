@@ -274,8 +274,35 @@ namespace ToDoList
 
         private void completeAll(object sender, RoutedEventArgs e)
         {
-            
-           
+            if (areAllChecked())
+            {
+                if (repeating)
+                {
+                    tasks[taskIndex].setIsComplete(true);
+                    if( subCount >= 1)
+                    {
+                        subs[0].setComplete(false);
+                    }
+                    if (subCount >= 2)
+                    {
+                        subs[1].setComplete(false);
+                    }
+                    if (subCount >= 3)
+                    {
+                        subs[2].setComplete(false);
+                    }
+                }
+                else
+                {
+                    tasks.Remove(tasks[taskIndex]);
+                }
+
+                Dashboard dash = new Dashboard(userObject);
+                NavigationService.Navigate(dash);
+            }
+
+
+
         }
 
         private bool areAllChecked()

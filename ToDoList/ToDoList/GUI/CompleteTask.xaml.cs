@@ -275,6 +275,7 @@ namespace ToDoList
         private void completeAll(object sender, RoutedEventArgs e)
         {
             
+           
         }
 
         private void editClick(object sender, RoutedEventArgs e)

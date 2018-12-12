@@ -127,14 +127,14 @@ namespace ToDoList
 
                 //ToDoUser user = 
                 //todo.LoginUser();
-
+                //sends user to dashboard if login is valid
+                NavigationService nav = NavigationService.GetNavigationService(this);
+                nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
             }
             
 
             
-            //sends user to dashboard if login is valid
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("/GUI/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+            
         }
     }
 }

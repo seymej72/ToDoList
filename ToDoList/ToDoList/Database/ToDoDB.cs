@@ -46,7 +46,8 @@ namespace ToDoList
                 MySqlDataReader reader = command.ExecuteReader();
                 reader.Read();
                 String userIdString = reader.GetValue(0).ToString();
-                return Int32.Parse(userIdString);
+                //return Int32.Parse(userIdString);
+                return 49;
             }
             catch(Exception ex)
             {

@@ -67,7 +67,14 @@ namespace ToDoList
                 if (task != null)
                 {
                     int size = task.Count();
-
+                    if (size == 0)
+                    {
+                        this.noTasks.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        this.noTasks.Visibility = Visibility.Hidden;
+                    }
                     if (size == 0)
                     {
                         this.TaskOne.Visibility = Visibility.Hidden;

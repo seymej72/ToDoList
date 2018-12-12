@@ -270,6 +270,12 @@ namespace ToDoList
             subs[2].setComplete(false);
         }
 
+        private void completeAll(object sender, RoutedEventArgs e)
+        {
+
+           
+        }
+
         private void editClick(object sender, RoutedEventArgs e)
         {
             EditTask et = new EditTask(userObject, taskIndex, tasks, subtasks);

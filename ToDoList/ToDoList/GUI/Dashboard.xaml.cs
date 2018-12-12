@@ -59,7 +59,7 @@ namespace ToDoList
         private void generateAllTasks()
         {
 
-            List<TaskList> tl = userObject.getUserToDoList();
+            List<Task> tl = userObject.getUserToDoList();
             if (tl.Count > 0)
             {
                 List<Task> task = tl[0].getTaskListList();

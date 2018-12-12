@@ -34,7 +34,7 @@ namespace ToDoList
         private Dictionary<int, SubTask> dict = new Dictionary<int, SubTask>();
 
         private ToDoUser user = new ToDoUser();
-        private List<TaskList> list = new List<TaskList>();
+        private List<Task> list = new List<Task>();
 
         private int idCount = 0;
 

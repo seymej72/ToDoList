@@ -152,7 +152,7 @@ namespace ToDoList
                     this.sub3Desc.Visibility = Visibility.Hidden;
 
                 }
-                else if (subCount == 3)
+                else if (subCount >= 3)
                 {
                     this.sub1.Visibility = Visibility.Visible;
                     this.sub1Date.Visibility = Visibility.Visible;
@@ -329,7 +329,7 @@ namespace ToDoList
                     return false;
                 }
             }
-            else if (this.subCount == 3)
+            else if (this.subCount >= 3)
             {
                 if ((this.sub1.IsChecked == true) && (this.sub2.IsChecked == true) && (this.sub3.IsChecked == true))
                 {

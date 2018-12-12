@@ -11,14 +11,14 @@ namespace ToDoList
     {
         public string Name;
         public int UserId;
-        public List<TaskList> UserToDoList = new List<TaskList>();
+        public List<Task> UserToDoList = new List<Task>();
         public int PasswordValue;
         ToDoDB db = new ToDoDB();
 
 
         public ToDoUser()
         {
-            UserToDoList.Add(new TaskList());
+            //Default Constructor
         }
         /// <summary>
         /// Constructor for a new User
@@ -32,9 +32,7 @@ namespace ToDoList
             this.Name = inUserName;
             this.PasswordValue = inPasswordVal;
             this.UserId = this.db.CreateToDoUser(this.Name, this.PasswordValue);
-            this.UserToDoList = new List<TaskList>();
-
-            UserToDoList.Add(new TaskList());
+            this.UserToDoList = new List<Task>();
         }
 
         public void setName(String inName){
@@ -44,18 +42,9 @@ namespace ToDoList
             return this.Name;
         }
 
-        public List<TaskList> getUserToDoList(){
+        public List<Task> getUserToDoList(){
             return UserToDoList;
         }
-
-        public void SaveUser()
-        {
-            foreach (var task in UserToDoList[0].getTaskListList())
-            {
-                task.SaveTask();
-            }
-        }
-
 
         /// <summary>
         /// Sets the users name to something new and updates it in the database
@@ -80,18 +69,17 @@ namespace ToDoList
         /// </summary>
         /// <param name="inList">The List of Tasks that are to be constructed</param>
         /// <returns>The new TaskList that was just added</returns>
-        public TaskList CreateNewList(List<Task> inList)
+        public List<Task> CreateNewList(Task inTask)
         {
-            TaskList newList = new TaskList(inList);
-            this.UserToDoList.Add(newList);
-            return newList;
+            this.UserToDoList.Add(inTask);
+            return this.UserToDoList;
         }
 
         /// <summary>
         /// Function to get a users To Do List from the MySQL database
         /// </summary>
         /// <param name="UserId">The ID of the user</param>
-        public List<TaskList> LoadList(int UserId)
+        public List<Task> LoadList(int UserId)
         {
             this.UserToDoList = this.db.LoadList(UserId);
             return this.UserToDoList;

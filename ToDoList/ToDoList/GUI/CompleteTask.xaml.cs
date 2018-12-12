@@ -27,6 +27,7 @@ namespace ToDoList
         private Dictionary<int, SubTask> subtasks = new Dictionary<int, SubTask>();
         private List<SubTask> subs = new List<SubTask>();
         private int subCount;
+        private bool repeating;
 
 
         public CompleteTask()
@@ -53,7 +54,7 @@ namespace ToDoList
             this.TaskTitleText.Text = tasks[taskIndex].getTitle();
             this.TaskDescriptionText.Text = tasks[taskIndex].getDescription();
 
-            bool repeating = tasks[taskIndex].getRepeatability();
+             this.repeating = tasks[taskIndex].getRepeatability();
             if (repeating == true)
             {
                 this.RepeatingText.Text = "Yes";
@@ -77,7 +78,7 @@ namespace ToDoList
                     subs.Add(entry.Value);
                 }
 
-                subCount = subs.Count();
+                this.subCount = subs.Count();
 
                 if (subCount == 1)
                 {
@@ -285,6 +286,48 @@ namespace ToDoList
                 }
             }
 
+
+        }
+
+        private bool areAllChecked()
+        {
+            if (this.subCount == 1)
+            {
+                if (this.sub1.IsChecked == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (this.subCount == 2)
+            {
+                if ((this.sub1.IsChecked == true) && (this.sub2.IsChecked == true))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (this.subCount == 3)
+            {
+                if ((this.sub1.IsChecked == true) && (this.sub2.IsChecked == true) && (this.sub3.IsChecked == true))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
 
         }
 

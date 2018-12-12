@@ -40,15 +40,15 @@ namespace ToDoList.Classes
                 newTask.setTaskId(ToDoList[index].getTaskId());
                 ToDoList[index] = newTask;
                 ToDoList[index].SaveTask();
-            }
-            else 
-            {
-                
-                    RepeatableTask newTask = new RepeatableTask(ToDoList[index].getTitle(), ToDoList[index].getDescription(), ToDoList[index].getSubTask());
-                    newTask.setTaskId(ToDoList[index].getTaskId());
-                    ToDoList[index] = newTask;
-                    ToDoList[index].SaveTask();
                 }
+            else 
+                {
+                 RepeatableTask newTask = new RepeatableTask(ToDoList[index].getTitle(), ToDoList[index].getDescription(), ToDoList[index].getSubTask());
+                 newTask.setTaskId(ToDoList[index].getTaskId());
+                 ToDoList[index] = newTask;
+                 ToDoList[index].SaveTask();
+                 Console.WriteLine("/n This is some message in front of it, quite a long message, hopefully it sticks out, a bit" + repeating);
+            }
             }
         }
     }

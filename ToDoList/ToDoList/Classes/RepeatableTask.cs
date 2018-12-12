@@ -87,7 +87,7 @@ namespace ToDoList
 
         public override void setTaskFKey(int taskFKey)
         {
-            
+            this.taskFKey = taskFKey;
         }
 
         public void setSubTasks(Dictionary<int, SubTask> subTasks)

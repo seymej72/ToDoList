@@ -29,26 +29,27 @@ namespace ToDoList.Classes
         {
             return ToDoList;
         }
-
+        /// <summary>
+        /// Switches task type from repeatable to disposable and vice versa 
+        /// </summary>
+        /// <param name="index"></param>
         public void switchTaskType(int index)
-        {
-            Task testTask = null;
-            Console.WriteLine("got there");
-            if (ToDoList[index].getRepeatability() == true)
             {
-                testTask = (Task)ToDoList[index];
-                DisposableTask newTestTask = (DisposableTask)testTask;
-                newTestTask.setRepeatability(false);
-                ToDoList[index] = newTestTask;
-                Console.WriteLine("got there");
+            bool repeating = ToDoList[index].getRepeatability();
+            if (repeating == false)
+                {
+                RepeatableTask newTask = new RepeatableTask(ToDoList[index].getTitle(), ToDoList[index].getDescription(), ToDoList[index].getSubTask());
+                newTask.setTaskId(ToDoList[index].getTaskId());
+                ToDoList[index] = newTask;
+                ToDoList[index].SaveTask();
+                }
+            else 
+                {
+                DisposableTask newTask = new DisposableTask(ToDoList[index].getTitle(), ToDoList[index].getDescription(), ToDoList[index].getSubTask());
+                newTask.setTaskId(ToDoList[index].getTaskId());
+                ToDoList[index] = newTask;
+                ToDoList[index].SaveTask();
             }
-            else
-            {
-                testTask = (Task)ToDoList[index];
-                RepeatableTask newTestTask = (RepeatableTask)testTask;
-                newTestTask.setRepeatability(true);
-                ToDoList[index] = newTestTask;
             }
         }
     }
-}

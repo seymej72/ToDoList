@@ -272,7 +272,7 @@ namespace ToDoList
 
         private void completeAll(object sender, RoutedEventArgs e)
         {
-
+            
            
         }
 

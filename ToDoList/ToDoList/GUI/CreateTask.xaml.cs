@@ -107,6 +107,8 @@ namespace ToDoList
                 //create repeatableTask
 
                 RepeatableTask rt = new RepeatableTask(taskTitle, taskDesc, dict);
+                rt.setTaskFKey(user.UserId);
+                rt.SaveTask();
                 list[0].addTask(rt);
 
                 Dashboard dash = new Dashboard(user);
@@ -121,6 +123,8 @@ namespace ToDoList
                 //create disposableTask
 
                 DisposableTask dt = new DisposableTask(taskTitle, taskDesc, dict);
+                dt.setTaskFKey(user.UserId);
+                dt.SaveTask();
                 list[0].addTask(dt);
 
                 Dashboard dash = new Dashboard(user);

@@ -12,7 +12,6 @@ namespace ToDoList
         ToDoDB db = new ToDoDB();
         DateTime dueDate;
         bool complete;
-        LinkedList<String> files;
         String title;
         String notes;
         int subtaskId; //Key for subtask ID for subtask table of DB - Added by Jake
@@ -24,7 +23,6 @@ namespace ToDoList
         {
             dueDate = inDueDate;
             complete = false;
-            //files = inFiles;
             title = inTitle;
             notes = inNotes;
         }
@@ -33,7 +31,6 @@ namespace ToDoList
         {
             dueDate = DateTime.MinValue;
             complete = false;
-            files = null;
             title = null;
             notes = null;
         }
@@ -120,21 +117,6 @@ namespace ToDoList
             return complete;
         }
 
-        public void setFiles(LinkedList<String> inFiles)
-        {
-            files = inFiles;
-        }
-
-        public void addFile(String inFile)
-        {
-            files.AddLast(inFile);
-        }
-
-        public LinkedList<String> getFiles()
-        {
-            return files;
-        }
-
         public void setTitle(String inTitle)
         {
             title = inTitle;
@@ -172,7 +154,6 @@ namespace ToDoList
             SubTask temp = db.getSubTask(inId);
             this.complete = temp.complete;
             this.dueDate = temp.dueDate;
-            this.files = temp.files;
             this.subtaskId = temp.subtaskId;
             this.title = temp.title;
             this.notes = temp.notes;
@@ -197,7 +178,6 @@ namespace ToDoList
                 SubTask temp = (SubTask)obj;
                 if (this.dueDate.Equals(temp.dueDate) &&
                     this.complete.Equals(temp.complete) &&
-                    this.files.Equals(temp.files) &&
                     this.title.Equals(temp.title) &&
                     this.notes.Equals(temp.notes) &&
                     this.subtaskId.Equals(temp.subtaskId) &&
@@ -219,7 +199,7 @@ namespace ToDoList
             int hash = 13;
             hash = (hash * 7) + (!Object.ReferenceEquals(null, this.dueDate) ? this.dueDate.GetHashCode() : 0);
             hash = (hash * 7) + (!Object.ReferenceEquals(null, this.complete) ? this.complete.GetHashCode() : 0);
-            hash = (hash * 7) + (!Object.ReferenceEquals(null, this.files) ? this.files.GetHashCode() : 0);
+            //hash = (hash * 7) + (!Object.ReferenceEquals(null, this.files) ? this.files.GetHashCode() : 0);
             hash = (hash * 7) + (!Object.ReferenceEquals(null, this.title) ? this.title.GetHashCode() : 0);
             hash = (hash * 7) + (!Object.ReferenceEquals(null, this.notes) ? this.notes.GetHashCode() : 0);
             hash = (hash * 7) + (!Object.ReferenceEquals(null, this.subtaskId) ? this.subtaskId.GetHashCode() : 0);

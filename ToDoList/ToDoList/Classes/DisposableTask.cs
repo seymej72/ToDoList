@@ -136,6 +136,7 @@ namespace ToDoList
         public override void setTitle(String theTitle)
         {
             this.taskTitle = theTitle;
+            SaveTask();
         }
 
         public override void setIsComplete(Boolean complete)
@@ -151,6 +152,7 @@ namespace ToDoList
         public override void setDescription(String descrip)
         {
             this.descrip = descrip;
+            SaveTask();
         }
 
         public override void setTaskFKey(int taskFKey)
@@ -161,6 +163,7 @@ namespace ToDoList
         public void setSubTasks(Dictionary<int, SubTask> subTasks)
         {
             this.subTasks = subTasks;
+            SaveTask();
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
